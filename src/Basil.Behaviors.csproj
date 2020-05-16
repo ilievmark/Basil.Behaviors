@@ -1,0 +1,85 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+
+  <PropertyGroup>
+    <TargetFrameworks></TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid90</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid90</TargetFrameworks>
+    
+    <AssemblyName>Basil.Behaviors</AssemblyName>
+    <RootNamespace>Basil.Behaviors</RootNamespace>
+    <PackageId>Basil.Behaviors</PackageId>
+    
+    <Product>Basil.Behaviors</Product>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+    <Version>1.0.0.0</Version>
+    <PackageVersion>1.0.0.0</PackageVersion>
+    <PackOnBuild>true</PackOnBuild>
+    <NeutralLanguage>en</NeutralLanguage>
+    <LangVersion>8</LangVersion>
+    <DefineConstants>$(DefineConstants);</DefineConstants>
+    
+    <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+    <LangVersion>latest</LangVersion>
+    <DebugType>portable</DebugType>
+    
+    <PackageLicenseUrl>https://www.gnu.org/licenses/gpl-3.0.html</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ilievmark/Basil.Behaviors</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ilievmark/Basil.Behaviors</RepositoryUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageTags>xamarin, windows, ios, android, xamarin.forms, plugin, Basil.Behaviors</PackageTags>
+    
+    <Title>Basil.Behaviors Plugin for Xamarin.Forms</Title>
+    <Summary>Basic behaviors for Xamarin.Forms</Summary>
+    <Description>Basic behaviors for Xamarin.Forms</Description>
+    
+    <Owners>Iliiev Mark</Owners>
+    <Authors>Iliiev Mark</Authors>
+    <Copyright>Copyright 2020</Copyright>
+
+    <DisableExtraReferences>true</DisableExtraReferences>
+    <PackageIcon>basil.png</PackageIcon>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="**\*.shared.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <Compile Include="**\*.android.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <Compile Include="**\*.apple.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Shared\Basil.Behaviors.shared.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\Desktop\basil.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
