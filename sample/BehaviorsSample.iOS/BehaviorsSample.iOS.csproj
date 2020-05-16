@@ -128,7 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BehaviorsSample\BehaviorsSample.csproj">
-      <Project>{25299A6C-6BCE-4C01-861F-168AE396E2C7}</Project>
+      <Project>{BFD12436-BC97-4ACD-829B-5C9D260B05E4}</Project>
       <Name>BehaviorsSample</Name>
     </ProjectReference>
   </ItemGroup>
