@@ -6,10 +6,6 @@ namespace Basil.Behaviors.Events
 {
     public class EventToCommandBehavior : EventBehaviorBase
     {
-        public EventToCommandBehavior()
-        {
-        }
-
         #region Properties
 
         #region Command property

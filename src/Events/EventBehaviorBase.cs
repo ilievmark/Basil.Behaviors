@@ -76,6 +76,9 @@ namespace Basil.Behaviors.Events
             if (string.IsNullOrWhiteSpace(name))
                 return;
 
+            if (AssociatedObject == null)
+                return;
+
             var eventInfo = AssociatedObject.GetType().GetRuntimeEvent(name);
 
             if (eventInfo == null)
@@ -93,6 +96,9 @@ namespace Basil.Behaviors.Events
                 return;
 
             if (_eventHandler == null)
+                return;
+            
+            if (AssociatedObject == null)
                 return;
 
             var eventInfo = AssociatedObject.GetType().GetRuntimeEvent(name);
