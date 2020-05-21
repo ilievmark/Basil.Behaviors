@@ -48,6 +48,24 @@
                         </b:EventToMethodBehavior>
                     </Button.Behaviors>
                 </Button>
+                
+                <Button Text="Event to method behavior with param binding sequence demo">
+                    <Button.Behaviors>
+                        <b:SequenceEventHandlerBehavior EventName="Clicked">
+                            <h:EventToMethodHandler MethodName="JustAMethodTooButWithParameterBinding">
+                                <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>
+                                <p:GenericParameter x:TypeArguments="x:String">The best green in the world - Basil</p:GenericParameter>
+                            </h:EventToMethodHandler>
+                            <h:EventToMethodHandler MethodName="JustAMethodNoMore">
+                                <p:GenericParameter x:TypeArguments="x:String">Some value passed as param</p:GenericParameter>
+                            </h:EventToMethodHandler>
+                            <h:EventToMethodHandler MethodName="JustAMethodTooButWithParameterBinding">
+                                <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>
+                                <p:GenericParameter x:TypeArguments="x:String">The best green in the world - Basil</p:GenericParameter>
+                            </h:EventToMethodHandler>
+                        </b:SequenceEventHandlerBehavior>
+                    </Button.Behaviors>
+                </Button>
 
             </StackLayout>
 
