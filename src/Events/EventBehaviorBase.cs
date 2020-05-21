@@ -35,8 +35,8 @@ namespace Basil.Behaviors.Events
 
         public string EventName
         {
-            get { return (string)GetValue(EventNameProperty); }
-            set { SetValue(EventNameProperty, value); }
+            get => (string)GetValue(EventNameProperty);
+            set => SetValue(EventNameProperty, value);
         }
 
         #endregion
@@ -76,12 +76,10 @@ namespace Basil.Behaviors.Events
                 return;
 
             var eventInfo = AssociatedObject.GetType().GetRuntimeEvent(name);
-
             if (eventInfo == null)
                 throw new ArgumentException($"{nameof(EventBehaviorBase)}: Can't register the '{EventName}' event.");
 
             var methodInfo = typeof(EventBehaviorBase).GetTypeInfo().GetDeclaredMethod(nameof(HandleEvent));
-
             _eventHandler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
             eventInfo.AddEventHandler(AssociatedObject, _eventHandler);
         }

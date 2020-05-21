@@ -11,17 +11,6 @@ namespace Basil.Behaviors
             get => _associatedObject;
             set => SetAssociatedObject(value);
         }
-
-        private void SetAssociatedObject(BindableObject newValue)
-        {
-            var oldValue = _associatedObject;
-            _associatedObject = newValue;
-            OnAssociatedObjectChanged(oldValue, _associatedObject);
-        }
-
-        protected virtual void OnAssociatedObjectChanged(BindableObject oldValue, BindableObject newValue)
-        {
-        }
         
         #region Overrides
 
@@ -31,7 +20,9 @@ namespace Basil.Behaviors
             AssociatedObject = bindable;
 
             if (bindable.BindingContext != null)
+            {
                 BindingContext = bindable.BindingContext;
+            }
 
             bindable.BindingContextChanged += OnBindingContextChanged;
         }
@@ -50,10 +41,30 @@ namespace Basil.Behaviors
         }
 
         #endregion
+        
+        #region Virtual members
+        
+        protected virtual void OnAssociatedObjectChanged(BindableObject oldValue, BindableObject newValue)
+        {
+        }
+        
+        protected virtual void OnAssociatedObjectChanging(BindableObject oldValue, BindableObject newValue)
+        {
+        }
+        
+        #endregion
 
         private void OnBindingContextChanged(object sender, EventArgs e)
         {
             OnBindingContextChanged();
+        }
+
+        private void SetAssociatedObject(BindableObject newValue)
+        {
+            var oldValue = _associatedObject;
+            OnAssociatedObjectChanging(_associatedObject, newValue);
+            _associatedObject = newValue;
+            OnAssociatedObjectChanged(oldValue, _associatedObject);
         }
     }
 }

@@ -106,9 +106,7 @@ namespace Basil.Behaviors.Events
             }
 
             if (Command.CanExecute(resolvedParameter))
-            {
                 Command.Execute(resolvedParameter);
-            }
         }
 
         #endregion

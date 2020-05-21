@@ -12,19 +12,16 @@ namespace Basil.Behaviors.Events
     {
         public EventHandlerBehaviorBase()
         {
-            _Handlers = new ObservableCollection<BaseHandler>();
-            _Handlers.CollectionChanged += OnHandlersCollectionChanged;
+            _handlers = new ObservableCollection<BaseHandler>();
+            _handlers.CollectionChanged += OnHandlersCollectionChanged;
         }
 
         #region Properties
 
         #region Handlers property
 
-        private ObservableCollection<BaseHandler> _Handlers;
-        public IList<BaseHandler> Handlers
-        {
-            get => _Handlers;
-        }
+        private ObservableCollection<BaseHandler> _handlers;
+        public IList<BaseHandler> Handlers => _handlers;
 
         #endregion
 
@@ -75,6 +72,9 @@ namespace Basil.Behaviors.Events
                     handler.DetachBindableObject(AssociatedObject);
         }
 
-        private void ResetHandlers(IEnumerable<BaseHandler> handlers) => RemovedHandlers(handlers);
+        private void ResetHandlers(IEnumerable<BaseHandler> handlers)
+        {
+            RemovedHandlers(handlers);
+        }
     }
 }
