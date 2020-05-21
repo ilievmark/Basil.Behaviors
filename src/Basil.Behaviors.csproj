@@ -41,7 +41,7 @@
     <Copyright>Copyright 2020</Copyright>
 
     <DisableExtraReferences>true</DisableExtraReferences>
-    <PackageIcon>basil.png</PackageIcon>
+    <PackageIcon></PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     
@@ -58,6 +58,27 @@
 
   <ItemGroup>
     <Compile Include="**\*.shared.cs" />
+    <Compile Include="Events\EventBehaviorBase.cs">
+      <SubType></SubType>
+    </Compile>
+    <Compile Include="BaseBehavior.cs">
+      <SubType></SubType>
+    </Compile>
+    <Compile Include="Events\Handlers\BaseHandler.cs">
+      <SubType></SubType>
+    </Compile>
+    <Compile Include="Events\EventHandlerBehaviorBase.cs">
+      <SubType></SubType>
+    </Compile>
+    <Compile Include="Events\EventToCommandBehavior.cs">
+      <SubType></SubType>
+    </Compile>
+    <Compile Include="Events\SequenceEventHandlerBehavior.cs">
+      <SubType></SubType>
+    </Compile>
+    <Compile Include="Events\Handlers\EventToCommandHandler.cs">
+      <SubType></SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
@@ -72,14 +93,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Shared\Basil.Behaviors.shared.cs" />
+    <Folder Include="Events\" />
+    <Folder Include="Events\Handlers\" />
   </ItemGroup>
-
   <ItemGroup>
-    <None Include="D:\Desktop\basil.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
   </ItemGroup>
-
 </Project>
