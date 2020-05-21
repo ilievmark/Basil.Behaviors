@@ -12,8 +12,8 @@
     <Product>Basil.Behaviors</Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
-    <Version>1.0.1.0</Version>
-    <PackageVersion>1.0.1.0</PackageVersion>
+    <Version>1.0.2.0</Version>
+    <PackageVersion>1.0.2.0</PackageVersion>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
     <LangVersion>8</LangVersion>
@@ -25,7 +25,7 @@
     <LangVersion>latest</LangVersion>
     <DebugType>portable</DebugType>
     
-    <PackageLicenseUrl>https://www.gnu.org/licenses/gpl-3.0.html</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ilievmark/Basil.Behaviors</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ilievmark/Basil.Behaviors</RepositoryUrl>
     <PackageReleaseNotes></PackageReleaseNotes>
@@ -41,9 +41,11 @@
     <Copyright>Copyright 2020</Copyright>
 
     <DisableExtraReferences>true</DisableExtraReferences>
-    <PackageIcon></PackageIcon>
+    <PackageIcon>icon_basil.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryType>Git</RepositoryType>
     
   </PropertyGroup>
 
@@ -103,5 +105,15 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\res\icon_basil.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
