@@ -5,8 +5,24 @@ namespace Basil.Behaviors
 {
     public abstract class BaseBehavior : Behavior
     {
-        protected BindableObject AssociatedObject { get; private set; }
+        private BindableObject _associatedObject;
+        protected BindableObject AssociatedObject
+        {
+            get => _associatedObject;
+            set => SetAssociatedObject(value);
+        }
 
+        private void SetAssociatedObject(BindableObject newValue)
+        {
+            var oldValue = _associatedObject;
+            _associatedObject = newValue;
+            OnAssociatedObjectChanged(oldValue, _associatedObject);
+        }
+
+        protected virtual void OnAssociatedObjectChanged(BindableObject oldValue, BindableObject newValue)
+        {
+        }
+        
         #region Overrides
 
         protected override void OnAttachedTo(BindableObject bindable)

@@ -12,5 +12,13 @@ namespace BehaviorsSample.ViewModels
         {
             Debug.WriteLine("Hello from Sample1Command");
         }
+
+
+        public ICommand Sample2Command => new Command(OnSample2Command);
+
+        private void OnSample2Command()
+        {
+            Debug.WriteLine("Hello from Sample2Command");
+        }
     }
 }

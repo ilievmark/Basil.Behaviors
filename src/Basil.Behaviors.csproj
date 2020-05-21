@@ -67,10 +67,16 @@
     <Compile Include="Events\Handlers\BaseHandler.cs">
       <SubType></SubType>
     </Compile>
-    <Compile Include="Events\EventHandlerBehavior.cs">
+    <Compile Include="Events\EventHandlerBehaviorBase.cs">
       <SubType></SubType>
     </Compile>
     <Compile Include="Events\EventToCommandBehavior.cs">
+      <SubType></SubType>
+    </Compile>
+    <Compile Include="Events\SequenceEventHandlerBehavior.cs">
+      <SubType></SubType>
+    </Compile>
+    <Compile Include="Events\Handlers\EventToCommandHandler.cs">
       <SubType></SubType>
     </Compile>
   </ItemGroup>

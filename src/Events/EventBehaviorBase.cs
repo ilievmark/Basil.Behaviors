@@ -9,10 +9,6 @@ namespace Basil.Behaviors.Events
     {
         private Delegate _eventHandler;
 
-        public EventBehaviorBase()
-        {
-        }
-
         private static void OnEventNameChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (bindable is EventBehaviorBase behavior)
@@ -84,7 +80,7 @@ namespace Basil.Behaviors.Events
             if (eventInfo == null)
                 throw new ArgumentException($"{nameof(EventBehaviorBase)}: Can't register the '{EventName}' event.");
 
-            var methodInfo = typeof(EventToCommandBehavior).GetTypeInfo().GetDeclaredMethod(nameof(HandleEvent));
+            var methodInfo = typeof(EventBehaviorBase).GetTypeInfo().GetDeclaredMethod(nameof(HandleEvent));
 
             _eventHandler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
             eventInfo.AddEventHandler(AssociatedObject, _eventHandler);

@@ -9,7 +9,6 @@ namespace BehaviorsSample.Views
         {
             BindingContext = new EventPageViewModel();
             InitializeComponent();
-
         }
     }
 }
