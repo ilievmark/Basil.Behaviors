@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:b="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
     xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
+    xmlns:p="clr-namespace:Basil.Behaviors.Events.Parameters;assembly=Basil.Behaviors"
+    xmlns:c="clr-namespace:System.Windows.Input;assembly=netstandard"
     x:Class="BehaviorsSample.Views.EventPage"
     Padding="0,35,0,0">
     <ContentPage.Content>
@@ -26,6 +28,41 @@
                             <h:EventToCommandHandler Command="{Binding Sample2Command}"/>
                             <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
                             <h:EventToCommandHandler Command="{Binding Sample2Command}"/>
+                        </b:SequenceEventHandlerBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Event to method behavior demo">
+                    <Button.Behaviors>
+                        <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodNoMore">
+                            <p:GenericParameter x:TypeArguments="x:String">Some value passed as param</p:GenericParameter>
+                        </b:EventToMethodBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Event to method behavior with param binding demo">
+                    <Button.Behaviors>
+                        <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodTooButWithParameterBinding">
+                            <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>
+                            <p:GenericParameter x:TypeArguments="x:String">The best green in the world - Basil</p:GenericParameter>
+                        </b:EventToMethodBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Event to method behavior with param binding sequence demo">
+                    <Button.Behaviors>
+                        <b:SequenceEventHandlerBehavior EventName="Clicked">
+                            <h:EventToMethodHandler MethodName="JustAMethodTooButWithParameterBinding">
+                                <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>
+                                <p:GenericParameter x:TypeArguments="x:String">The best green in the world - Basil</p:GenericParameter>
+                            </h:EventToMethodHandler>
+                            <h:EventToMethodHandler MethodName="JustAMethodNoMore">
+                                <p:GenericParameter x:TypeArguments="x:String">Some value passed as param</p:GenericParameter>
+                            </h:EventToMethodHandler>
+                            <h:EventToMethodHandler MethodName="JustAMethodTooButWithParameterBinding">
+                                <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>
+                                <p:GenericParameter x:TypeArguments="x:String">The best green in the world - Basil</p:GenericParameter>
+                            </h:EventToMethodHandler>
                         </b:SequenceEventHandlerBehavior>
                     </Button.Behaviors>
                 </Button>

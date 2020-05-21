@@ -20,5 +20,17 @@ namespace BehaviorsSample.ViewModels
         {
             Debug.WriteLine("Hello from Sample2Command");
         }
+        
+        public void JustAMethodNoMore(string param)
+        {
+            Debug.WriteLine($"Hello from JustAMethodNoMore {param}");
+        }
+        
+        public void JustAMethodTooButWithParameterBinding(ICommand commandParam, string stringParam)
+        {
+            Debug.WriteLine($"Mvvm??? Ha-ha!");
+            Debug.WriteLine(stringParam);
+            commandParam.Execute(null);
+        }
     }
 }
