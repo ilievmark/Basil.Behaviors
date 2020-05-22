@@ -63,6 +63,7 @@
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
     <Compile Include="Events\Parameters\BindableParameter.cs" />
     <Compile Include="Events\Parameters\GenericParameter.cs" />
+    <Compile Include="Events\Parameters\NamedParameter.cs" />
     <Compile Include="Events\Parameters\Parameter.cs" />
     <Compile Include="Events\EventBehaviorBase.cs">
       <SubType></SubType>
