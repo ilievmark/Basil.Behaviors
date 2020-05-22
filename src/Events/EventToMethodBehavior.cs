@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Reflection;
+using Basil.Behaviors.Extensions;
 using Basil.Behaviors.Events.Parameters;
 using Xamarin.Forms;
 
@@ -15,6 +14,7 @@ namespace Basil.Behaviors.Events
         public EventToMethodBehavior()
         {
             _parameters = new ObservableCollection<Parameter>();
+            //TODO: Remove subscribing or add unsubscribe
             _parameters.CollectionChanged += OnParametersChanged;
         }
 
@@ -64,31 +64,8 @@ namespace Basil.Behaviors.Events
         #endregion
         
         #region Overrides
-        
-        protected override void HandleEvent(object sender, object eventArgs)
-        {
-            if (AssociatedObject == null)
-                return;
-            
-            if (AssociatedObject.BindingContext == null)
-                return;
-            
-            if (string.IsNullOrEmpty(MethodName))
-                return;
 
-            var target = TargetObject;
-            if (target == null)
-                target = AssociatedObject.BindingContext;
-
-            var targetType = target.GetType();
-            var parameterTypes = _parameters.Select(i => i.GetParamType()).ToArray();
-            var methodInfo = targetType.GetRuntimeMethod(MethodName, parameterTypes);
-            if (methodInfo == null)
-                throw new ArgumentException($"{nameof(EventToMethodBehavior)}: Cant invoke method {MethodName}." +
-                                            $" There is no method {MethodName} in type {targetType.FullName}");
-
-            methodInfo.Invoke(target, _parameters.Select(i => i.GetValue()).ToArray());
-        }
+        protected override void HandleEvent(object sender, object eventArgs) => this.ExecuteMethod();
 
         protected override void OnBindingContextChanged()
         {

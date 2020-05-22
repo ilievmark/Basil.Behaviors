@@ -6,10 +6,10 @@ namespace Basil.Behaviors
     public abstract class BaseBehavior : Behavior
     {
         private BindableObject _associatedObject;
-        protected BindableObject AssociatedObject
+        public BindableObject AssociatedObject
         {
             get => _associatedObject;
-            set => SetAssociatedObject(value);
+            private set => SetAssociatedObject(value);
         }
         
         #region Overrides

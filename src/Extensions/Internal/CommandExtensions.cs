@@ -1,0 +1,42 @@
+using System.Globalization;
+using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace Basil.Behaviors.Extensions.Internal
+{
+    public static class CommandExtensions
+    {
+        internal static void RunCommand(
+            this ICommand command,
+            object commandParameter,
+            IValueConverter converter,
+            object converterParameter,
+            object args)
+        {
+            if (command == null)
+                return;
+
+            object resolvedParameter;
+
+            if (commandParameter != null)
+            {
+                resolvedParameter = commandParameter;
+            }
+            else if (converter != null)
+            {
+                resolvedParameter = converter.Convert(
+                    args,
+                    typeof(object),
+                    converterParameter,
+                    CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                resolvedParameter = args;
+            }
+
+            if (command.CanExecute(resolvedParameter))
+                command.Execute(resolvedParameter);
+        }
+    }
+}
