@@ -86,6 +86,8 @@
     <Compile Include="Events\Handlers\EventToCommandHandler.cs">
       <SubType></SubType>
     </Compile>
+    <Compile Include="Extensions\CommandEventRisingExtensions.cs" />
+    <Compile Include="Extensions\Internal\CommandExtensions.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">

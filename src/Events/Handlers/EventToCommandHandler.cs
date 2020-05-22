@@ -1,6 +1,6 @@
-﻿using System.Globalization;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
+using Basil.Behaviors.Extensions;
 
 namespace Basil.Behaviors.Events.Handlers
 {
@@ -78,33 +78,7 @@ namespace Basil.Behaviors.Events.Handlers
         #endregion
 
         #endregion
-        
-        public override void Rise(object sender, object eventArgs)
-        {
-            if (Command == null)
-                return;
 
-            object resolvedParameter;
-
-            if (CommandParameter != null)
-            {
-                resolvedParameter = CommandParameter;
-            }
-            else if (Converter != null)
-            {
-                resolvedParameter = Converter.Convert(
-                    eventArgs,
-                    typeof(object),
-                    ConverterParameter,
-                    CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                resolvedParameter = eventArgs;
-            }
-
-            if (Command.CanExecute(resolvedParameter))
-                Command.Execute(resolvedParameter);
-        }
+        public override void Rise(object sender, object eventArgs) => this.ExecuteCommand(eventArgs);
     }
 }

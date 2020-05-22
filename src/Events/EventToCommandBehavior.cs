@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using Basil.Behaviors.Extensions;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -81,33 +81,7 @@ namespace Basil.Behaviors.Events
 
         #region Overrides
 
-        protected override void HandleEvent(object sender, object eventArgs)
-        {
-            if (Command == null)
-                return;
-
-            object resolvedParameter;
-
-            if (CommandParameter != null)
-            {
-                resolvedParameter = CommandParameter;
-            }
-            else if (Converter != null)
-            {
-                resolvedParameter = Converter.Convert(
-                    eventArgs,
-                    typeof(object),
-                    ConverterParameter,
-                    CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                resolvedParameter = eventArgs;
-            }
-
-            if (Command.CanExecute(resolvedParameter))
-                Command.Execute(resolvedParameter);
-        }
+        protected override void HandleEvent(object sender, object eventArgs) => this.ExecuteCommand(eventArgs);
 
         #endregion
     }
