@@ -94,6 +94,7 @@
     <Compile Include="Extensions\Internal\TypeExtension.cs" />
     <Compile Include="Extensions\MethodEventRisingExtensions.cs" />
     <Compile Include="Extensions\ParameterExtensions.cs" />
+    <Compile Include="Validations\ValidationBehaviorBase.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
