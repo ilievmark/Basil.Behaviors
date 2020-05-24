@@ -90,7 +90,9 @@
     <Compile Include="Extensions\CommandEventRisingExtensions.cs" />
     <Compile Include="Extensions\Internal\CommandExtensions.cs" />
     <Compile Include="Extensions\Internal\MethodReflectionExtension.cs" />
+    <Compile Include="Extensions\Internal\TypeExtension.cs" />
     <Compile Include="Extensions\MethodEventRisingExtensions.cs" />
+    <Compile Include="Extensions\ParameterExtensions.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
