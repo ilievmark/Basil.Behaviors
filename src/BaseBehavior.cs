@@ -73,5 +73,8 @@ namespace Basil.Behaviors
             _associatedObject = newValue;
             OnAssociatedObjectChanged(oldValue, _associatedObject);
         }
+        
+        protected bool IsAttached()
+            => AssociatedObject != null;
     }
 }

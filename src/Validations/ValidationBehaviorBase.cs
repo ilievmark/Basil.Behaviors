@@ -8,6 +8,8 @@ namespace Basil.Behaviors.Validations
 {
     public abstract class ValidationBehaviorBase<TProperty> : BaseBehavior
     {
+        private TProperty _lastHandleValue;
+        
         #region Properties
         
         #region Pattern property
@@ -47,6 +49,21 @@ namespace Basil.Behaviors.Validations
         #endregion
 
         #region Overrides
+        
+        protected override void OnAssociatedObjectChanged(BindableObject oldValue, BindableObject newValue)
+        {
+            base.OnAssociatedObjectChanged(oldValue, newValue);
+
+            VerifyTargetTypes();
+        }
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            
+            if (propertyName == PropertyNameProperty.PropertyName)
+                VerifyTargetTypes();
+        }
 
         protected override void OnAssociatedObjectPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -56,7 +73,8 @@ namespace Basil.Behaviors.Validations
 
         protected virtual void OnTargetPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            Validate(GetValue(), GetValue, SetValue);
+            if (!_lastHandleValue.Equals(GetValue()))
+                Validate(GetValue(), GetValue, SetValue);
         }
 
         protected abstract void Validate(TProperty newValue, Func<TProperty> getValueDelegate, Func<TProperty, TProperty> setValueDelegate);
@@ -75,18 +93,31 @@ namespace Basil.Behaviors.Validations
         
         private TProperty GetValue()
         {
-            var propertyInfo = GetPropertyInfo();
-            
-            return (TProperty)propertyInfo.GetValue(AssociatedObject);
+            return IsAssignable() ? default(TProperty) : (TProperty)GetPropertyInfo().GetValue(AssociatedObject);
         }
         
         private TProperty SetValue(TProperty newValue)
         {
-            var propertyInfo = GetPropertyInfo();
+            if (IsAssignable())
+            {
+                var propertyInfo = GetPropertyInfo();
+                _lastHandleValue = newValue;
+                propertyInfo.SetValue(AssociatedObject, newValue);
+            }
             
-            propertyInfo.SetValue(AssociatedObject, newValue);
-            
-            return (TProperty)propertyInfo.GetValue(AssociatedObject);
+            return GetValue();
         }
+
+        private void VerifyTargetTypes()
+        {
+            if (IsAssignable() && GetPropertyInfo().DeclaringType != typeof(TProperty))
+                throw new NotSupportedException($"Target property {PropertyName} is not {typeof(TProperty).FullName}");
+        }
+
+        protected bool IsAssignable()
+            => IsAttached() && IsPropertyNameProvided();
+
+        protected bool IsPropertyNameProvided()
+            => !string.IsNullOrEmpty(PropertyName);
     }
 }
