@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Reflection;
+using Basil.Behaviors.Core;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -47,6 +48,16 @@ namespace Basil.Behaviors.Validations
         #endregion
         
         #endregion
+        
+        #region Events
+        
+        #region Validated
+
+        public event Result<TProperty> Validated = delegate { };
+        
+        #endregion
+        
+        #endregion
 
         #region Overrides
         
@@ -73,11 +84,17 @@ namespace Basil.Behaviors.Validations
 
         protected virtual void OnTargetPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (!_lastHandleValue.Equals(GetValue()))
-                Validate(GetValue(), GetValue, SetValue);
+            if (IsEmptyCache() || IsOldCahce())
+                Validated(ProcessValidation(GetValue(), GetValue, SetValue), GetValue());
+            _lastHandleValue = GetValue();
         }
 
-        protected abstract void Validate(TProperty newValue, Func<TProperty> getValueDelegate, Func<TProperty, TProperty> setValueDelegate);
+        private bool IsEmptyCache()
+            => _lastHandleValue == null;
+        private bool IsOldCahce()
+            => _lastHandleValue != null && !_lastHandleValue.Equals(GetValue());
+        
+        protected abstract bool ProcessValidation(TProperty newValue, Func<TProperty> getValueDelegate, Func<TProperty, TProperty> setValueDelegate);
 
         #endregion
 
@@ -93,7 +110,7 @@ namespace Basil.Behaviors.Validations
         
         private TProperty GetValue()
         {
-            return IsAssignable() ? default(TProperty) : (TProperty)GetPropertyInfo().GetValue(AssociatedObject);
+            return IsAssignable() ? (TProperty)GetPropertyInfo().GetValue(AssociatedObject) : default(TProperty);
         }
         
         private TProperty SetValue(TProperty newValue)
@@ -110,7 +127,7 @@ namespace Basil.Behaviors.Validations
 
         private void VerifyTargetTypes()
         {
-            if (IsAssignable() && GetPropertyInfo().DeclaringType != typeof(TProperty))
+            if (IsAssignable() && GetPropertyInfo().PropertyType != typeof(TProperty))
                 throw new NotSupportedException($"Target property {PropertyName} is not {typeof(TProperty).FullName}");
         }
 

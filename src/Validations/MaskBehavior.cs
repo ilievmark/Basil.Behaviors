@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace Basil.Behaviors.Validations
 {
-    public class MaskValidationBehavior : ValidationBehaviorBase<string>
+    public class MaskBehavior : ValidationBehaviorBase<string>
     {
         private IDictionary<int, char> _positions;
 
@@ -16,7 +16,7 @@ namespace Basil.Behaviors.Validations
             BindableProperty.Create(
                 propertyName: nameof(TargetCharacter),
                 returnType: typeof(char),
-                declaringType: typeof(MaskValidationBehavior),
+                declaringType: typeof(MaskBehavior),
                 defaultValue: 'X');
 
         public char TargetCharacter
@@ -29,17 +29,17 @@ namespace Basil.Behaviors.Validations
         
         #endregion
         
-        protected override void Validate(string newValue, Func<string> getValueDelegate, Func<string, string> setValueDelegate)
+        protected override bool ProcessValidation(string newValue, Func<string> getValueDelegate, Func<string, string> setValueDelegate)
         {
             if (string.IsNullOrWhiteSpace(newValue) || GetPositions() == null)
             {
-                return;
+                return false;
             }
 
             if (newValue.Length > Pattern.Length)
             {
                 setValueDelegate(newValue.Remove(newValue.Length - 1));
-                return;
+                return false;
             }
 
             foreach (var position in GetPositions())
@@ -58,6 +58,8 @@ namespace Basil.Behaviors.Validations
             {
                 setValueDelegate(newValue);
             }
+
+            return true;
         }
         
         private IDictionary<int, char> GetPositions()

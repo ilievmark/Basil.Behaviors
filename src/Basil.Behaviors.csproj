@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="**\*.shared.cs" />
     <Compile Include="Core\AttachableBindableObject.cs" />
+    <Compile Include="Core\ResultDelegate.cs" />
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
     <Compile Include="Events\Parameters\BindableParameter.cs" />
     <Compile Include="Events\Parameters\GenericParameter.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Extensions\MethodEventRisingExtensions.cs" />
     <Compile Include="Extensions\ParameterExtensions.cs" />
     <Compile Include="Validations\ValidationBehaviorBase.cs" />
+    <Compile Include="Validations\MaskBehavior.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
