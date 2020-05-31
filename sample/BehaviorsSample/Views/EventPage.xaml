@@ -6,8 +6,7 @@
     xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
     xmlns:p="clr-namespace:Basil.Behaviors.Events.Parameters;assembly=Basil.Behaviors"
     xmlns:c="clr-namespace:System.Windows.Input;assembly=netstandard"
-    x:Class="BehaviorsSample.Views.EventPage"
-    Padding="0,35,0,0">
+    x:Class="BehaviorsSample.Views.EventPage">
     <ContentPage.Content>
 
         <ScrollView>

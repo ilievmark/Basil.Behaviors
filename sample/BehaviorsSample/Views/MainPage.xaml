@@ -2,17 +2,20 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="BehaviorsSample.Views.MainPage"
-    Padding="0,35,0,0">
+    x:Class="BehaviorsSample.Views.MainPage">
     <ContentPage.Content>
 
         <ScrollView>
 
             <StackLayout>
 
-                <Button Text="Go to event behavior demo page"
+                <Button Text="Go to event behaviors demo page"
                         HorizontalOptions="Center"
                         Command="{Binding GoToEventPage}"/>
+
+                <Button Text="Go to validation behaviors demo page"
+                        HorizontalOptions="Center"
+                        Command="{Binding GoToValidationPage}"/>
 
             </StackLayout>
 
