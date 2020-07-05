@@ -17,5 +17,16 @@ namespace BehaviorsSample.ViewModels
         }
 
         #endregion
+        
+        #region Email validated command
+
+        public ICommand EmailValidatedCommand => new Command<CommandParams.ValidationResultArgs<string>>(OnEmailValidatedCommand);
+
+        private void OnEmailValidatedCommand(CommandParams.ValidationResultArgs<string> parameters)
+        {
+            Debug.WriteLine($"Value validated - {parameters.Value}, result is - {parameters.Valid}");
+        }
+
+        #endregion
     }
 }

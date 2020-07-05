@@ -15,6 +15,13 @@
                 </Entry.Behaviors>
             </Entry>
             
+            <Label Text="Email validator:"/>
+            <Entry>
+                <Entry.Behaviors>
+                    <validations:EmailValidationBehavior PropertyName="Text" Command="{Binding EmailValidatedCommand}"/>
+                </Entry.Behaviors>
+            </Entry>
+            
         </StackLayout>
         
     </ScrollView>

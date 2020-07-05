@@ -106,14 +106,15 @@
     <Compile Include="PropertyChangedBehaviorBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PropertyRulesBehaviorBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Rules\BaseRule.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Rules\Mask\CharMaskRule.cs" />
     <Compile Include="Rules\Mask\MaskRuleBase.cs" />
-    <Compile Include="Rules\PropertyRulesBehaviorBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Validations\EmailValidationBehavior.cs" />
     <Compile Include="Validations\RegexValidationBehavior.cs" />
     <Compile Include="Validations\ValidationBehaviorBase.cs" />
   </ItemGroup>
