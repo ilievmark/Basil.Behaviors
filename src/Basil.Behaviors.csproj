@@ -30,7 +30,7 @@
     <RepositoryUrl>https://github.com/ilievmark/Basil.Behaviors</RepositoryUrl>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIconUrl></PackageIconUrl>
-    <PackageTags>xamarin, windows, ios, android, xamarin.forms, plugin, Basil.Behaviors</PackageTags>
+    <PackageTags>xamarin, windows, ios, android, xamarin.forms, plugin, Basil.Behaviors, Basil, Green.Forms, Green</PackageTags>
     
     <Title>Basil.Behaviors Plugin for Xamarin.Forms</Title>
     <Summary>Basic behaviors for Xamarin.Forms</Summary>
@@ -60,6 +60,8 @@
 
   <ItemGroup>
     <Compile Include="**\*.shared.cs" />
+    <Compile Include="Core\AttachableBindableObject.cs" />
+    <Compile Include="Core\ResultDelegate.cs" />
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
     <Compile Include="Events\Parameters\BindableParameter.cs" />
     <Compile Include="Events\Parameters\GenericParameter.cs" />
@@ -88,11 +90,30 @@
       <SubType></SubType>
     </Compile>
     <Compile Include="Extensions\CommandEventRisingExtensions.cs" />
+    <Compile Include="Extensions\Internal\StringExtensions.cs" />
     <Compile Include="Extensions\Internal\CommandExtensions.cs" />
     <Compile Include="Extensions\Internal\MethodReflectionExtension.cs" />
     <Compile Include="Extensions\Internal\TypeExtension.cs" />
     <Compile Include="Extensions\MethodEventRisingExtensions.cs" />
     <Compile Include="Extensions\ParameterExtensions.cs" />
+    <Compile Include="Masks\MaskBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Masks\MaskWithRulesBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PropertyChangedBehaviorBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Rules\BaseRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Rules\Mask\CharMaskRule.cs" />
+    <Compile Include="Rules\Mask\MaskRuleBase.cs" />
+    <Compile Include="Rules\PropertyRulesBehaviorBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validations\ValidationBehaviorBase.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
@@ -109,6 +130,7 @@
   <ItemGroup>
     <Folder Include="Events\" />
     <Folder Include="Events\Handlers\" />
+    <Folder Include="Rules\Validation" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />

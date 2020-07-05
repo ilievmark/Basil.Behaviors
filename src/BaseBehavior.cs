@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace Basil.Behaviors
@@ -25,12 +26,14 @@ namespace Basil.Behaviors
             }
 
             bindable.BindingContextChanged += OnBindingContextChanged;
+            bindable.PropertyChanged += OnAssociatedObjectPropertyChanged;
         }
 
         protected override void OnDetachingFrom(BindableObject bindable)
         {
             base.OnDetachingFrom(bindable);
             bindable.BindingContextChanged -= OnBindingContextChanged;
+            bindable.PropertyChanged -= OnAssociatedObjectPropertyChanged;
             AssociatedObject = null;
         }
 
@@ -51,6 +54,10 @@ namespace Basil.Behaviors
         protected virtual void OnAssociatedObjectChanging(BindableObject oldValue, BindableObject newValue)
         {
         }
+
+        protected virtual void OnAssociatedObjectPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+        }
         
         #endregion
 
@@ -66,5 +73,8 @@ namespace Basil.Behaviors
             _associatedObject = newValue;
             OnAssociatedObjectChanged(oldValue, _associatedObject);
         }
+        
+        protected bool IsAttached()
+            => AssociatedObject != null;
     }
 }

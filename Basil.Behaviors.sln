@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviorsSample", "sample\B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviorsSample.Android", "sample\BehaviorsSample.Android\BehaviorsSample.Android.csproj", "{7772B549-77B3-422F-A6EA-7B1D682B4552}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "info", "info", "{CB528622-BEED-4DDB-8DFD-DDF6D7AE99BC}"
+ProjectSection(SolutionItems) = preProject
+	res\icon_basil.png = res\icon_basil.png
+	LICENSE = LICENSE
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
