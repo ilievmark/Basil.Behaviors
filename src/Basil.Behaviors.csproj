@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="**\*.shared.cs" />
     <Compile Include="Core\AttachableBindableObject.cs" />
+    <Compile Include="Core\CommandParams.cs" />
     <Compile Include="Core\ResultDelegate.cs" />
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
     <Compile Include="Events\Parameters\BindableParameter.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Rules\PropertyRulesBehaviorBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Validations\RegexValidationBehavior.cs" />
     <Compile Include="Validations\ValidationBehaviorBase.cs" />
   </ItemGroup>
 
