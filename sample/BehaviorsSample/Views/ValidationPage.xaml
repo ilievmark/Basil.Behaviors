@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:validations="clr-namespace:Basil.Behaviors.Validations;assembly=Basil.Behaviors"
+             xmlns:masks="clr-namespace:Basil.Behaviors.Masks;assembly=Basil.Behaviors"
+             xmlns:maskRules="clr-namespace:Basil.Behaviors.Rules.Mask;assembly=Basil.Behaviors"
              x:Class="BehaviorsSample.Views.ValidationPage">
     
     <ScrollView>
@@ -11,14 +12,18 @@
             <Label Text="Masked behavior demo (input some string)"/>
             <Entry>
                 <Entry.Behaviors>
-                    <validations:MaskBehavior Pattern="(XXX - XX -X X)" TargetCharacter="X" PropertyName="Text"/>
+                    <masks:MaskBehavior Pattern="(XXX) - XXX - XX - XX" TargetCharacter="X" PropertyName="Text"/>
                 </Entry.Behaviors>
             </Entry>
             
             <Label Text="Masked behavior with rules demo"/>
             <Entry>
                 <Entry.Behaviors>
-                    <validations:MaskBehavior Pattern="(XXX - XX -X X)" TargetCharacter="X" PropertyName="Text"/>
+                    <masks:MaskWithRulesBehavior Pattern="(XXc) -- E cccX X XE ccX" PropertyName="Text">
+                        <maskRules:CharMaskRule Rule="X" AllowedChars="QWERTYUIOPASDFGHJKLZXCVBNM"/>
+                        <maskRules:CharMaskRule Rule="E" AllowedChars="asDF1236"/>
+                        <maskRules:CharMaskRule Rule="c" AllowedChars="1234567890"/>
+                    </masks:MaskWithRulesBehavior>
                 </Entry.Behaviors>
             </Entry>
             

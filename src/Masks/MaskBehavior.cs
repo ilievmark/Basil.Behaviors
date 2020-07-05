@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace Basil.Behaviors.Validations
+namespace Basil.Behaviors.Masks
 {
-    public class MaskBehavior : ValidationBehaviorBase<string>
+    public class MaskBehavior : PropertyChangedBehaviorBase<string>
     {
         private IDictionary<int, char> _positions;
 
         #region Properties
         
-        #region TargetCharacter
+        #region TargetCharacter property
         
         public static readonly BindableProperty TargetCharacterProperty =
             BindableProperty.Create(
@@ -27,14 +27,29 @@ namespace Basil.Behaviors.Validations
         
         #endregion
         
+        #region Pattern property
+        
+        public static readonly BindableProperty PatternProperty =
+            BindableProperty.Create(
+                propertyName: nameof(Pattern),
+                returnType: typeof(string),
+                declaringType: typeof(MaskBehavior),
+                defaultValue: string.Empty);
+
+        public string Pattern
+        {
+            get => (string)GetValue(PatternProperty);
+            set => SetValue(PatternProperty, value);
+        }
+        
         #endregion
         
-        protected override bool ProcessValidation(string newValue, Func<string> getValueDelegate, Func<string, string> setValueDelegate)
+        #endregion
+        
+        protected override bool ProcessProperty(string newValue, Func<string> getValueDelegate, Func<string, string> setValueDelegate)
         {
             if (string.IsNullOrWhiteSpace(newValue) || GetPositions() == null)
-            {
                 return false;
-            }
 
             if (newValue.Length > Pattern.Length)
             {
@@ -55,9 +70,7 @@ namespace Basil.Behaviors.Validations
             }
 
             if (getValueDelegate() != newValue)
-            {
                 setValueDelegate(newValue);
-            }
 
             return true;
         }
@@ -70,12 +83,12 @@ namespace Basil.Behaviors.Validations
             }
             else if (_positions == null)
             {
-                var list = new Dictionary<int, char>();
+                var rules = new Dictionary<int, char>();
                 for (var i = 0; i < Pattern.Length; i++)
                     if (Pattern[i] != TargetCharacter)
-                        list.Add(i, Pattern[i]);
+                        rules.Add(i, Pattern[i]);
 
-                _positions = list;
+                _positions = rules;
             }
 
             return _positions;
