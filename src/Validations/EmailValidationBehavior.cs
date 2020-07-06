@@ -15,7 +15,7 @@ namespace Basil.Behaviors.Validations
         {
             var result = Regex.IsMatch(newValue, EmailPattern);
             OnValidated(result, newValue);
-            Command.Execute(new CommandParams.ValidationResultArgs<string>(newValue, result));
+            Command?.Execute(new CommandParams.ValidationResultArgs<string>(newValue, result));
             return result;
         }
 

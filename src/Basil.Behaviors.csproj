@@ -114,8 +114,10 @@
     </Compile>
     <Compile Include="Rules\Mask\CharMaskRule.cs" />
     <Compile Include="Rules\Mask\MaskRuleBase.cs" />
+    <Compile Include="Rules\Validation\RegexValidationRule.cs" />
     <Compile Include="Validations\EmailValidationBehavior.cs" />
     <Compile Include="Validations\RegexValidationBehavior.cs" />
+    <Compile Include="Validations\RegexValidationWithRulesBehavior.cs" />
     <Compile Include="Validations\ValidationBehaviorBase.cs" />
   </ItemGroup>
 
@@ -133,7 +135,6 @@
   <ItemGroup>
     <Folder Include="Events\" />
     <Folder Include="Events\Handlers\" />
-    <Folder Include="Rules\Validation" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
