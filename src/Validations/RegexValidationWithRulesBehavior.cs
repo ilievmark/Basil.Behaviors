@@ -1,9 +1,12 @@
+using System;
+using System.Linq;
 using Basil.Behaviors.Core;
+using Basil.Behaviors.Rules.Validation;
 using Xamarin.Forms;
 
 namespace Basil.Behaviors.Validations
 {
-    public abstract class ValidationBehaviorBase<TProperty> : PropertyChangedBehaviorBase<TProperty>
+    public class RegexValidationWithRulesBehavior : PropertyRulesBehaviorBase<string, RegexValidationRule>
     {
         #region Properties
         
@@ -13,7 +16,7 @@ namespace Basil.Behaviors.Validations
             BindableProperty.Create(
                 propertyName: nameof(Command),
                 returnType: typeof(Command),
-                declaringType: typeof(ValidationBehaviorBase<TProperty>),
+                declaringType: typeof(RegexValidationWithRulesBehavior),
                 defaultValue: default(Command));
 
         public Command Command
@@ -30,12 +33,19 @@ namespace Basil.Behaviors.Validations
         
         #region Validated
 
-        public event Result<TProperty> Validated = delegate { };
+        public event Result<string> Validated = delegate { };
         
         #endregion
         
         #endregion
 
-        protected void OnValidated(bool isValid, TProperty val) => Validated(isValid, val);
+        protected override bool ProcessProperty(string newValue, Func<string> getValueDelegate,
+            Func<string, string> setValueDelegate)
+        {
+            var result = Rules.All(r => r.Verify(newValue));
+            Validated(result, newValue);
+            Command?.Execute(new CommandParams.ValidationResultArgs<string>(newValue, result));
+            return result;
+        }
     }
 }

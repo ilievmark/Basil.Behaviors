@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:masks="clr-namespace:Basil.Behaviors.Masks;assembly=Basil.Behaviors"
-             xmlns:maskRules="clr-namespace:Basil.Behaviors.Rules.Mask;assembly=Basil.Behaviors"
+             xmlns:validations="clr-namespace:Basil.Behaviors.Validations;assembly=Basil.Behaviors"
+             xmlns:validation="clr-namespace:Basil.Behaviors.Rules.Validation;assembly=Basil.Behaviors"
              x:Class="BehaviorsSample.Views.ValidationPage">
     
     <ScrollView>
         
         <StackLayout Padding="10,10,10,0">
             
-            <Label Text="Masked behavior demo (input some string)"/>
+            <Label Text="Minimum eight characters, at least one letter and one number:"/>
             <Entry>
                 <Entry.Behaviors>
-                    <masks:MaskBehavior Pattern="(XXX) - XXX - XX - XX" TargetCharacter="X" PropertyName="Text"/>
+                    <validations:RegexValidationBehavior Pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" PropertyName="Text" Command="{Binding ValidatedCommand}"/>
                 </Entry.Behaviors>
             </Entry>
             
-            <Label Text="Masked behavior with rules demo"/>
+            <Label Text="Email validator:"/>
             <Entry>
                 <Entry.Behaviors>
-                    <masks:MaskWithRulesBehavior Pattern="(XXc) -- E cccX X XE ccX" PropertyName="Text">
-                        <maskRules:CharMaskRule Rule="X" AllowedChars="QWERTYUIOPASDFGHJKLZXCVBNM"/>
-                        <maskRules:CharMaskRule Rule="E" AllowedChars="asDF1236"/>
-                        <maskRules:CharMaskRule Rule="c" AllowedChars="1234567890"/>
-                    </masks:MaskWithRulesBehavior>
+                    <validations:EmailValidationBehavior PropertyName="Text" Command="{Binding ValidatedCommand}"/>
+                </Entry.Behaviors>
+            </Entry>
+            
+            <Label Text="1. Minimum three characters, at least one letter and one number"/>
+            <Label Text="2. Contains number"/>
+            <Label Text="3. Contains word that ends with 'dog'"/>
+            <Label Text="(for example enter 'Gd22j1watchdog')"/>
+            <Entry>
+                <Entry.Behaviors>
+                    <validations:RegexValidationWithRulesBehavior PropertyName="Text" Command="{Binding ValidatedCommand}">
+                        <validation:RegexValidationRule Rule="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$" Index="0" Length="5"/>
+                        <validation:RegexValidationRule Rule="\d" Index="5" Length="1"/>
+                        <validation:RegexValidationRule Rule="dog$" Index="6" Length="8"/>
+                    </validations:RegexValidationWithRulesBehavior>
                 </Entry.Behaviors>
             </Entry>
             

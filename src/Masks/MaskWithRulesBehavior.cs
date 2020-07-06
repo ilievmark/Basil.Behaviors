@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Basil.Behaviors.Extensions.Internal;
-using Basil.Behaviors.Rules;
 using Basil.Behaviors.Rules.Mask;
 using Xamarin.Forms;
 

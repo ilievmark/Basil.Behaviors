@@ -17,6 +17,10 @@
                         HorizontalOptions="Center"
                         Command="{Binding GoToValidationPage}"/>
 
+                <Button Text="Go to mask behaviors demo page"
+                        HorizontalOptions="Center"
+                        Command="{Binding GoToMaskPage}"/>
+                
             </StackLayout>
 
         </ScrollView>

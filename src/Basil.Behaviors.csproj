@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="**\*.shared.cs" />
     <Compile Include="Core\AttachableBindableObject.cs" />
+    <Compile Include="Core\CommandParams.cs" />
     <Compile Include="Core\ResultDelegate.cs" />
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
     <Compile Include="Events\Parameters\BindableParameter.cs" />
@@ -105,14 +106,18 @@
     <Compile Include="PropertyChangedBehaviorBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PropertyRulesBehaviorBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Rules\BaseRule.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Rules\Mask\CharMaskRule.cs" />
     <Compile Include="Rules\Mask\MaskRuleBase.cs" />
-    <Compile Include="Rules\PropertyRulesBehaviorBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Rules\Validation\RegexValidationRule.cs" />
+    <Compile Include="Validations\EmailValidationBehavior.cs" />
+    <Compile Include="Validations\RegexValidationBehavior.cs" />
+    <Compile Include="Validations\RegexValidationWithRulesBehavior.cs" />
     <Compile Include="Validations\ValidationBehaviorBase.cs" />
   </ItemGroup>
 
@@ -130,7 +135,6 @@
   <ItemGroup>
     <Folder Include="Events\" />
     <Folder Include="Events\Handlers\" />
-    <Folder Include="Rules\Validation" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />

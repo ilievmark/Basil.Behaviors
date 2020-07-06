@@ -23,5 +23,15 @@ namespace BehaviorsSample.ViewModels
             => await ((NavigationPage)App.Current.MainPage).PushAsync(new ValidationPage());
 
         #endregion
+        
+        #region Go to MaskPage command
+
+        public ICommand GoToMaskPage => new Command(OnGoToMaskPage);
+
+        private async void OnGoToMaskPage()
+            => await ((NavigationPage)App.Current.MainPage).PushAsync(new MaskPage());
+
+        #endregion
+        
     }
 }
