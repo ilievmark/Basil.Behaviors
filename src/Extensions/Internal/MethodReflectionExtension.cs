@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Basil.Behaviors.Events.Parameters;
 using Xamarin.Forms;
 
@@ -9,26 +10,40 @@ namespace Basil.Behaviors.Extensions.Internal
 {
     public static class MethodReflectionExtension
     {
-        internal static void RunMethod(
+        internal static Task<T> RunMethodAsync<T>(
             this object targetObject,
-            BindableObject associatedObject,
+            string methodName,
+            IList<Parameter> parameters)
+            => (Task<T>) targetObject.RunMethod(methodName, parameters);
+        
+        internal static Task RunMethodAsync(
+            this object targetObject,
+            string methodName,
+            IList<Parameter> parameters)
+            => (Task) targetObject.RunMethod(methodName, parameters);
+        
+        internal static object RunMethod(
+            this object targetObject,
             string methodName,
             IList<Parameter> parameters)
         {
-            if (associatedObject == null)
-                return;
-            
-            if (associatedObject.BindingContext == null)
-                return;
-            
             if (string.IsNullOrEmpty(methodName))
-                return;
+                throw new ArgumentNullException(nameof(methodName));
+            
+            if (targetObject == null)
+                throw new ArgumentNullException(nameof(targetObject));
+            
+            parameters ??= new List<Parameter>();
 
-            var target = targetObject;
-            if (target == null)
-                target = associatedObject.BindingContext;
+            var targetType = targetObject.GetType();
+            var methodInfo = GetMethod(targetType, methodName, parameters);
+            var sortedParams = CalculateParameters(methodInfo, parameters);
+            
+            return methodInfo.Invoke(targetObject, sortedParams);
+        }
 
-            var targetType = target.GetType();
+        private static MethodInfo GetMethod(Type targetType, string methodName, IList<Parameter> parameters)
+        {
             var methodInfo = targetType
                 .GetRuntimeMethods()
                 .Where(m => m.Name == methodName)
@@ -46,9 +61,7 @@ namespace Basil.Behaviors.Extensions.Internal
                 throw new ArgumentException($"{nameof(MethodReflectionExtension.RunMethod)}: Cant invoke method {methodName}." +
                                             $" There is no method {methodName} in object of type {targetType.FullName}");
 
-            var sortedParams = CalculateParameters(methodInfo, parameters);
-            
-            methodInfo.Invoke(target, sortedParams);
+            return methodInfo;
         }
         
         private static object[] CalculateParameters(MethodInfo usedMethod, IList<Parameter> parameters)
