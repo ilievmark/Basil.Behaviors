@@ -63,7 +63,10 @@
     <Compile Include="Core\AttachableBindableObject.cs" />
     <Compile Include="Core\CommandParams.cs" />
     <Compile Include="Core\ResultDelegate.cs" />
+    <Compile Include="Events\Handlers\CollectionHandler.cs" />
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
+    <Compile Include="Events\Handlers\ParallelHandlerExecutor.cs" />
+    <Compile Include="Events\Handlers\SequenceHandlerExecutor.cs" />
     <Compile Include="Events\Parameters\BindableParameter.cs" />
     <Compile Include="Events\Parameters\GenericParameter.cs" />
     <Compile Include="Events\Parameters\NamedParameter.cs" />
@@ -84,12 +87,13 @@
     <Compile Include="Events\EventToCommandBehavior.cs">
       <SubType></SubType>
     </Compile>
-    <Compile Include="Events\SequenceEventHandlerBehavior.cs">
+    <Compile Include="Events\EventMultipleHandlerBehavior.cs">
       <SubType></SubType>
     </Compile>
     <Compile Include="Events\Handlers\EventToCommandHandler.cs">
       <SubType></SubType>
     </Compile>
+    <Compile Include="Events\Parameters\ReturnParameter.cs" />
     <Compile Include="Extensions\CommandEventRisingExtensions.cs" />
     <Compile Include="Extensions\Internal\StringExtensions.cs" />
     <Compile Include="Extensions\Internal\CommandExtensions.cs" />

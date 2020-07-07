@@ -4,7 +4,7 @@ using Xamarin.Forms;
 namespace Basil.Behaviors.Events.Parameters
 {
     [ContentProperty(nameof(Value))]
-    public sealed class GenericParameter<T> : Parameter
+    public class GenericParameter<T> : Parameter
     {
         public T Value { get; set; }
 

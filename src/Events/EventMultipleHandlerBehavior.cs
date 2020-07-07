@@ -4,7 +4,7 @@ using Basil.Behaviors.Events.Handlers;
 
 namespace Basil.Behaviors.Events
 {
-    public class SequenceEventHandlerBehavior : EventHandlerBehaviorBase
+    public class EventMultipleHandlerBehavior : EventHandlerBehaviorBase
     {
         #region Overrides
 

@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events.Parameters
 {
-    public sealed class BindableParameter<T> : Parameter
+    public class BindableParameter<T> : Parameter
     {
         public static readonly BindableProperty ValueProperty =
             BindableProperty.Create(
