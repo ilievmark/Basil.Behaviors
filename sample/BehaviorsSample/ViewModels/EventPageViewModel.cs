@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -7,21 +9,23 @@ namespace BehaviorsSample.ViewModels
     public class EventPageViewModel : BaseViewModel
     {
         public ICommand Sample1Command => new Command(OnSample1Command);
-
         private void OnSample1Command()
         {
             Debug.WriteLine("Hello from Sample1Command");
         }
 
-
         public ICommand Sample2Command => new Command(OnSample2Command);
-
         private void OnSample2Command()
         {
             Debug.WriteLine("Hello from Sample2Command");
         }
         
-        public void JustAMethodNoMore(string param)
+        public string ReturnStringMethod()
+        {
+            return "Hello string from ReturnStringMethod";
+        }
+        
+        protected void JustAMethodNoMore(string param)
         {
             Debug.WriteLine($"Hello from JustAMethodNoMore {param}");
         }
@@ -38,6 +42,16 @@ namespace BehaviorsSample.ViewModels
             Debug.WriteLine($"Its not so crasy hard... {someParamName}");
             Debug.WriteLine(stringParam);
             commandParam.Execute(null);
+        }
+
+        public void Method1()
+        {
+            Thread.Sleep(1000);
+        }
+        
+        public async Task MethodAsync2()
+        {
+            await Task.Delay(1000);
         }
     }
 }
