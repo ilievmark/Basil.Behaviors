@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Extensions;
 using Basil.Behaviors.Events.Parameters;
 using Xamarin.Forms;
@@ -9,9 +10,9 @@ using Xamarin.Forms;
 namespace Basil.Behaviors.Events.Handlers
 {
     [ContentProperty(nameof(Parameters))]
-    public class EventToMethodHandler : BaseHandler
+    public abstract class EventToMethodHandlerBase : BaseHandler, IParametrised
     {
-        public EventToMethodHandler()
+        public EventToMethodHandlerBase()
         {
             _parameters = new ObservableCollection<Parameter>();
             //TODO: Remove subscribing or add unsubscribe
@@ -26,7 +27,7 @@ namespace Basil.Behaviors.Events.Handlers
             BindableProperty.Create(
                 propertyName: nameof(MethodName),
                 returnType: typeof(string),
-                declaringType: typeof(EventToMethodHandler),
+                declaringType: typeof(EventToMethodHandlerBase),
                 defaultValue: string.Empty);
 
         public string MethodName
@@ -43,7 +44,7 @@ namespace Basil.Behaviors.Events.Handlers
             BindableProperty.Create(
                 propertyName: nameof(TargetObject),
                 returnType: typeof(object),
-                declaringType: typeof(EventToMethodHandler),
+                declaringType: typeof(EventToMethodHandlerBase),
                 defaultValue: default);
 
         public object TargetObject
@@ -64,9 +65,6 @@ namespace Basil.Behaviors.Events.Handlers
         #endregion
         
         #region Overrides
-        
-        
-        public override void Rise(object sender, object eventArgs) => this.ExecuteMethod();
 
         protected override void OnBindingContextChanged()
         {
@@ -112,5 +110,17 @@ namespace Basil.Behaviors.Events.Handlers
         {
             RemovedParams(parameters);
         }
+
+        public IEnumerable<Parameter> GetParameters() => Parameters;
+    }
+
+    public class EventToMethodHandler : EventToMethodHandlerBase
+    {
+        public override void Rise(object sender, object eventArgs) => this.ExecuteMethod();
+    }
+
+    public class EventToMethodHandler<T> : EventToMethodHandler, IGenericRisible
+    {
+        public T Rise<T>(object sender, object eventArgs) => (T) this.ExecuteMethod();
     }
 }
