@@ -73,6 +73,16 @@
                     </Button.Behaviors>
                 </Button>
                 
+                <Button Text="Method handler with default parameter demo">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                            <h:EventToMethodHandler MethodName="JustAMethodNoMore">
+                                <p:DefaultParameter x:TypeArguments="x:String"/>
+                            </h:EventToMethodHandler>
+                        </b:EventMultipleHandlerBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
                 <Button Text="Sequence multiple execute command behavior">
                     <Button.Behaviors>
                         <b:EventMultipleHandlerBehavior EventName="Clicked">
@@ -84,7 +94,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Multiple handlers sequence execution  demo">
+                <Button Text="Multiple handlers sequence execution demo">
                     <Button.Behaviors>
                         <b:EventMultipleHandlerBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
@@ -127,6 +137,30 @@
                                     <h:EventToMethodHandler MethodName="MethodAsync2"/>
                                 </h:ParallelHandlerExecutor>
                             </h:SequenceHandlerExecutor>
+                        </b:EventMultipleHandlerBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Multiple handlers sequence with return parameter">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                            <h:SequenceHandlerExecutor>
+                                <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="ReturnStringMethod"/>
+                                <h:EventToMethodHandler MethodName="JustAMethodNoMore">
+                                    <p:ReturnParameter x:TypeArguments="x:String"/>
+                                </h:EventToMethodHandler>
+                            </h:SequenceHandlerExecutor>
+                        </b:EventMultipleHandlerBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Multiple handlers with return parameter">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                            <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="ReturnStringMethod"/>
+                            <h:EventToMethodHandler MethodName="JustAMethodNoMore">
+                                <p:ReturnParameter x:TypeArguments="x:String"/>
+                            </h:EventToMethodHandler>
                         </b:EventMultipleHandlerBehavior>
                     </Button.Behaviors>
                 </Button>
