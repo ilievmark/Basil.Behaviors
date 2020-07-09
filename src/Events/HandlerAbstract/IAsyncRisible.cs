@@ -2,10 +2,8 @@ using System.Threading.Tasks;
 
 namespace Basil.Behaviors.Events.HandlerAbstract
 {
-    public interface IAsyncRisible
+    public interface IAsyncRisible : IAsyncBase
     {
-        bool WaitResult { get; }
-        
         Task RiseAsync(object sender, object eventArgs);
     }
 }

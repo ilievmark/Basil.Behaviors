@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Threading.Tasks;
 using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Extensions;
 using Basil.Behaviors.Events.Parameters;
@@ -122,5 +123,36 @@ namespace Basil.Behaviors.Events.Handlers
     public class EventToMethodHandler<T> : EventToMethodHandler, IGenericRisible
     {
         public T Rise<T>(object sender, object eventArgs) => (T) this.ExecuteMethod();
+    }
+    
+    public class EventToAsyncMethodHandler : EventToMethodHandler, IAsyncRisible
+    {
+        #region Properties
+        
+        #region WaitResult property
+        
+        public static readonly BindableProperty WaitResultProperty =
+            BindableProperty.Create(
+                propertyName: nameof(WaitResult),
+                returnType: typeof(bool),
+                declaringType: typeof(EventToAsyncMethodHandler),
+                defaultValue: false);
+
+        public bool WaitResult
+        {
+            get => (bool)GetValue(WaitResultProperty);
+            set => SetValue(WaitResultProperty, value);
+        }
+        
+        #endregion
+
+        #endregion
+        
+        public Task RiseAsync(object sender, object eventArgs) => this.ExecuteAsyncMethod();
+    }
+    
+    public class EventToAsyncMethodHandler<T> : EventToAsyncMethodHandler, IAsyncGenericRisible
+    {
+        public Task<T> RiseAsync<T>(object sender, object eventArgs) => this.ExecuteAsyncMethod<T>();
     }
 }
