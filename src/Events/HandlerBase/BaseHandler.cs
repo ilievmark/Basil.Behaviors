@@ -1,7 +1,7 @@
 ﻿using Basil.Behaviors.Events.HandlerAbstract;
 using Xamarin.Forms;
 
-namespace Basil.Behaviors.Events.Handlers
+namespace Basil.Behaviors.Events.HandlerBase
 {
     public abstract class BaseHandler : BaseBehavior, IRisible
     {

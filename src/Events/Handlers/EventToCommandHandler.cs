@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Basil.Behaviors.Events.HandlerBase;
 using Xamarin.Forms;
 using Basil.Behaviors.Extensions;
 

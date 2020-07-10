@@ -12,7 +12,7 @@ namespace Basil.Behaviors.Events.Parameters
         public void SetValue(object value) => Value = value;
     }
     
-    public sealed class ReturnParameter<T> : ReturnParameter
+    public class ReturnParameter<T> : ReturnParameter
     {
         public override Type GetParamType() => typeof(T);
     }

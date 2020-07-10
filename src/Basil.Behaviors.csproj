@@ -68,13 +68,29 @@
     <Compile Include="Events\HandlerAbstract\IGenericRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IParametrised.cs" />
     <Compile Include="Events\HandlerAbstract\IRisible.cs" />
-    <Compile Include="Events\Handlers\CollectionHandler.cs" />
+    <Compile Include="Events\HandlerBase\BaseAsyncHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\HandlerBase\BaseCollectionHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\HandlerBase\BaseEventToMethodHandler.cs" />
+    <Compile Include="Events\HandlerBase\BaseHandler.cs">
+      <SubType></SubType>
+    </Compile>
+    <Compile Include="Events\HandlersAsync\DelayEventHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\HandlersAsync\EventToAsyncMethodHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
     <Compile Include="Events\Handlers\ParallelHandlerExecutor.cs" />
     <Compile Include="Events\Handlers\SequenceHandlerExecutor.cs" />
     <Compile Include="Events\Parameters\BindableParameter.cs" />
     <Compile Include="Events\Parameters\DefaultParameter.cs" />
     <Compile Include="Events\Parameters\GenericParameter.cs" />
+    <Compile Include="Events\Parameters\GenericTaskReturnParameter.cs" />
     <Compile Include="Events\Parameters\NamedParameter.cs" />
     <Compile Include="Events\Parameters\Parameter.cs" />
     <Compile Include="Events\EventBehaviorBase.cs">
@@ -84,9 +100,6 @@
       <SubType></SubType>
     </Compile>
     <Compile Include="Events\EventToMethodBehavior.cs" />
-    <Compile Include="Events\Handlers\BaseHandler.cs">
-      <SubType></SubType>
-    </Compile>
     <Compile Include="Events\EventHandlerBehaviorBase.cs">
       <SubType></SubType>
     </Compile>

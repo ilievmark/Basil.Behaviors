@@ -1,11 +1,13 @@
 using System.Linq;
+using System.Threading.Tasks;
 using Basil.Behaviors.Events.HandlerAbstract;
+using Basil.Behaviors.Events.HandlerBase;
 using Basil.Behaviors.Events.Parameters;
 using Xamarin.Forms.Internals;
 
 namespace Basil.Behaviors.Events.Handlers
 {
-    public class SequenceHandlerExecutor : CollectionHandler
+    public class SequenceHandlerExecutor : BaseCollectionHandler
     {
         public override async void Rise(object sender, object eventArgs)
         {
@@ -20,9 +22,13 @@ namespace Basil.Behaviors.Events.Handlers
                 if (handler is IAsyncGenericRisible castedAsyncGenericHandler)
                 {
                     if (castedAsyncGenericHandler.WaitResult)
-                        previousResult = await castedAsyncGenericHandler.RiseAsync<object>(sender, eventArgs);
+                    {
+                        var task = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
+                        await task;
+                        previousResult = task.GetType().GetProperty(nameof(Task<object>.Result)).GetValue(task);
+                    }
                     else
-                        previousResult = castedAsyncGenericHandler.RiseAsync<object>(sender, eventArgs);
+                        previousResult = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
                 }
                 else if (handler is IAsyncRisible castedAsyncHandler)
                 {
