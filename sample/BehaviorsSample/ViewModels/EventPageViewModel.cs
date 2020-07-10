@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BehaviorsSample.Models;
 using Xamarin.Forms;
 
 namespace BehaviorsSample.ViewModels
@@ -90,5 +91,7 @@ namespace BehaviorsSample.ViewModels
             await Task.Delay(3000);
             Debug.WriteLine(result);
         }
+
+        public InjectedModel Model => new InjectedModel(new InjectedModel(new InjectedModel()));
     }
 }

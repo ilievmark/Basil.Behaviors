@@ -9,7 +9,6 @@ namespace Basil.Behaviors.Extensions.Internal
     public static class MethodReflectionExtension
     {
         private const int MethodPositionOffset = 1;
-        private const int WithoutMethodPositionOffset = 2;
         
         public static object RunMethodPath(
             this object targetObject,
@@ -36,7 +35,7 @@ namespace Basil.Behaviors.Extensions.Internal
         
         private static object GetRealTarget(object target, string[] parts)
         {
-            var actualParts = parts.Take(parts.Length - WithoutMethodPositionOffset);
+            var actualParts = parts.Take(parts.Length - MethodPositionOffset);
             var result = target;
             
             foreach (var part in actualParts)

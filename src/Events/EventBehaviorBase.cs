@@ -14,9 +14,10 @@ namespace Basil.Behaviors.Events
         {
             if (bindable is EventBehaviorBase behavior)
             {
+                var oldEventName = (string)oldValue;
+                behavior.Unsubscribe(oldEventName);
+                
                 var newEventName = (string)newValue;
-
-                behavior.Unsubscribe();
                 behavior.Subscribe(newEventName);
             }
         }
@@ -70,7 +71,7 @@ namespace Basil.Behaviors.Events
 
         protected override void OnDetachingFrom(BindableObject bindable)
         {
-            Unsubscribe();
+            Unsubscribe(EventName);
 
             base.OnDetachingFrom(bindable);
         }
@@ -86,11 +87,11 @@ namespace Basil.Behaviors.Events
         private void Subscribe(string eventName)
         {
             if (string.IsNullOrWhiteSpace(eventName))
-                throw new ArgumentNullException(nameof(EventName));
+                return;
 
             var target = TargetObject ?? AssociatedObject;
             if (target == null)
-                throw new InvalidDataException("Associated object can not be null");
+                return;
 
             _eventInfo = target.GetType().GetRuntimeEvent(eventName);
             if (_eventInfo == null)
@@ -101,8 +102,11 @@ namespace Basil.Behaviors.Events
             _eventInfo.AddEventHandler(AssociatedObject, _eventHandler);
         }
 
-        private void Unsubscribe()
+        private void Unsubscribe(string eventName)
         {
+            if (string.IsNullOrEmpty(eventName))
+                return;
+            
             if (_eventHandler == null)
                 throw new InvalidOperationException("Cached event handler info is invalid");
             
