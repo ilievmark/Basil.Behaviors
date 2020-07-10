@@ -1,8 +1,9 @@
 using System.Threading.Tasks;
+using Basil.Behaviors.Events.HandlerBase;
 
 namespace Basil.Behaviors.Events.Handlers
 {
-    public class ParallelHandlerExecutor : CollectionHandler
+    public class ParallelHandlerExecutor : BaseCollectionHandler
     {
         public override void Rise(object sender, object eventArgs)
         {

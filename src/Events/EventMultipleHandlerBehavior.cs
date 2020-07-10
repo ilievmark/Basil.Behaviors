@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Basil.Behaviors.Events.HandlerAbstract;
+using Basil.Behaviors.Events.HandlerBase;
 using Basil.Behaviors.Events.Handlers;
 using Basil.Behaviors.Events.Parameters;
 using Xamarin.Forms.Internals;

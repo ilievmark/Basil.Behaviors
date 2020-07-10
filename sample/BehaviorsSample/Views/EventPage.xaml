@@ -6,7 +6,8 @@
     xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
     xmlns:p="clr-namespace:Basil.Behaviors.Events.Parameters;assembly=Basil.Behaviors"
     xmlns:c="clr-namespace:System.Windows.Input;assembly=netstandard"
-    xmlns:tasks="clr-namespace:System.Threading.Tasks;assembly=netstandard"
+    xmlns:t="clr-namespace:System.Threading.Tasks;assembly=netstandard"
+    xmlns:a="clr-namespace:Basil.Behaviors.Events.HandlersAsync;assembly=Basil.Behaviors"
     x:Class="BehaviorsSample.Views.EventPage">
     <ContentPage.Content>
 
@@ -173,9 +174,9 @@
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
                                 <p:ReturnParameter x:TypeArguments="x:Int32"/>
                             </h:EventToMethodHandler>
-                            <h:EventToAsyncMethodHandler WaitResult="True" MethodName="RunResultActions">
+                            <a:EventToAsyncMethodHandler WaitResult="True" MethodName="RunResultActions">
                                 <p:ReturnParameter x:TypeArguments="x:String"/>
-                            </h:EventToAsyncMethodHandler>
+                            </a:EventToAsyncMethodHandler>
                             <h:EventToMethodHandler MethodName="JustAMethodNoMore">
                                 <p:DefaultParameter x:TypeArguments="x:String"/>
                             </h:EventToMethodHandler>
@@ -190,9 +191,9 @@
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
                                 <p:ReturnParameter x:TypeArguments="x:Int32"/>
                             </h:EventToMethodHandler>
-                            <h:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="True" MethodName="RunResultActionsAndReturn">
+                            <a:EventToAsyncMethodHandler WaitResult="True" MethodName="RunResultActionsAndReturn">
                                 <p:ReturnParameter x:TypeArguments="x:String"/>
-                            </h:EventToAsyncMethodHandler>
+                            </a:EventToAsyncMethodHandler>
                             <h:EventToMethodHandler MethodName="JustAMethodNoMore">
                                 <p:ReturnParameter x:TypeArguments="x:String"/>
                             </h:EventToMethodHandler>
@@ -207,11 +208,11 @@
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
                                 <p:ReturnParameter x:TypeArguments="x:Int32"/>
                             </h:EventToMethodHandler>
-                            <h:EventToAsyncMethodHandler WaitResult="False" MethodName="RunResultActions">
+                            <a:EventToAsyncMethodHandler WaitResult="False" MethodName="RunResultActions">
                                 <p:ReturnParameter x:TypeArguments="x:String"/>
-                            </h:EventToAsyncMethodHandler>
+                            </a:EventToAsyncMethodHandler>
                             <h:EventToMethodHandler MethodName="RunResultActionsWithPrevTask">
-                                <p:ReturnParameter x:TypeArguments="tasks:Task"/>
+                                <p:ReturnParameter x:TypeArguments="t:Task"/>
                             </h:EventToMethodHandler>
                         </b:EventMultipleHandlerBehavior>
                     </Button.Behaviors>
@@ -224,12 +225,28 @@
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
                                 <p:ReturnParameter x:TypeArguments="x:Int32"/>
                             </h:EventToMethodHandler>
-                            <h:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="False" MethodName="RunResultActionsAndReturn">
+                            <a:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="False" MethodName="RunResultActionsAndReturn">
                                 <p:ReturnParameter x:TypeArguments="x:String"/>
-                            </h:EventToAsyncMethodHandler>
-                            <h:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="True" MethodName="RunResultActionsWithPrevTaskWithResult">
+                            </a:EventToAsyncMethodHandler>
+                            <a:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="True" MethodName="RunResultActionsWithPrevTaskWithResult">
                                 <p:GenericTaskReturnParameter x:TypeArguments="x:String"/>
-                            </h:EventToAsyncMethodHandler>
+                            </a:EventToAsyncMethodHandler>
+                        </b:EventMultipleHandlerBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Multiple handlers sequence execution with delay demo">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                            <h:SequenceHandlerExecutor>
+                                <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
+                                <h:EventToMethodHandler MethodName="JustAMethodNoMore">
+                                    <p:GenericParameter x:TypeArguments="x:String">Some value passed as param</p:GenericParameter>
+                                </h:EventToMethodHandler>
+                                <a:DelayEventHandler DelayMilliseconds="4000" WaitResult="True"/>
+                                <h:EventToMethodHandler MethodName="Method1"/>
+                                <h:EventToMethodHandler MethodName="MethodAsync2"/>
+                            </h:SequenceHandlerExecutor>
                         </b:EventMultipleHandlerBehavior>
                     </Button.Behaviors>
                 </Button>

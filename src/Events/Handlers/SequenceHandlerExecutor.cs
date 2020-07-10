@@ -1,12 +1,13 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Basil.Behaviors.Events.HandlerAbstract;
+using Basil.Behaviors.Events.HandlerBase;
 using Basil.Behaviors.Events.Parameters;
 using Xamarin.Forms.Internals;
 
 namespace Basil.Behaviors.Events.Handlers
 {
-    public class SequenceHandlerExecutor : CollectionHandler
+    public class SequenceHandlerExecutor : BaseCollectionHandler
     {
         public override async void Rise(object sender, object eventArgs)
         {

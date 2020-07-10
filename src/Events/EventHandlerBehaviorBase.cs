@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using Basil.Behaviors.Events.Handlers;
+using Basil.Behaviors.Events.HandlerBase;
 using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events

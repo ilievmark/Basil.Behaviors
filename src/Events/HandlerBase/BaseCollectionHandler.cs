@@ -4,12 +4,12 @@ using System.Collections.Specialized;
 using System.Linq;
 using Xamarin.Forms;
 
-namespace Basil.Behaviors.Events.Handlers
+namespace Basil.Behaviors.Events.HandlerBase
 {
     [ContentProperty(nameof(Handlers))]
-    public abstract class CollectionHandler : BaseHandler
+    public abstract class BaseCollectionHandler : BaseHandler
     {
-        public CollectionHandler()
+        public BaseCollectionHandler()
         {
             _handlers = new ObservableCollection<BaseHandler>();
             _handlers.CollectionChanged += OnHandlersCollectionChanged;
