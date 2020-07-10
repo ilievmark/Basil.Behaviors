@@ -1,28 +1,44 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events
 {
-
     public abstract class EventBehaviorBase : BaseBehavior
     {
         private Delegate _eventHandler;
+        private EventInfo _eventInfo;
 
         private static void OnEventNameChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (bindable is EventBehaviorBase behavior)
             {
-                var oldEventName = (string)oldValue;
                 var newEventName = (string)newValue;
 
-                behavior.Unsubscribe(oldEventName);
+                behavior.Unsubscribe();
                 behavior.Subscribe(newEventName);
             }
         }
 
         #region Properties
 
+        #region TargetObject property
+
+        public static readonly BindableProperty TargetObjectProperty =
+            BindableProperty.Create(
+                propertyName: nameof(TargetObject),
+                returnType: typeof(object),
+                declaringType: typeof(EventBehaviorBase));
+
+        public object TargetObject
+        {
+            get => GetValue(TargetObjectProperty);
+            set => SetValue(TargetObjectProperty, value);
+        }
+
+        #endregion
+        
         #region EventName property
 
         public static readonly BindableProperty EventNameProperty =
@@ -54,7 +70,7 @@ namespace Basil.Behaviors.Events
 
         protected override void OnDetachingFrom(BindableObject bindable)
         {
-            Unsubscribe(EventName);
+            Unsubscribe();
 
             base.OnDetachingFrom(bindable);
         }
@@ -67,39 +83,38 @@ namespace Basil.Behaviors.Events
 
         #endregion
 
-        private void Subscribe(string name)
+        private void Subscribe(string eventName)
         {
-            if (string.IsNullOrWhiteSpace(name))
-                return;
+            if (string.IsNullOrWhiteSpace(eventName))
+                throw new ArgumentNullException(nameof(EventName));
 
-            if (AssociatedObject == null)
-                return;
+            var target = TargetObject ?? AssociatedObject;
+            if (target == null)
+                throw new InvalidDataException("Associated object can not be null");
 
-            var eventInfo = AssociatedObject.GetType().GetRuntimeEvent(name);
-            if (eventInfo == null)
+            _eventInfo = target.GetType().GetRuntimeEvent(eventName);
+            if (_eventInfo == null)
                 throw new ArgumentException($"{nameof(EventBehaviorBase)}: Can't register the '{EventName}' event.");
 
             var methodInfo = typeof(EventBehaviorBase).GetTypeInfo().GetDeclaredMethod(nameof(HandleEvent));
-            _eventHandler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
-            eventInfo.AddEventHandler(AssociatedObject, _eventHandler);
+            _eventHandler = methodInfo.CreateDelegate(_eventInfo.EventHandlerType, this);
+            _eventInfo.AddEventHandler(AssociatedObject, _eventHandler);
         }
 
-        private void Unsubscribe(string name)
+        private void Unsubscribe()
         {
-            if (string.IsNullOrWhiteSpace(name))
-                return;
-
             if (_eventHandler == null)
-                return;
+                throw new InvalidOperationException("Cached event handler info is invalid");
             
-            if (AssociatedObject == null)
-                return;
-
-            var eventInfo = AssociatedObject.GetType().GetRuntimeEvent(name);
-            if (eventInfo == null)
+            if (_eventInfo == null)
                 throw new ArgumentException($"{nameof(EventBehaviorBase)}: Can't de-register the '{EventName}' event.");
+            
+            var target = TargetObject ?? AssociatedObject;
+            if (target == null)
+                throw new InvalidDataException("Associated object can not be null");
 
-            eventInfo.RemoveEventHandler(AssociatedObject, _eventHandler);
+            _eventInfo.RemoveEventHandler(target, _eventHandler);
+            _eventInfo = null;
             _eventHandler = null;
         }
     }
