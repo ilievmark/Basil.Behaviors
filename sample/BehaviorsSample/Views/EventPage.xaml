@@ -45,7 +45,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Event to method behavior with param binding demo">
+                <Button Text="Event to method behavior with named params demo">
                     <Button.Behaviors>
                         <b:EventToMethodBehavior EventName="Clicked" MethodName="MethodWithNamedParam">
                             <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>

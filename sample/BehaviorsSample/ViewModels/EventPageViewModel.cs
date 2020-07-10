@@ -39,7 +39,7 @@ namespace BehaviorsSample.ViewModels
         
         public void MethodWithNamedParam(ICommand commandParam, string stringParam, int defaultInt = 0, float g = 4.4f, string someParamName = "Default value", object d = null)
         {
-            Debug.WriteLine($"Its not so crasy hard... {someParamName}");
+            Debug.WriteLine($"Its not so crazy hard... {someParamName}");
             Debug.WriteLine(stringParam);
             commandParam.Execute(null);
         }
