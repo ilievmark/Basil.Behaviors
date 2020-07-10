@@ -63,7 +63,6 @@
     <Compile Include="Core\AttachableBindableObject.cs" />
     <Compile Include="Core\CommandParams.cs" />
     <Compile Include="Core\ResultDelegate.cs" />
-    <Compile Include="Events\HandlerAbstract\IAsyncBase.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncGenericRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IGenericRisible.cs" />
@@ -76,6 +75,7 @@
     <Compile Include="Events\Parameters\BindableParameter.cs" />
     <Compile Include="Events\Parameters\DefaultParameter.cs" />
     <Compile Include="Events\Parameters\GenericParameter.cs" />
+    <Compile Include="Events\Parameters\GenericTaskReturnParameter.cs" />
     <Compile Include="Events\Parameters\NamedParameter.cs" />
     <Compile Include="Events\Parameters\Parameter.cs" />
     <Compile Include="Events\EventBehaviorBase.cs">

@@ -6,6 +6,7 @@
     xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
     xmlns:p="clr-namespace:Basil.Behaviors.Events.Parameters;assembly=Basil.Behaviors"
     xmlns:c="clr-namespace:System.Windows.Input;assembly=netstandard"
+    xmlns:tasks="clr-namespace:System.Threading.Tasks;assembly=netstandard"
     x:Class="BehaviorsSample.Views.EventPage">
     <ContentPage.Content>
 
@@ -161,6 +162,74 @@
                             <h:EventToMethodHandler MethodName="JustAMethodNoMore">
                                 <p:ReturnParameter x:TypeArguments="x:String"/>
                             </h:EventToMethodHandler>
+                        </b:EventMultipleHandlerBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Async methods handlers with waiting">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                            <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
+                            <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
+                                <p:ReturnParameter x:TypeArguments="x:Int32"/>
+                            </h:EventToMethodHandler>
+                            <h:EventToAsyncMethodHandler WaitResult="True" MethodName="RunResultActions">
+                                <p:ReturnParameter x:TypeArguments="x:String"/>
+                            </h:EventToAsyncMethodHandler>
+                            <h:EventToMethodHandler MethodName="JustAMethodNoMore">
+                                <p:DefaultParameter x:TypeArguments="x:String"/>
+                            </h:EventToMethodHandler>
+                        </b:EventMultipleHandlerBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Async methods with return handlers with waiting">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                            <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
+                            <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
+                                <p:ReturnParameter x:TypeArguments="x:Int32"/>
+                            </h:EventToMethodHandler>
+                            <h:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="True" MethodName="RunResultActionsAndReturn">
+                                <p:ReturnParameter x:TypeArguments="x:String"/>
+                            </h:EventToAsyncMethodHandler>
+                            <h:EventToMethodHandler MethodName="JustAMethodNoMore">
+                                <p:ReturnParameter x:TypeArguments="x:String"/>
+                            </h:EventToMethodHandler>
+                        </b:EventMultipleHandlerBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Async methods handlers without waiting">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                            <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
+                            <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
+                                <p:ReturnParameter x:TypeArguments="x:Int32"/>
+                            </h:EventToMethodHandler>
+                            <h:EventToAsyncMethodHandler WaitResult="False" MethodName="RunResultActions">
+                                <p:ReturnParameter x:TypeArguments="x:String"/>
+                            </h:EventToAsyncMethodHandler>
+                            <h:EventToMethodHandler MethodName="RunResultActionsWithPrevTask">
+                                <p:ReturnParameter x:TypeArguments="tasks:Task"/>
+                            </h:EventToMethodHandler>
+                        </b:EventMultipleHandlerBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Async methods with return handlers without waiting">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                            <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
+                            <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
+                                <p:ReturnParameter x:TypeArguments="x:Int32"/>
+                            </h:EventToMethodHandler>
+                            <h:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="False" MethodName="RunResultActionsAndReturn">
+                                <p:ReturnParameter x:TypeArguments="x:String"/>
+                            </h:EventToAsyncMethodHandler>
+                            <h:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="True" MethodName="RunResultActionsWithPrevTaskWithResult">
+                                <p:GenericTaskReturnParameter x:TypeArguments="x:String"/>
+                            </h:EventToAsyncMethodHandler>
                         </b:EventMultipleHandlerBehavior>
                     </Button.Behaviors>
                 </Button>

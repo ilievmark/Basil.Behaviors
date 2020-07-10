@@ -53,5 +53,42 @@ namespace BehaviorsSample.ViewModels
         {
             await Task.Delay(1000);
         }
+
+        public int GetInt()
+        {
+            return 23;
+        }
+
+        public string GetString(int result)
+        {
+            return $"string with previous result int = {result}";
+        }
+
+        public async Task RunResultActions(string result)
+        {
+            await Task.Delay(4000);
+            Debug.WriteLine(result);
+        }
+        
+        public async Task<string> RunResultActionsAndReturn(string result)
+        {
+            await Task.Delay(4000);
+            Debug.WriteLine(result);
+            return result;
+        }
+        
+        public async Task RunResultActionsWithPrevTask(Task task)
+        {
+            await task;
+            await Task.Delay(3000);
+            Debug.WriteLine("Done");
+        }
+        
+        public async Task RunResultActionsWithPrevTaskWithResult(Task<string> task)
+        {
+            var result = await task;
+            await Task.Delay(3000);
+            Debug.WriteLine(result);
+        }
     }
 }

@@ -136,7 +136,7 @@ namespace Basil.Behaviors.Events.Handlers
                 propertyName: nameof(WaitResult),
                 returnType: typeof(bool),
                 declaringType: typeof(EventToAsyncMethodHandler),
-                defaultValue: false);
+                defaultValue: default(bool));
 
         public bool WaitResult
         {
