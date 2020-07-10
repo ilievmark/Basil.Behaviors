@@ -78,6 +78,9 @@
     <Compile Include="Events\HandlerBase\BaseHandler.cs">
       <SubType></SubType>
     </Compile>
+    <Compile Include="Events\HandlersAsync\DelayEventHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Events\HandlersAsync\EventToAsyncMethodHandler.cs">
       <SubType>Code</SubType>
     </Compile>
