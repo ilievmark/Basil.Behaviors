@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
-using Basil.Behaviors.Events.Handlers;
 using Basil.Behaviors.Events.Parameters;
 using Xamarin.Forms.Internals;
 
@@ -16,12 +15,12 @@ namespace Basil.Behaviors.Events
         protected override void HandleEvent(object sender, object eventArgs)
         {
             if (Handlers != null && Handlers.Any())
-                HandleEventHandlers(Handlers, sender, eventArgs);
+                HandleEventHandlers(sender, eventArgs);
         }
 
         #endregion
 
-        private async void HandleEventHandlers(IEnumerable<BaseHandler> handlers, object sender, object eventArgs)
+        private async void HandleEventHandlers(object sender, object eventArgs)
         {
             object previousResult;
 

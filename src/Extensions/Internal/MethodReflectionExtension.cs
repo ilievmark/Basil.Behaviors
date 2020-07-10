@@ -2,27 +2,58 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Basil.Behaviors.Events.Parameters;
-using Xamarin.Forms;
 
 namespace Basil.Behaviors.Extensions.Internal
 {
     public static class MethodReflectionExtension
     {
-        internal static Task<T> RunMethodAsync<T>(
-            this object targetObject,
-            string methodName,
-            IList<Parameter> parameters)
-            => (Task<T>) targetObject.RunMethod(methodName, parameters);
+        private const int MethodPositionOffset = 1;
         
-        internal static Task RunMethodAsync(
+        public static object RunMethodPath(
             this object targetObject,
-            string methodName,
+            string methodPath,
             IList<Parameter> parameters)
-            => (Task) targetObject.RunMethod(methodName, parameters);
+        {
+            if (targetObject == null)
+                throw new ArgumentNullException(nameof(targetObject));
+            
+            if (string.IsNullOrEmpty(methodPath))
+                throw new ArgumentNullException(nameof(methodPath));
+            
+            if (!methodPath.ContainsChar('.'))
+                throw new ArgumentException($"{nameof(methodPath)} == {methodPath}: doesnt contains . and not represent path to method");
+            
+            parameters ??= new List<Parameter>();
+
+            var parts = methodPath.Split('.');
+            var realTarget = GetRealTarget(targetObject, parts);
+            var methodName = parts[parts.Length - MethodPositionOffset];
+
+            return realTarget.RunMethod(methodName, parameters);
+        }
         
-        internal static object RunMethod(
+        private static object GetRealTarget(object target, string[] parts)
+        {
+            var actualParts = parts.Take(parts.Length - MethodPositionOffset);
+            var result = target;
+            
+            foreach (var part in actualParts)
+            {
+                if (string.IsNullOrWhiteSpace(part))
+                    throw new ArgumentException($"Cant find object part = '{part}'.Part cant be null or whitespace. Path == {string.Concat(parts, '.')}");
+                var searchResult = result.GetPropertyValue(part);
+                if (searchResult == null)
+                    searchResult = result.GetFieldValue(part);
+                result = searchResult;
+                if (result == null)
+                    throw new ArgumentException($"Cant find object '{part}'. Path == {string.Concat(parts, '.')}");
+            }
+
+            return result;
+        }
+        
+        public static object RunMethod(
             this object targetObject,
             string methodName,
             IList<Parameter> parameters)

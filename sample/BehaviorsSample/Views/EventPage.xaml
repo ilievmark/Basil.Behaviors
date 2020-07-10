@@ -28,6 +28,12 @@
                     </Button.Behaviors>
                 </Button>
                 
+                <Button Text="Event to method path behavior demo">
+                    <Button.Behaviors>
+                        <b:EventToMethodBehavior EventName="Clicked" MethodName="Model.m_model.Model.MethodToRize"/>
+                    </Button.Behaviors>
+                </Button>
+                
                 <Button Text="Event to method with parameter behavior demo">
                     <Button.Behaviors>
                         <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodNoMore">
@@ -53,6 +59,14 @@
                             <p:NamedParameter x:TypeArguments="x:Int32" Name="defaultInt">606</p:NamedParameter>
                             <p:NamedParameter x:TypeArguments="x:String" Name="someParamName">Some special value</p:NamedParameter>
                         </b:EventToMethodBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Method path handler demo">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                            <h:EventToMethodHandler MethodName="Model.Model.m_model.MethodToRize"/>
+                        </b:EventMultipleHandlerBehavior>
                     </Button.Behaviors>
                 </Button>
                 

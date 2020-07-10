@@ -114,6 +114,7 @@
     </Compile>
     <Compile Include="Events\Parameters\ReturnParameter.cs" />
     <Compile Include="Extensions\CommandEventRisingExtensions.cs" />
+    <Compile Include="Extensions\Internal\ObjectReflectionExtension.cs" />
     <Compile Include="Extensions\Internal\StringExtensions.cs" />
     <Compile Include="Extensions\Internal\CommandExtensions.cs" />
     <Compile Include="Extensions\Internal\MethodReflectionExtension.cs" />
