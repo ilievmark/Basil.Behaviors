@@ -73,9 +73,10 @@ else exception 'ArgumentException' will be thrown)
 <b:EventToMethodBehavior EventName="Clicked" MethodName="Model.m_model.Model.MethodToRize"/>
 ```
 
-When you use it, behavior starts listen event from 'EventName' in target object and call method mentioned in MethodName
+When you use it, behavior starts listen event from 'EventName' in target object (property 'TargetObject') and call method mentioned in MethodName
 property. By default it searches method to call in binding context of attached object. But you can bind target object,
-using property 'TargetObject', and if its object not null, behavior will search this event there (same for EventMultipleHandlerBehavior)
+using property 'TargetMethodCallObjectProperty', and if its object not null, behavior will search this event there (same for EventMultipleHandlerBehavior).
+To call method from another 
 
 #### Parameters for event to method handlers
 
@@ -339,6 +340,8 @@ Like EventToMethodBehavior (Demo 12)
 ```
 
 All this things will be called sequentialy
+
+By default method calls from view model object. You can call method with binding using property 'TargetMethodCallObject'
 
 #### EventToMethodHandler<T>
 
