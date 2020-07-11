@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace Basil.Behaviors.Rules.Validation
 {
-    public class StartRegexValidationRule: ValidationRuleBase
+    public class StartRegexValidationRule : ValidationRuleBase
     {
         public int StartIndex { get; set; }
         

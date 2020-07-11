@@ -66,6 +66,7 @@
     <Compile Include="Events\HandlerAbstract\IAsyncGenericRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IGenericRisible.cs" />
+    <Compile Include="Events\HandlerAbstract\IMethodExecutable.cs" />
     <Compile Include="Events\HandlerAbstract\IParametrised.cs" />
     <Compile Include="Events\HandlerAbstract\IRisible.cs" />
     <Compile Include="Events\HandlerBase\BaseAsyncHandler.cs">

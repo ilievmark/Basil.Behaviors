@@ -9,7 +9,7 @@ using Xamarin.Forms;
 namespace Basil.Behaviors.Events.HandlerBase
 {
     [ContentProperty(nameof(Parameters))]
-    public abstract class BaseEventToMethodHandler : BaseHandler, IParametrised
+    public abstract class BaseEventToMethodHandler : BaseHandler, IParametrised, IMethodExecutable
     {
         public BaseEventToMethodHandler()
         {
@@ -39,17 +39,17 @@ namespace Basil.Behaviors.Events.HandlerBase
         
         #region TargetObject property
 
-        public static readonly BindableProperty TargetObjectProperty =
+        public static readonly BindableProperty TargetMethodCallObjectProperty =
             BindableProperty.Create(
-                propertyName: nameof(TargetObject),
+                propertyName: nameof(TargetMethodCallObject),
                 returnType: typeof(object),
                 declaringType: typeof(BaseEventToMethodHandler),
                 defaultValue: default);
 
-        public object TargetObject
+        public object TargetMethodCallObject
         {
-            get => GetValue(TargetObjectProperty);
-            set => SetValue(TargetObjectProperty, value);
+            get => GetValue(TargetMethodCallObjectProperty);
+            set => SetValue(TargetMethodCallObjectProperty, value);
         }
 
         #endregion
@@ -72,6 +72,8 @@ namespace Basil.Behaviors.Events.HandlerBase
             ResetParams(_parameters);
             AddedParams(_parameters);
         }
+
+        public object GetTargetMethodRiseObject() => TargetMethodCallObject ?? AssociatedObject?.BindingContext;
 
         #endregion
         

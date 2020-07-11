@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Extensions;
 using Basil.Behaviors.Events.Parameters;
 using Xamarin.Forms;
@@ -9,7 +10,7 @@ using Xamarin.Forms;
 namespace Basil.Behaviors.Events
 {
     [ContentProperty(nameof(Parameters))]
-    public class EventToMethodBehavior : EventBehaviorBase
+    public class EventToMethodBehavior : EventBehaviorBase, IMethodExecutable
     {
         public EventToMethodBehavior()
         {
@@ -37,23 +38,6 @@ namespace Basil.Behaviors.Events
         
         #endregion
 
-        #region TargetObject property
-
-        public static readonly BindableProperty TargetObjectProperty =
-            BindableProperty.Create(
-                propertyName: nameof(TargetObject),
-                returnType: typeof(object),
-                declaringType: typeof(EventToMethodBehavior),
-                defaultValue: default);
-
-        public object TargetObject
-        {
-            get => GetValue(TargetObjectProperty);
-            set => SetValue(TargetObjectProperty, value);
-        }
-
-        #endregion
-        
         #region Parameters property
         
         private ObservableCollection<Parameter> _parameters;
@@ -61,6 +45,22 @@ namespace Basil.Behaviors.Events
         
         #endregion
 
+        #region TargetMethodObject property
+        
+        public static readonly BindableProperty TargetMethodCallObjectProperty =
+            BindableProperty.Create(
+                propertyName: nameof(TargetMethodCallObject),
+                returnType: typeof(object),
+                declaringType: typeof(EventToMethodBehavior));
+
+        public object TargetMethodCallObject
+        {
+            get => GetValue(TargetMethodCallObjectProperty);
+            set => SetValue(TargetMethodCallObjectProperty, value);
+        }
+        
+        #endregion
+        
         #endregion
         
         #region Overrides
@@ -74,6 +74,8 @@ namespace Basil.Behaviors.Events
             ResetParams(_parameters);
             AddedParams(_parameters);
         }
+
+        public object GetTargetMethodRiseObject() => TargetMethodCallObject ?? AssociatedObject?.BindingContext;
 
         #endregion
         
