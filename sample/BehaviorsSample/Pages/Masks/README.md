@@ -54,14 +54,19 @@ You can used for input complicated values. For example (Demo 3) car registration
 You can perform text masking with duferent rules.
 
 ### Rules for MaskWithRulesBehavior
+
 There are different rules for this kind of mask
 
 1. CharMaskRule
-(to be continued)
+2. AnyCharMaskRule
+3. IgnoreCaseCharMaskRule
 
 All rules derived from MaskRuleBase. You can create your own rule
 
 #### CharMaskRule
+
+Represents rule for direct symbol in pattern with only allowed symbols (Demo 2, 3)
+CASE SENSITIVE
 That rule used like this
 
 ```
@@ -70,6 +75,25 @@ That rule used like this
 
 and represent single symbol marked as 'A' (for that instance), and allow you input there only one of symbol, described in AllowedChars.
 (!!!WARNING!!!) Also its case sensitive.
+
+#### AnyCharMaskRule
+
+Represents rule for direct symbol in pattern for any (Demo 4)
+That rule used like this
+
+```
+<maskRules:CharMaskRule Rule="A" AllowedChars="1234567890"/>
+```
+
+#### IgnoreCaseCharMaskRule
+
+Represents rule for direct symbol in pattern with only allowed symbols (Demo 4, 5)
+NOT CASE SENSITIVE
+That rule used like this
+
+```
+<maskRules:IgnoreCaseCharMaskRule Rule="A" AllowedChars="QWERTYUIOPASDFGHJKLZXCVBNM"/>
+```
 
 ### Demo
 To see how behaviors works, compile sample app and go MaskPage page
