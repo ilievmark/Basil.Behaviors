@@ -15,10 +15,6 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\src\Basil.Behaviors.csproj" />
   </ItemGroup>
   <ItemGroup>

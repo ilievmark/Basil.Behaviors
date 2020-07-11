@@ -1,4 +1,4 @@
-﻿using BehaviorsSample.Views;
+﻿using BehaviorsSample.Pages.Main;
 using Xamarin.Forms;
 
 namespace BehaviorsSample

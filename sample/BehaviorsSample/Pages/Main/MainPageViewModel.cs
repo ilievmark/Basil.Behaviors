@@ -1,8 +1,10 @@
 ﻿using System.Windows.Input;
-using BehaviorsSample.Views;
+using BehaviorsSample.Pages.EventHandling;
+using BehaviorsSample.Pages.Masks;
+using BehaviorsSample.Pages.Validations;
 using Xamarin.Forms;
 
-namespace BehaviorsSample.ViewModels
+namespace BehaviorsSample.Pages.Main
 {
     public class MainPageViewModel : BaseViewModel
     {

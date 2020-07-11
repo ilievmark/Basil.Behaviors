@@ -5,7 +5,7 @@ using System.Windows.Input;
 using BehaviorsSample.Models;
 using Xamarin.Forms;
 
-namespace BehaviorsSample.ViewModels
+namespace BehaviorsSample.Pages.EventHandling
 {
     public class EventPageViewModel : BaseViewModel
     {
