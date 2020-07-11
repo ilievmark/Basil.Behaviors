@@ -10,24 +10,21 @@
         
             <StackLayout Padding="10,10,10,0">
             
-                <Label Text="Minimum eight characters, at least one letter and one number:"/>
+                <Label Text="Demo 1"/>
                 <Entry>
                     <Entry.Behaviors>
                         <validations:RegexValidationBehavior Pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" PropertyName="Text" Command="{Binding ValidatedCommand}"/>
                     </Entry.Behaviors>
                 </Entry>
             
-                <Label Text="Email validator:"/>
+                <Label Text="Demo 2"/>
                 <Entry>
                     <Entry.Behaviors>
                         <validations:EmailValidationBehavior PropertyName="Text" Command="{Binding ValidatedCommand}"/>
                     </Entry.Behaviors>
                 </Entry>
             
-                <Label Text="1. Minimum three characters, at least one letter and one number"/>
-                <Label Text="2. Contains number"/>
-                <Label Text="3. Contains word that ends with 'dog'"/>
-                <Label Text="(for example enter 'Gd22j1watchdog')"/>
+                <Label Text="Demo 3"/>
                 <Entry>
                     <Entry.Behaviors>
                         <validations:RegexValidationWithRulesBehavior PropertyName="Text" Command="{Binding ValidatedCommand}">
