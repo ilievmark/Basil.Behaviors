@@ -11,20 +11,30 @@
         
             <StackLayout Padding="10,10,10,0">
             
-                <Label Text="Masked behavior demo (input some string)"/>
+                <Label Text="Demo 1"/>
                 <Entry>
                     <Entry.Behaviors>
                         <masks:MaskBehavior Pattern="(XXX) - XXX - XX - XX" TargetCharacter="X" PropertyName="Text"/>
                     </Entry.Behaviors>
                 </Entry>
             
-                <Label Text="Masked behavior with rules demo"/>
+                <Label Text="Demo 2"/>
                 <Entry>
                     <Entry.Behaviors>
                         <masks:MaskWithRulesBehavior Pattern="(XXc) -- E cccX X XE ccX" PropertyName="Text">
                             <maskRules:CharMaskRule Rule="X" AllowedChars="QWERTYUIOPASDFGHJKLZXCVBNM"/>
                             <maskRules:CharMaskRule Rule="E" AllowedChars="asDF1236"/>
                             <maskRules:CharMaskRule Rule="c" AllowedChars="1234567890"/>
+                        </masks:MaskWithRulesBehavior>
+                    </Entry.Behaviors>
+                </Entry>
+                
+                <Label Text="Demo 3"/>
+                <Entry>
+                    <Entry.Behaviors>
+                        <masks:MaskWithRulesBehavior Pattern="AAA BBBB" PropertyName="Text">
+                            <maskRules:CharMaskRule Rule="A" AllowedChars="QWERTYUIOPASDFGHJKLZXCVBNM"/>
+                            <maskRules:CharMaskRule Rule="B" AllowedChars="1234567890"/>
                         </masks:MaskWithRulesBehavior>
                     </Entry.Behaviors>
                 </Entry>
