@@ -1,4 +1,4 @@
-namespace Basil.Behaviors.Extensions.Internal
+namespace Basil.Behaviors.Extensions
 {
     public static class StringExtensions
     {

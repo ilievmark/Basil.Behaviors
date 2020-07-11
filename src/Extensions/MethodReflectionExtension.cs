@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Basil.Behaviors.Events.Parameters;
+using Basil.Behaviors.Extensions.Internal;
 
-namespace Basil.Behaviors.Extensions.Internal
+namespace Basil.Behaviors.Extensions
 {
     public static class MethodReflectionExtension
     {
