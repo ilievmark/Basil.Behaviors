@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace BehaviorsSample.ViewModels
+namespace BehaviorsSample.Pages
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

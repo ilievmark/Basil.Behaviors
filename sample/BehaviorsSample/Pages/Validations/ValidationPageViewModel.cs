@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Basil.Behaviors.Core;
 using Xamarin.Forms;
 
-namespace BehaviorsSample.ViewModels
+namespace BehaviorsSample.Pages.Validations
 {
     public class ValidationPageViewModel : BaseViewModel
     {

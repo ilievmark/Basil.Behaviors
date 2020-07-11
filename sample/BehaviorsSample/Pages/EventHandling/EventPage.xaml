@@ -1,16 +1,16 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:b="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
-    xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
-    xmlns:p="clr-namespace:Basil.Behaviors.Events.Parameters;assembly=Basil.Behaviors"
-    xmlns:c="clr-namespace:System.Windows.Input;assembly=netstandard"
-    xmlns:t="clr-namespace:System.Threading.Tasks;assembly=netstandard"
-    xmlns:a="clr-namespace:Basil.Behaviors.Events.HandlersAsync;assembly=Basil.Behaviors"
-    x:Class="BehaviorsSample.Views.EventPage">
-    <ContentPage.Content>
+<?xml version="1.0" encoding="utf-8"?>
 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:b="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
+             xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
+             xmlns:p="clr-namespace:Basil.Behaviors.Events.Parameters;assembly=Basil.Behaviors"
+             xmlns:c="clr-namespace:System.Windows.Input;assembly=netstandard"
+             xmlns:t="clr-namespace:System.Threading.Tasks;assembly=netstandard"
+             xmlns:a="clr-namespace:Basil.Behaviors.Events.HandlersAsync;assembly=Basil.Behaviors"
+             x:Class="BehaviorsSample.Pages.EventHandling.EventPage">
+    <ContentPage.Content>
+        
         <ScrollView>
 
             <StackLayout>
@@ -268,6 +268,6 @@
             </StackLayout>
 
         </ScrollView>
-
+        
     </ContentPage.Content>
 </ContentPage>

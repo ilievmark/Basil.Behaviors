@@ -1,14 +1,13 @@
-﻿using BehaviorsSample.ViewModels;
 using Xamarin.Forms;
 
-namespace BehaviorsSample.Views
+namespace BehaviorsSample.Pages.EventHandling
 {
     public partial class EventPage : ContentPage
     {
         public EventPage()
         {
-            BindingContext = new EventPageViewModel();
             InitializeComponent();
+            BindingContext = new EventPageViewModel();
         }
     }
 }

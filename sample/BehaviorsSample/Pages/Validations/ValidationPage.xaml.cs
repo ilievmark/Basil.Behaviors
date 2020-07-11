@@ -1,14 +1,13 @@
-using BehaviorsSample.ViewModels;
 using Xamarin.Forms;
 
-namespace BehaviorsSample.Views
+namespace BehaviorsSample.Pages.Validations
 {
     public partial class ValidationPage : ContentPage
     {
         public ValidationPage()
         {
-            BindingContext = new ValidationPageViewModel();
             InitializeComponent();
+            BindingContext = new ValidationPageViewModel();
         }
     }
 }

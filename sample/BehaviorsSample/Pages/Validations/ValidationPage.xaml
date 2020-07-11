@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:validations="clr-namespace:Basil.Behaviors.Validations;assembly=Basil.Behaviors"
+             xmlns:validation="clr-namespace:Basil.Behaviors.Rules.Validation;assembly=Basil.Behaviors"
+             x:Class="BehaviorsSample.Pages.Validations.ValidationPage">
+    <ContentPage.Content>
+        
+        <ScrollView>
+        
+            <StackLayout Padding="10,10,10,0">
+            
+                <Label Text="Minimum eight characters, at least one letter and one number:"/>
+                <Entry>
+                    <Entry.Behaviors>
+                        <validations:RegexValidationBehavior Pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" PropertyName="Text" Command="{Binding ValidatedCommand}"/>
+                    </Entry.Behaviors>
+                </Entry>
+            
+                <Label Text="Email validator:"/>
+                <Entry>
+                    <Entry.Behaviors>
+                        <validations:EmailValidationBehavior PropertyName="Text" Command="{Binding ValidatedCommand}"/>
+                    </Entry.Behaviors>
+                </Entry>
+            
+                <Label Text="1. Minimum three characters, at least one letter and one number"/>
+                <Label Text="2. Contains number"/>
+                <Label Text="3. Contains word that ends with 'dog'"/>
+                <Label Text="(for example enter 'Gd22j1watchdog')"/>
+                <Entry>
+                    <Entry.Behaviors>
+                        <validations:RegexValidationWithRulesBehavior PropertyName="Text" Command="{Binding ValidatedCommand}">
+                            <validation:RegexValidationRule Rule="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$" Index="0" Length="5"/>
+                            <validation:RegexValidationRule Rule="\d" Index="5" Length="1"/>
+                            <validation:RegexValidationRule Rule="dog$" Index="6" Length="8"/>
+                        </validations:RegexValidationWithRulesBehavior>
+                    </Entry.Behaviors>
+                </Entry>
+            
+            </StackLayout>
+        
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>
