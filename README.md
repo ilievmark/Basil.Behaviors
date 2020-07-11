@@ -1,5 +1,29 @@
 # Basil.Behaviors Event handling
 
+Doc structure:
+
+- Behaviors
+    - EventToCommandBehavior
+    - EventToMethodBehavior
+        - Parameters
+            - DefaultParameter
+            - GenericParameter
+            - BindableParameter
+            - NamedParameter
+            - ReturnParameter
+            - GenericTaskReturnParameter
+    - EventMultipleHandlerBehavior
+        - Handlers
+            - EventToCommandHandler
+            - EventToMethodHandler
+            - EventToMethodHandler<T>
+            - EventToAsyncMethodHandler
+            - EventToAsyncMethodHandler<T>
+            - DelayEventHandler
+            - SequenceHandlerExecutor
+            - ParallelHandlerExecutor
+- Feature usage
+
 This part of package was created as extension of idea of EventToCommandBehavior
 All examples you can find in 'EventPage.xaml' file
 
