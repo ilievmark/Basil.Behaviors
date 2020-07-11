@@ -19,8 +19,7 @@ On MaskPage you can see "Demo 1" entry with MaskBehavior, that configured like
 That means, that any text in this entry wil be masked with pattern (XXX) - XXX - XX - XX, where 'X' is character that user inputs
 and 'Text' - name of property MaskBehavior will mask
 
-![Image of usage MaskBehavior for demo 1]
-(https://github.com/ilievmark/Basil.Behaviors/blob/doc_and_guides/inf/mask_demo_1.png)
+![Image of usage MaskBehavior for demo 1](https://github.com/ilievmark/Basil.Behaviors/blob/doc_and_guides/inf/mask_demo_1.png)
 
 ### MaskWithRulesBehavior
 There are second section marked as 'Demo 2'. There is Entry with MaskWithRulesBehavior
@@ -39,8 +38,7 @@ Here, in '(XXc) -- E cccX X XE ccX' we will target on three symbols: 'X', 'E', '
 we must manage allowed characters that user can input in right place. Here for character 'c' we allow only numbers. 'E' symbol represent
 any symbols from "asDF1236" and so on.
 
-![Image of usage MaskWithRulesBehavior for demo 2]
-(https://github.com/ilievmark/Basil.Behaviors/blob/doc_and_guides/inf/mask_demo_2.png)
+![Image of usage MaskWithRulesBehavior for demo 2](https://github.com/ilievmark/Basil.Behaviors/blob/doc_and_guides/inf/mask_demo_2.png)
 
 You can used for input complicated values. For example (Demo 3) car registration number
 
@@ -51,15 +49,15 @@ You can used for input complicated values. For example (Demo 3) car registration
 </masks:MaskWithRulesBehavior>
 ```
 
-![Image of usage MaskWithRulesBehavior for demo 3]
-(https://github.com/ilievmark/Basil.Behaviors/blob/doc_and_guides/inf/mask_demo_3.png)
+![Image of usage MaskWithRulesBehavior for demo 3](https://github.com/ilievmark/Basil.Behaviors/blob/doc_and_guides/inf/mask_demo_3.png)
+
+You can perform text masking with duferent rules.
 
 ### Rules for MaskWithRulesBehavior
 There are different rules for this kind of mask
 
 1. CharMaskRule
-2. AnyCharMaskRule
-3. IgnoreCaseCharMaskRule
+(to be continued)
 
 All rules derived from MaskRuleBase. You can create your own rule
 
@@ -71,25 +69,7 @@ That rule used like this
 ```
 
 and represent single symbol marked as 'A' (for that instance), and allow you input there only one of symbol, described in AllowedChars.
-(!!!WARNING!!!) Also its case sensitive
-
-#### IgnoreCaseCharMaskRule
-That rule used like this
-
-```
-<maskRules:IgnoreCaseCharMaskRule Rule="B" AllowedChars="1234567890"/>
-```
-
-and represent single symbol marked as 'B' (for that instance), and allow you input there only one of symbol,
-described in AllowedChars ignoring case
-
-#### AnyCharMaskRule
-That rule used like this
-
-```
-<maskRules:AnyCharMaskRule Rule="C"/>
-```
-and represent single symbol marked as 'C' (for that instance), and allow you input any you want to instead this symbol
+(!!!WARNING!!!) Also its case sensitive.
 
 ### Demo
 To see how behaviors works, compile sample app and go MaskPage page
