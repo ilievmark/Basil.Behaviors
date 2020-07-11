@@ -8,7 +8,7 @@ Actually, you can attach this behaviour on any view element you want to
 There are three validation behaviors you can use
 
 1. RegexValidationBehavior
-2. RegexValidationWithRulesBehavior
+2. ValidationWithRulesBehavior
 3. EmailValidationBehavior
 
 ### RegexValidationBehavior
@@ -59,15 +59,15 @@ private const string EmailPattern =
             "^(([^<>()\\[\\]\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{1,}))$";
 ```
 
-### RegexValidationWithRulesBehavior
-There are next section marked as 'Demo 3'. There is Entry with RegexValidationWithRulesBehavior
+### ValidationWithRulesBehavior
+There are next section marked as 'Demo 3'. There is Entry's behavior ValidationWithRulesBehavior
 
 ```
-<validations:RegexValidationWithRulesBehavior PropertyName="Text" Command="{Binding ValidatedCommand}">
+<validations:ValidationWithRulesBehavior PropertyName="Text" Command="{Binding ValidatedCommand}">
     <validation:RegexValidationRule Rule="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$" Index="0" Length="5"/>
     <validation:RegexValidationRule Rule="\d" Index="5" Length="1"/>
     <validation:RegexValidationRule Rule="dog$" Index="6" Length="8"/>
-</validations:RegexValidationWithRulesBehavior>
+</validations:ValidationWithRulesBehavior>
 ```
 
 This behavior checks user input text by this rules
@@ -79,23 +79,57 @@ This behavior checks user input text by this rules
 For example this string can be 'Gd22j1watchdog'
 
 You can perform text validation with different rules.
-You can create own validation rule deriving from BaseRule class
+You can create own validation rule deriving from 'ValidationRuleBase' class
 Also you can create own validation behavior, just deriving from ValidationBehaviorBase
 
 ### Rules for RegexValidationWithRulesBehavior
 There are different rules for this validation behavior
 
 1. RegexValidationRule
-(to be continued)
+2. StartRegexValidationRule
+3. EndRegexValidationRule
+4. PositionedRegexValidationRule
 
 #### RegexValidationRule
+
+Uses like (Demo 4)
+
+```
+<validation:RegexValidationRule Rule="\d"/>
+```
+
+And means that all string will be checked with passed rule
+
+#### StartRegexValidationRule
+
+Uses like (Demo 5)
+
+```
+<validation:StartRegexValidationRule StartIndex="2" Rule="\d"/>
+```
+
+Means that string will be validated started only after index 2. If string length less than 3, in will be false as result
+of validation
+
+#### EndRegexValidationRule
+
+Uses like (Demo 6)
+
+```
+<validation:EndRegexValidationRule Length="5" Rule="\d"/>
+```
+
+Means that string will be validated started from index 0 and till 4th symbol. If string length less than 5, in will be false as result
+of validation
+
+#### PositionedRegexValidationRule
 That rule used like this
 
 ```
-<validation:RegexValidationRule Rule="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$" Index="0" Length="5"/>
+<validation:PositionedRegexValidationRule Rule="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$" Index="0" Length="5"/>
 ```
 
 that will receive full text, and check it by regex expression '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$' starting from index 0 and next 5 chars
 
 ### Demo
-To see how behaviors works, compile sample app and go MaskPage page
+To see how behaviors works, compile sample app and go ValidationsPage page
