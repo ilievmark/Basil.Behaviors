@@ -136,7 +136,9 @@
     <Compile Include="Rules\BaseRule.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Rules\Mask\AnyCharMaskRule.cs" />
     <Compile Include="Rules\Mask\CharMaskRule.cs" />
+    <Compile Include="Rules\Mask\IgnoreCaseCharMaskRule.cs" />
     <Compile Include="Rules\Mask\MaskRuleBase.cs" />
     <Compile Include="Rules\Validation\RegexValidationRule.cs" />
     <Compile Include="Validations\EmailValidationBehavior.cs" />
