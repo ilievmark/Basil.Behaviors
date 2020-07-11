@@ -19,7 +19,8 @@ On MaskPage you can see "Demo 1" entry with MaskBehavior, that configured like
 That means, that any text in this entry wil be masked with pattern (XXX) - XXX - XX - XX, where 'X' is character that user inputs
 and 'Text' - name of property MaskBehavior will mask
 
-IMAGE
+![Image of usage MaskBehavior for demo 1]
+(https://github.com/ilievmark/Basil.Behaviors/blob/doc_and_guides/inf/mask_demo_1.png)
 
 ### MaskWithRulesBehavior
 There are second section marked as 'Demo 2'. There is Entry with MaskWithRulesBehavior
@@ -38,9 +39,10 @@ Here, in '(XXc) -- E cccX X XE ccX' we will target on three symbols: 'X', 'E', '
 we must manage allowed characters that user can input in right place. Here for character 'c' we allow only numbers. 'E' symbol represent
 any symbols from "asDF1236" and so on.
 
-IMAGE
+![Image of usage MaskWithRulesBehavior for demo 2]
+(https://github.com/ilievmark/Basil.Behaviors/blob/doc_and_guides/inf/mask_demo_2.png)
 
-You can used for input complicated values. For example car registration number
+You can used for input complicated values. For example (Demo 3) car registration number
 
 ```
 <masks:MaskWithRulesBehavior Pattern="AAA BBBB" PropertyName="Text">
@@ -49,7 +51,8 @@ You can used for input complicated values. For example car registration number
 </masks:MaskWithRulesBehavior>
 ```
 
-IMAGE
+![Image of usage MaskWithRulesBehavior for demo 3]
+(https://github.com/ilievmark/Basil.Behaviors/blob/doc_and_guides/inf/mask_demo_3.png)
 
 ### Rules for MaskWithRulesBehavior
 There are different rules for this kind of mask
