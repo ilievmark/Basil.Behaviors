@@ -141,8 +141,8 @@ public abstract class CustomParameter<T> : AttachableBindableObject
 {
     ...
   
-    public abstract object GetValue() => ... return value logic ...
-    public abstract Type GetParamType() => typeof(SomeModel<T>);
+    public object GetValue() => ... return value logic ...
+    public Type GetParamType() => typeof(SomeModel<T>);
 }
 ```
 
