@@ -42,8 +42,9 @@
                 <Label Text="Demo 4"/>
                 <Entry>
                     <Entry.Behaviors>
-                        <masks:MaskWithRulesBehavior Pattern="AAA" PropertyName="Text">
+                        <masks:MaskWithRulesBehavior Pattern="AAA BBBB" PropertyName="Text">
                             <maskRules:IgnoreCaseCharMaskRule Rule="A" AllowedChars="QWERTYUIOPASDFGHJKLZXCVBNM"/>
+                            <maskRules:AnyCharMaskRule Rule="B"/>
                         </masks:MaskWithRulesBehavior>
                     </Entry.Behaviors>
                 </Entry>
@@ -51,9 +52,8 @@
                 <Label Text="Demo 5"/>
                 <Entry>
                     <Entry.Behaviors>
-                        <masks:MaskWithRulesBehavior Pattern="AAA BBBB" PropertyName="Text">
+                        <masks:MaskWithRulesBehavior Pattern="AAA" PropertyName="Text">
                             <maskRules:IgnoreCaseCharMaskRule Rule="A" AllowedChars="QWERTYUIOPASDFGHJKLZXCVBNM"/>
-                            <maskRules:AnyCharMaskRule Rule="B"/>
                         </masks:MaskWithRulesBehavior>
                     </Entry.Behaviors>
                 </Entry>

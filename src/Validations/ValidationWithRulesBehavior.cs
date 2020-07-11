@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace Basil.Behaviors.Validations
 {
-    public class RegexValidationWithRulesBehavior : PropertyRulesBehaviorBase<string, RegexValidationRule>
+    public class ValidationWithRulesBehavior : PropertyRulesBehaviorBase<string, ValidationRuleBase>
     {
         #region Properties
         
@@ -16,7 +16,7 @@ namespace Basil.Behaviors.Validations
             BindableProperty.Create(
                 propertyName: nameof(Command),
                 returnType: typeof(Command),
-                declaringType: typeof(RegexValidationWithRulesBehavior),
+                declaringType: typeof(ValidationWithRulesBehavior),
                 defaultValue: default(Command));
 
         public Command Command

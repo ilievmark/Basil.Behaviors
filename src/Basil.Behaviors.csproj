@@ -115,12 +115,16 @@
     <Compile Include="Events\Parameters\ReturnParameter.cs" />
     <Compile Include="Extensions\CommandEventRisingExtensions.cs" />
     <Compile Include="Extensions\Internal\ObjectReflectionExtension.cs" />
-    <Compile Include="Extensions\Internal\StringExtensions.cs" />
     <Compile Include="Extensions\Internal\CommandExtensions.cs" />
-    <Compile Include="Extensions\Internal\MethodReflectionExtension.cs" />
     <Compile Include="Extensions\Internal\TypeExtension.cs" />
     <Compile Include="Extensions\MethodEventRisingExtensions.cs" />
+    <Compile Include="Extensions\MethodReflectionExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Extensions\ParameterExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Masks\MaskBehavior.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -140,10 +144,14 @@
     <Compile Include="Rules\Mask\CharMaskRule.cs" />
     <Compile Include="Rules\Mask\IgnoreCaseCharMaskRule.cs" />
     <Compile Include="Rules\Mask\MaskRuleBase.cs" />
+    <Compile Include="Rules\Validation\EndRegexValidationRule.cs" />
+    <Compile Include="Rules\Validation\PositionedRegexValidationRule.cs" />
     <Compile Include="Rules\Validation\RegexValidationRule.cs" />
+    <Compile Include="Rules\Validation\StartRegexValidationRule.cs" />
+    <Compile Include="Rules\Validation\ValidationRuleBase.cs" />
     <Compile Include="Validations\EmailValidationBehavior.cs" />
     <Compile Include="Validations\RegexValidationBehavior.cs" />
-    <Compile Include="Validations\RegexValidationWithRulesBehavior.cs" />
+    <Compile Include="Validations\ValidationWithRulesBehavior.cs" />
     <Compile Include="Validations\ValidationBehaviorBase.cs" />
   </ItemGroup>
 
