@@ -123,7 +123,8 @@
                 <Button Text="Demo 13">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
-                            <h:EventToSetPropertyHandler x:TypeArguments="x:Int32" PropertyName="Int32Property" Value="10"/>
+                            <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
+                            <h:EventToCommandHandler Command="{Binding Sample2Command}"/>
                         </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
@@ -131,7 +132,7 @@
                 <Button Text="Demo 14">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
-                            <h:EventToSetFieldHandler x:TypeArguments="x:Int32" FieldName="_int32Field" Value="33"/>
+                            <h:EventToSetPropertyHandler x:TypeArguments="x:Int32" PropertyName="Int32Property" Value="10"/>
                         </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
@@ -139,8 +140,7 @@
                 <Button Text="Demo 15">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
-                            <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
-                            <h:EventToCommandHandler Command="{Binding Sample2Command}"/>
+                            <h:EventToSetFieldHandler x:TypeArguments="x:Int32" FieldName="_int32Field" Value="33"/>
                         </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
@@ -250,17 +250,43 @@
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
                                 <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
-                                <h:EventToMethodHandler MethodName="JustAMethodNoMore">
-                                    <p:GenericParameter x:TypeArguments="x:String">Some value passed as param</p:GenericParameter>
-                                </h:EventToMethodHandler>
+                                <a:DelayEventHandler DelayMilliseconds="4000" WaitResult="True"/>
                                 <h:EventToMethodHandler MethodName="Method1"/>
-                                <h:EventToMethodHandler MethodName="MethodAsync2"/>
+                            </h:SequenceHandlerExecutor>
+                        </b:EventMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Demo 23">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
+                            <h:SequenceHandlerExecutor>
+                                <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
+                                <a:DelayEventHandler DelayMilliseconds="4000" WaitResult="True"/>
+                                <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
+                                    <p:ReturnParameter x:TypeArguments="x:Int32"/>
+                                </h:EventToMethodHandler>
                             </h:SequenceHandlerExecutor>
                         </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
                 <Button Text="Demo 24">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
+                            <h:SequenceHandlerExecutor>
+                                <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
+                                <a:DelayedCompositEventHandler DelayMilliseconds="4000" WaitResult="True">
+                                    <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
+                                        <p:ReturnParameter x:TypeArguments="x:Int32"/>
+                                    </h:EventToMethodHandler>
+                                </a:DelayedCompositEventHandler>
+                            </h:SequenceHandlerExecutor>
+                        </b:EventMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Demo 25">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:ParallelHandlerExecutor>
@@ -275,7 +301,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 25">
+                <Button Text="Demo 26">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
@@ -292,7 +318,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 26">
+                <Button Text="Demo 27">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
