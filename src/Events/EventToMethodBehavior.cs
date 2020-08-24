@@ -10,7 +10,7 @@ using Xamarin.Forms;
 namespace Basil.Behaviors.Events
 {
     [ContentProperty(nameof(Parameters))]
-    public class EventToMethodBehavior : EventBehaviorBase, IMethodExecutable
+    public class EventToMethodBehavior : EventBehaviorBase, IMethodExecutable, IParametrised
     {
         public EventToMethodBehavior()
         {
@@ -45,27 +45,28 @@ namespace Basil.Behaviors.Events
         
         #endregion
 
-        #region TargetMethodObject property
-        
-        public static readonly BindableProperty TargetMethodCallObjectProperty =
+        #region TargetExecuteObject property
+
+        public static readonly BindableProperty TargetExecuteObjectProperty =
             BindableProperty.Create(
-                propertyName: nameof(TargetMethodCallObject),
+                propertyName: nameof(TargetExecuteObject),
                 returnType: typeof(object),
                 declaringType: typeof(EventToMethodBehavior));
 
-        public object TargetMethodCallObject
+        public object TargetExecuteObject
         {
-            get => GetValue(TargetMethodCallObjectProperty);
-            set => SetValue(TargetMethodCallObjectProperty, value);
+            get => GetValue(TargetExecuteObjectProperty);
+            set => SetValue(TargetExecuteObjectProperty, value);
         }
-        
+
         #endregion
-        
+
         #endregion
         
         #region Overrides
 
-        protected override void HandleEvent(object sender, object eventArgs) => this.ExecuteMethod();
+        protected override void HandleEvent(object sender, object eventArgs)
+            => this.ExecuteMethod();
 
         protected override void OnBindingContextChanged()
         {
@@ -75,7 +76,8 @@ namespace Basil.Behaviors.Events
             AddedParams(_parameters);
         }
 
-        public object GetTargetMethodRiseObject() => TargetMethodCallObject ?? AssociatedObject?.BindingContext;
+        public object GetTargetMethodRiseObject()
+            => GetTargetExecuteObject();
 
         #endregion
         
@@ -110,8 +112,12 @@ namespace Basil.Behaviors.Events
         }
 
         private void ResetParams(IEnumerable<Parameter> parameters)
-        {
-            RemovedParams(parameters);
-        }
+            => RemovedParams(parameters);
+        
+        private object GetTargetExecuteObject()
+            => TargetExecuteObject ?? AssociatedObject?.BindingContext;
+
+        public IEnumerable<Parameter> GetParameters()
+            => Parameters;
     }
 }
