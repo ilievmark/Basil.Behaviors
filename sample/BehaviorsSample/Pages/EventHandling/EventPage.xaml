@@ -9,10 +9,9 @@
              xmlns:t="clr-namespace:System.Threading.Tasks;assembly=netstandard"
              xmlns:a="clr-namespace:Basil.Behaviors.Events.HandlersAsync;assembly=Basil.Behaviors"
              x:Class="BehaviorsSample.Pages.EventHandling.EventPage">
+    
     <ContentPage.Content>
-        
         <ScrollView>
-
             <StackLayout>
 
                 <Button Text="Demo 1">
@@ -23,23 +22,29 @@
                 
                 <Button Text="Demo 2">
                     <Button.Behaviors>
-                        <b:EventToMethodBehavior EventName="Clicked" MethodName="OnSample2Command"/>
+                        <b:EventToSetPropertyBehavior x:TypeArguments="x:Int32" EventName="Clicked" PropertyName="Int32Property" Value="5"/>
                     </Button.Behaviors>
                 </Button>
                 
                 <Button Text="Demo 3">
                     <Button.Behaviors>
-                        <b:EventToMethodBehavior EventName="Clicked" MethodName="Model.m_model.Model.MethodToRize"/>
+                        <b:EventToSetFieldBehavior x:TypeArguments="x:Int32" EventName="Clicked" FieldName="_int32Field" Value="8"/>
                     </Button.Behaviors>
                 </Button>
                 
                 <Button Text="Demo 4">
                     <Button.Behaviors>
-                        <b:EventToSetPropertyBehavior x:TypeArguments="x:Int32" EventName="Clicked" PropertyName="Int32Property" Value="5"/>
+                        <b:EventToMethodBehavior EventName="Clicked" MethodName="OnSample2Command"/>
                     </Button.Behaviors>
                 </Button>
                 
                 <Button Text="Demo 5">
+                    <Button.Behaviors>
+                        <b:EventToMethodBehavior EventName="Clicked" MethodName="Model.m_model.Model.MethodToRize"/>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Demo 6">
                     <Button.Behaviors>
                         <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodNoMore">
                             <p:DefaultParameter x:TypeArguments="x:String"/>
@@ -47,7 +52,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 6">
+                <Button Text="Demo 7">
                     <Button.Behaviors>
                         <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodNoMore">
                             <p:GenericParameter x:TypeArguments="x:String">Some value passed as param</p:GenericParameter>
@@ -55,7 +60,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 7">
+                <Button Text="Demo 8">
                     <Button.Behaviors>
                         <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodTooButWithParameterBinding">
                             <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>
@@ -64,7 +69,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 8">
+                <Button Text="Demo 9">
                     <Button.Behaviors>
                         <b:EventToMethodBehavior EventName="Clicked" MethodName="MethodWithNamedParam">
                             <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>
@@ -75,15 +80,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 9">
-                    <Button.Behaviors>
-                        <b:EventMultipleHandlersBehavior EventName="Clicked">
-                            <h:EventToSetPropertyHandler x:TypeArguments="x:Int32" PropertyName="Int32Property" Value="10"/>
-                        </b:EventMultipleHandlersBehavior>
-                    </Button.Behaviors>
-                </Button>
-                
-                <Button Text="Demo 11">
+                <Button Text="Demo 10">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="ReturnStringMethod"/>
@@ -94,7 +91,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 12">
+                <Button Text="Demo 11">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
@@ -107,7 +104,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 13">
+                <Button Text="Demo 12">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
@@ -123,7 +120,23 @@
                     </Button.Behaviors>
                 </Button>
                 
+                <Button Text="Demo 13">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
+                            <h:EventToSetPropertyHandler x:TypeArguments="x:Int32" PropertyName="Int32Property" Value="10"/>
+                        </b:EventMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
                 <Button Text="Demo 14">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
+                            <h:EventToSetFieldHandler x:TypeArguments="x:Int32" FieldName="_int32Field" Value="33"/>
+                        </b:EventMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Demo 15">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
@@ -132,7 +145,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 15">
+                <Button Text="Demo 16">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler MethodName="JustAMethodTooButWithParameterBinding">
@@ -146,7 +159,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 16">
+                <Button Text="Demo 17">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
@@ -157,7 +170,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 17">
+                <Button Text="Demo 18">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
@@ -170,7 +183,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 18">
+                <Button Text="Demo 19">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
@@ -186,7 +199,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 19">
+                <Button Text="Demo 20">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
@@ -203,7 +216,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 20">
+                <Button Text="Demo 21">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
@@ -220,7 +233,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 21">
+                <Button Text="Demo 22">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
@@ -232,7 +245,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 22">
+                <Button Text="Demo 23">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
@@ -247,7 +260,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 23">
+                <Button Text="Demo 24">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:ParallelHandlerExecutor>
@@ -262,7 +275,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 24">
+                <Button Text="Demo 25">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
@@ -279,7 +292,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 25">
+                <Button Text="Demo 26">
                     <Button.Behaviors>
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
@@ -299,8 +312,7 @@
                 </Button>
                 
             </StackLayout>
-
         </ScrollView>
-        
     </ContentPage.Content>
+    
 </ContentPage>
