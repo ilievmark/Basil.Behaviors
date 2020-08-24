@@ -7,7 +7,7 @@ using Xamarin.Forms.Internals;
 
 namespace Basil.Behaviors.Events
 {
-    public class EventMultipleHandlerBehavior : EventHandlerBehaviorBase
+    public class EventMultipleHandlersBehavior : EventHandlersBehaviorBase
     {
         #region Overrides
 
