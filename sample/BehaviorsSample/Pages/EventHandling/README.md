@@ -2,28 +2,31 @@
 
 Doc structure:
 
-- Behaviors
-    - EventToCommandBehavior
-    - EventToSetPropertyBehavior
-    - EventToMethodBehavior
-        - Parameters
-            - DefaultParameter
-            - GenericParameter
-            - BindableParameter
-            - NamedParameter
-            - ReturnParameter
-            - GenericTaskReturnParameter
-    - EventMultipleHandlerBehavior
-        - Handlers
-            - EventToCommandHandler
-            - EventToSetPropertyHandler
-            - EventToMethodHandler
-            - EventToMethodHandler (generic, with type arg T)
-            - EventToAsyncMethodHandler
-            - EventToAsyncMethodHandler (generic, with type arg T)
-            - DelayEventHandler
-            - SequenceHandlerExecutor
-            - ParallelHandlerExecutor
+- [Behaviors](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#behaviors)
+    - [EventToCommandBehavior](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
+    - [EventToSetPropertyBehavior](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtosetpropertybehavior)
+    - [EventToSetFieldBehavior](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtosetfieldbehavior)
+    - [EventToMethodBehavior](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtomethodbehavior)
+        - [Parameters](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#parameters-for-event-to-method-handlers)
+            - [DefaultParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#defaultparameter)
+            - [GenericParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#genericparameter)
+            - [BindableParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#bindableparameter)
+            - [NamedParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#namedparameter)
+            - [ReturnParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#returnparameter)
+            - [GenericTaskReturnParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#generictaskreturnparameter)
+    - [EventMultipleHandlerBehavior](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventmultiplehandlerbehavior)
+        - [Handlers](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#handlers)
+            - [EventToCommandHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandhandler)
+            - [EventToSetPropertyHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtosetpropertyhandler)
+            - [EventToSetFieldHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtosetfieldhandler)
+            - [EventToMethodHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtomethodhandler)
+            - [EventToMethodHandler (generic, with type arg T)](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtomethodhandler-generic-with-type-arg-t)
+            - [EventToAsyncMethodHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtoasyncmethodhandler)
+            - [EventToAsyncMethodHandler (generic, with type arg T)](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtoasyncmethodhandler-generic-with-type-arg-t)
+            - [DelayEventHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#delayeventhandler)
+            - [DelayedCompositEventHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#delayedcompositeventhandler)
+            - [SequenceHandlerExecutor](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#sequencehandlerexecutor-and-parallelhandlerexecutor)
+            - [ParallelHandlerExecutor](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#sequencehandlerexecutor-and-parallelhandlerexecutor)
 
 This part of package was created as extension of idea of EventToCommandBehavior
 All examples you can find in 'EventPage.xaml' file
@@ -32,10 +35,11 @@ All examples you can find in 'EventPage.xaml' file
 
 There are three event handling behaviors you can use
 
-1. EventToCommandBehavior
-2. EventToSetPropertyBehavior
-3. EventToMethodBehavior
-4. EventMultipleHandlerBehavior
+1. [EventToCommandBehavior](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
+2. [EventToSetPropertyBehavior](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtosetpropertybehavior)
+3. [EventToSetFieldBehavior](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtosetfieldbehavior)
+4. [EventToMethodBehavior](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtomethodbehavior)
+5. [EventMultipleHandlerBehavior](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventmultiplehandlerbehavior)
 
 All of them listened event with name from property EventName, that must be declared in visual element that it attached.
 You can change it by set own TargetSubscribeObject to listen event there.
@@ -70,12 +74,22 @@ Usage (demo 2)
 <b:EventToSetPropertyBehavior x:TypeArguments="x:Int32" EventName="Clicked" PropertyName="Int32Property" Value="5"/>
 ```
 
+### EventToSetFieldBehavior
+
+Allow you to set value to a field when event rizes.
+
+Usage (demo 3)
+
+```
+<b:EventToSetFieldBehavior x:TypeArguments="x:Int32" EventName="Clicked" FieldName="_int32Field" Value="8"/>
+```
+
 ### EventToMethodBehavior
 
 Same idea, but with invoking methods. Its based on reflection, so be careful when you use it. Its also can call
 private and protected methods.
 
-Usage (from Demo 3):
+Usage (demo 4):
 
 ```
 <b:EventToMethodBehavior EventName="Clicked" MethodName="OnSample2Command"/>
@@ -83,7 +97,7 @@ Usage (from Demo 3):
 
 For the instance, OnSample2Command - method, with return type 'void', and has no parameters
 
-Actually it can be used with path to method. To use path declare 'MethodName' with dotes between propeties and fields (from Demo 4):
+Actually it can be used with path to method. To use path declare 'MethodName' with dotes between propeties and fields (demo 5):
 (First it will search property with name between dots. If there no property with given name, it search runtime field with given name,
 else exception 'ArgumentException' will be thrown)
 
@@ -96,19 +110,19 @@ property. By default it searches method to call in binding context of attached o
 using property 'TargetMethodCallObjectProperty', and if its object not null, behavior will search this event there (same for EventMultipleHandlerBehavior).
 To call method from another 
 
-#### Parameters for event to method handlers
+### Parameters for event to method handlers
 
-As you see, not all methods has return type 'void' and has no parameters. So declaration from previous result will be not
+As you know, not all methods has return type 'void' and has no parameters. So declaration from previous result will be not
 applicable in most cases. But you can pass parameters directly from xaml
 
 By the moment, in package available next parameters:
 
-1. DefaultParameter
-2. GenericParameter
-3. BindableParameter
-4. NamedParameter
-5. ReturnParameter
-6. GenericTaskReturnParameter
+1. [DefaultParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#defaultparameter)
+2. [GenericParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#genericparameter)
+3. [BindableParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#bindableparameter)
+4. [NamedParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#namedparameter)
+5. [ReturnParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#returnparameter)
+6. [GenericTaskReturnParameter](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#generictaskreturnparameter)
 
 All parameters derives from 'Parameter' abstract class, that provide two methods
 
@@ -168,7 +182,7 @@ public abstract class CustomParameter<T> : AttachableBindableObject
 
 Returns default value of passed type
 
-Usage (Demo 5):
+Usage (Demo 6):
 
 ```
 <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodNoMore">
@@ -182,7 +196,7 @@ Method 'JustAMethodNoMore' will be called with null string parameter
 
 Returns hardcoded in xaml value
 
-Usage (Demo 6):
+Usage (Demo 7):
 
 ```
 <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodNoMore">
@@ -196,7 +210,7 @@ Method 'JustAMethodNoMore' will be called with string parameter "Some value pass
 
 Can be used to bind value
 
-Usage (Demo 7):
+Usage (Demo 8):
 
 ```
 <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodTooButWithParameterBinding">
@@ -227,7 +241,7 @@ public void MethodWithNamedParam(
 }
 ```
 
-we can pass named parameter with (demo 8)
+we can pass named parameter with (demo 9)
 
 ```
 <b:EventToMethodBehavior EventName="Clicked" MethodName="MethodWithNamedParam">
@@ -276,6 +290,9 @@ Lets build sequence of calling methods
 Firstly 'ReturnStringMethod' will be called, and string "Hello string from ReturnStringMethod" will be passed to method
 'JustAMethodNoMore' as parameter
 
+This type of parameter (and GenericTaskReturnParameter as well) works only in sequence firing handler statements. For instance
+EventMultipleHandlersBehavior or SequenceHandlerExecutor
+
 #### GenericTaskReturnParameter
 
 Its kinda hack of problem mentioned above. Its created because we cant declare 'Task<String>' in xaml.
@@ -294,7 +311,7 @@ public async Task RunResultActionsWithPrevTaskWithResult(Task<string> task)
 }
 ```
 
-We can declare behaviors (Demo 13)
+We can declare behaviors (Demo 12)
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
@@ -317,27 +334,29 @@ Use debugger to see how it works
 ### EventMultipleHandlerBehavior
 
 That kind of behavior created to delegate calling things to special handlers. By invoking event, behavior will rize collection of handlers
-sequentialy (Demo 10)
+sequentialy
 
 ### Handlers
 
 There is some standart handlers package provide
 
-1. EventToCommandHandler
-2. EventToSetPropertyHandler
-3. EventToMethodHandler
-4. EventToMethodHandler<T>
-5. EventToAsyncMethodHandler
-6. EventToAsyncMethodHandler<T>
-7. DelayEventHandler
-8. SequenceHandlerExecutor
-9. ParallelHandlerExecutor
+1. [EventToCommandHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandhandler)
+2. [EventToSetPropertyHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtosetpropertyhandler)
+3. [EventToSetFieldHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtosetfieldhandler)
+4. [EventToMethodHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtomethodhandler)
+5. [EventToMethodHandler (generic, with type arg T)](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtomethodhandler)
+6. [EventToAsyncMethodHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtoasyncmethodhandler)
+7. [EventToAsyncMethodHandler (generic, with type arg T)](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtoasyncmethodhandler)
+8. [DelayEventHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#delayeventhandler)
+9. [DelayedCompositEventHandler](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#delayedcompositeventhandler)
+10. [SequenceHandlerExecutor](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#sequencehandlerexecutor-and-parallelhandlerexecutor)
+11. [ParallelHandlerExecutor](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#sequencehandlerexecutor-and-parallelhandlerexecutor)
   
 So, lets see how it works)
 
 #### EventToCommandHandler
 
-Like EventToCommandBehavior (Demo 11)
+Like EventToCommandBehavior, here we have EventToCommandHandler that means you can rize many commands in one behavior (demo 13)
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
@@ -350,9 +369,9 @@ On event 'Clicked' all this commands will be called sequentially
 
 #### EventToSetPropertyHandler
 
-Like EventToSetPropertyBehavior, allow you to set value to a property when event rizes.
+Like EventToSetPropertyBehavior, allow you to set value to a property when event rizes
 
-Usage (demo 12)
+Usage (demo 14)
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
@@ -360,9 +379,21 @@ Usage (demo 12)
 </b:EventMultipleHandlersBehavior>
 ```
 
+#### EventToSetFieldHandler
+
+Like EventToSetFieldBehavior, allow you to set value to a field when event rizes
+
+Usage (demo 15)
+
+```
+<b:EventMultipleHandlersBehavior EventName="Clicked">
+    <h:EventToSetFieldHandler x:TypeArguments="x:Int32" FieldName="_int32Field" Value="33"/>
+</b:EventMultipleHandlersBehavior>
+```
+
 #### EventToMethodHandler
 
-Like EventToMethodBehavior (Demo 12)
+Like EventToMethodBehavior (demo 16)
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
@@ -380,9 +411,9 @@ All this things will be called sequentialy
 
 By default method calls from view model object. You can call method with binding using property 'TargetMethodCallObject'
 
-#### EventToMethodHandler<T>
+#### EventToMethodHandler (generic, with type arg T)
 
-Created to specify return type of method (mostly for 'ReturnParameter', demo 13)
+Created to specify return type of method (mostly for 'ReturnParameter', demo 17)
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
@@ -411,7 +442,7 @@ We specify, that this method returns Int32. So next method can receive ReturnPar
 
 Reresents method, that returns task and can be awaited. If we skip waiting, we can pass return parameter with type Task.
 
-Calling async method with waiting (Demo 14)
+Calling async method with waiting (demo 18)
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
@@ -424,7 +455,7 @@ Calling async method with waiting (Demo 14)
 </b:EventMultipleHandlersBehavior>
 ```
 
-Calling async method without waiting (Demo 15)
+Calling async method without waiting (demo 19)
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
@@ -442,15 +473,15 @@ Calling async method without waiting (Demo 15)
 
 Here method 'RunResultActionsWithPrevTask' will receive Task as parameter
 
-#### EventToAsyncMethodHandler<T>
+#### EventToAsyncMethodHandler (generic, with type arg T)
 
-Represents method that returns generic Task<T> with some result (again problem with generic types in xaml)
+Represents method that returns generic Task with some result (again problem with generic types in xaml)
 
 There is also we can wait for result in sequential order or dont wait it. And if we do await Task<T>, we can receive
 Result of type T as resturn parameter in next method that called. If we dont, we can receive Task<T> using 'GenericTaskReturnParameter'
 
 With waiting result method 'JustAMethodNoMore' will receive string, which is result of returned task above
-(method 'RunResultActionsAndReturn', Demo 16)
+(method 'RunResultActionsAndReturn', demo 20)
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
@@ -467,7 +498,7 @@ With waiting result method 'JustAMethodNoMore' will receive string, which is res
 </b:EventMultipleHandlersBehavior>
 ```
 
-Without waiting (Demo 17) we will receive Task<String> itself as parameter in method 'RunResultActionsWithPrevTaskWithResult'
+Without waiting (demo 21) we will receive Task<String> itself as parameter in method 'RunResultActionsWithPrevTaskWithResult'
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
@@ -486,7 +517,7 @@ Without waiting (Demo 17) we will receive Task<String> itself as parameter in me
 
 #### DelayEventHandler
 
-For waiting some time in milliseconds (Demo 18)
+For waiting some time in milliseconds (demo 22)
 
 Usage:
 
@@ -500,13 +531,47 @@ Usage:
 </b:EventMultipleHandlersBehavior>
 ```
 
-After 'Sample1Command' executing sequence will stop on 4 sec and continue with calling method 'Method1'
+After 'Sample1Command' executing sequence will stop on 4 sec and continue with calling method 'Method1'.
+
+If you use this handler before another, that receives ReturnParameter - it will pass it anyway (demo 23)
+
+```
+<b:EventMultipleHandlersBehavior EventName="Clicked">
+    <h:SequenceHandlerExecutor>
+        <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
+        <a:DelayEventHandler DelayMilliseconds="4000" WaitResult="True"/>
+        <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
+            <p:ReturnParameter x:TypeArguments="x:Int32"/>
+        </h:EventToMethodHandler>
+    </h:SequenceHandlerExecutor>
+</b:EventMultipleHandlersBehavior>
+```
+
+#### DelayedCompositEventHandler
+
+Allows you to delay launch event handler using composition (demo 24)
+
+```
+<b:EventMultipleHandlersBehavior EventName="Clicked">
+    <h:SequenceHandlerExecutor>
+        <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
+        <a:DelayedCompositEventHandler DelayMilliseconds="4000" WaitResult="True">
+            <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
+                <p:ReturnParameter x:TypeArguments="x:Int32"/>
+            </h:EventToMethodHandler>
+        </a:DelayedCompositEventHandler>
+    </h:SequenceHandlerExecutor>
+</b:EventMultipleHandlersBehavior>
+```
+
+By the way, all composit handlers can receive previous handlers's return parameter in first handler (or inner
+handler) they have. Except ParallelHandlerExecutor - all handlers that have return parameter will receive it
 
 #### SequenceHandlerExecutor and ParallelHandlerExecutor
 
-To complete whole picture you can combine that executings with parallel or sequential orders (Demos 19 20 21)
+To complete whole picture you can combine that executings with parallel or sequential orders (demos 25 26 27)
 
-For instance lets call couple things with sequence order (Demo 19)
+For instance lets call couple things with sequence order (demo 25)
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
@@ -521,7 +586,7 @@ For instance lets call couple things with sequence order (Demo 19)
 </b:EventMultipleHandlersBehavior>
 ```
 
-And parallel order (Demo 20)
+And parallel order (demo 26)
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
@@ -536,7 +601,7 @@ And parallel order (Demo 20)
 </b:EventMultipleHandlersBehavior>
 ```
 
-Now combine them (Demo 21)
+Now combine them (demo 27)
 
 ```
 <b:EventMultipleHandlersBehavior EventName="Clicked">
