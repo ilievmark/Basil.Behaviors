@@ -89,6 +89,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
+    <Compile Include="Events\Handlers\EventToSetFieldHandler.cs" />
     <Compile Include="Events\Handlers\EventToSetPropertyHandler.cs" />
     <Compile Include="Events\Handlers\ParallelHandlerExecutor.cs" />
     <Compile Include="Events\Handlers\SequenceHandlerExecutor.cs" />
