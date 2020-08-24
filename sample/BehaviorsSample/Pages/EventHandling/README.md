@@ -4,6 +4,7 @@ Doc structure:
 
 - Behaviors
     - EventToCommandBehavior
+    - EventToSetPropertyBehavior
     - EventToMethodBehavior
         - Parameters
             - DefaultParameter
@@ -15,14 +16,14 @@ Doc structure:
     - EventMultipleHandlerBehavior
         - Handlers
             - EventToCommandHandler
+            - EventToSetPropertyHandler
             - EventToMethodHandler
-            - EventToMethodHandler<T>
+            - EventToMethodHandler (generic, with type arg T)
             - EventToAsyncMethodHandler
-            - EventToAsyncMethodHandler<T>
+            - EventToAsyncMethodHandler (generic, with type arg T)
             - DelayEventHandler
             - SequenceHandlerExecutor
             - ParallelHandlerExecutor
-- Feature usage
 
 This part of package was created as extension of idea of EventToCommandBehavior
 All examples you can find in 'EventPage.xaml' file
@@ -32,8 +33,15 @@ All examples you can find in 'EventPage.xaml' file
 There are three event handling behaviors you can use
 
 1. EventToCommandBehavior
-2. EventToMethodBehavior
-3. EventMultipleHandlerBehavior
+2. EventToSetPropertyBehavior
+3. EventToMethodBehavior
+4. EventMultipleHandlerBehavior
+
+All of them listened event with name from property EventName, that must be declared in visual element that it attached.
+You can change it by set own TargetSubscribeObject to listen event there.
+
+By default EventToSetPropertyBehavior and EventToMethodBehavior of them use BindingContext of visual element that it attached
+to execute command, rise method or else. You can change it by set own TargetExecuteObject property (TargetExecuteObject - bindable).
 
 ### EventToCommandBehavior
 
@@ -52,12 +60,22 @@ command that must be invoked on this event
 By default behavior searches event in attached object. But you can bind target object, using property 'TargetObject',
 and if its object not null, behavior will search this event there (same for others event handler behaviors)
 
+### EventToSetPropertyBehavior
+
+Allow you to set value to a property when event rizes.
+
+Usage (demo 2)
+
+```
+<b:EventToSetPropertyBehavior x:TypeArguments="x:Int32" EventName="Clicked" PropertyName="Int32Property" Value="5"/>
+```
+
 ### EventToMethodBehavior
 
 Same idea, but with invoking methods. Its based on reflection, so be careful when you use it. Its also can call
 private and protected methods.
 
-Usage (from Demo 2):
+Usage (from Demo 3):
 
 ```
 <b:EventToMethodBehavior EventName="Clicked" MethodName="OnSample2Command"/>
@@ -65,7 +83,7 @@ Usage (from Demo 2):
 
 For the instance, OnSample2Command - method, with return type 'void', and has no parameters
 
-Actually it can be used with path to method. To use path declare 'MethodName' with dotes between propeties and fields (from Demo 3):
+Actually it can be used with path to method. To use path declare 'MethodName' with dotes between propeties and fields (from Demo 4):
 (First it will search property with name between dots. If there no property with given name, it search runtime field with given name,
 else exception 'ArgumentException' will be thrown)
 
@@ -150,7 +168,7 @@ public abstract class CustomParameter<T> : AttachableBindableObject
 
 Returns default value of passed type
 
-Usage (Demo 4):
+Usage (Demo 5):
 
 ```
 <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodNoMore">
@@ -164,7 +182,7 @@ Method 'JustAMethodNoMore' will be called with null string parameter
 
 Returns hardcoded in xaml value
 
-Usage (Demo 5):
+Usage (Demo 6):
 
 ```
 <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodNoMore">
@@ -178,7 +196,7 @@ Method 'JustAMethodNoMore' will be called with string parameter "Some value pass
 
 Can be used to bind value
 
-Usage (Demo 6):
+Usage (Demo 7):
 
 ```
 <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodTooButWithParameterBinding">
@@ -197,13 +215,19 @@ because if someone renames named parameter in method, it will not work
 Let say we have method 'MethodWithNamedParam' with tha declaration
 
 ```
-public void MethodWithNamedParam(ICommand commandParam, string stringParam, int defaultInt = 0, float g = 4.4f, string someParamName = "Default value", object d = null)
+public void MethodWithNamedParam(
+    ICommand commandParam,
+    string stringParam,
+    int defaultInt = 0,
+    float g = 4.4f,
+    string someParamName = "Default value",
+    object d = null)
 {
     ...
 }
 ```
 
-we can pass named parameter with
+we can pass named parameter with (demo 8)
 
 ```
 <b:EventToMethodBehavior EventName="Clicked" MethodName="MethodWithNamedParam">
@@ -229,7 +253,7 @@ Parallel executor this parameter will be ignored
 
 The main idea is keep return value from previous method calling and pass it as param
 
-Let say we have method 'ReturnStringMethod' that returns string (Demo 8 and Demo 9)
+Let say we have method 'ReturnStringMethod' that returns string (demos 10 and 11)
 
 ```
 public string ReturnStringMethod()
@@ -241,12 +265,12 @@ public string ReturnStringMethod()
 Lets build sequence of calling methods
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="ReturnStringMethod"/>
     <h:EventToMethodHandler MethodName="JustAMethodNoMore">
         <p:ReturnParameter x:TypeArguments="x:String"/>
     </h:EventToMethodHandler>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
 Firstly 'ReturnStringMethod' will be called, and string "Hello string from ReturnStringMethod" will be passed to method
@@ -270,10 +294,10 @@ public async Task RunResultActionsWithPrevTaskWithResult(Task<string> task)
 }
 ```
 
-We can declare behaviors (Demo 10)
+We can declare behaviors (Demo 13)
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
         <p:ReturnParameter x:TypeArguments="x:Int32"/>
     </h:EventToMethodHandler>
@@ -283,7 +307,7 @@ We can declare behaviors (Demo 10)
     <a:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="True" MethodName="RunResultActionsWithPrevTaskWithResult">
         <p:GenericTaskReturnParameter x:TypeArguments="x:String"/>
     </a:EventToAsyncMethodHandler>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
 We must skip waiting of method 'RunResultActionsAndReturn', and 'Task<String>' will be awailable as parameter in method 'RunResultActionsWithPrevTaskWithResult'
@@ -300,13 +324,14 @@ sequentialy (Demo 10)
 There is some standart handlers package provide
 
 1. EventToCommandHandler
-2. EventToMethodHandler
-3. EventToMethodHandler<T>
-4. EventToAsyncMethodHandler
-5. EventToAsyncMethodHandler<T>
-6. DelayEventHandler
-7. SequenceHandlerExecutor
-8. ParallelHandlerExecutor
+2. EventToSetPropertyHandler
+3. EventToMethodHandler
+4. EventToMethodHandler<T>
+5. EventToAsyncMethodHandler
+6. EventToAsyncMethodHandler<T>
+7. DelayEventHandler
+8. SequenceHandlerExecutor
+9. ParallelHandlerExecutor
   
 So, lets see how it works)
 
@@ -315,20 +340,32 @@ So, lets see how it works)
 Like EventToCommandBehavior (Demo 11)
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
     <h:EventToCommandHandler Command="{Binding Sample2Command}"/>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
 On event 'Clicked' all this commands will be called sequentially
+
+#### EventToSetPropertyHandler
+
+Like EventToSetPropertyBehavior, allow you to set value to a property when event rizes.
+
+Usage (demo 12)
+
+```
+<b:EventMultipleHandlersBehavior EventName="Clicked">
+    <h:EventToSetPropertyHandler x:TypeArguments="x:Int32" PropertyName="Int32Property" Value="10"/>
+</b:EventMultipleHandlersBehavior>
+```
 
 #### EventToMethodHandler
 
 Like EventToMethodBehavior (Demo 12)
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:EventToMethodHandler MethodName="JustAMethodTooButWithParameterBinding">
         <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>
         <p:GenericParameter x:TypeArguments="x:String">The best green in the world - Basil</p:GenericParameter>
@@ -336,7 +373,7 @@ Like EventToMethodBehavior (Demo 12)
     <h:EventToMethodHandler MethodName="JustAMethodNoMore">
         <p:GenericParameter x:TypeArguments="x:String">Some value passed as param</p:GenericParameter>
     </h:EventToMethodHandler>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
 All this things will be called sequentialy
@@ -345,15 +382,15 @@ By default method calls from view model object. You can call method with binding
 
 #### EventToMethodHandler<T>
 
-Created to specify return type of method (mostly for 'ReturnParameter', Demo 13)
+Created to specify return type of method (mostly for 'ReturnParameter', demo 13)
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
     <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
         <p:ReturnParameter x:TypeArguments="x:Int32"/>
     </h:EventToMethodHandler>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
 So declaring method like
@@ -377,20 +414,20 @@ Reresents method, that returns task and can be awaited. If we skip waiting, we c
 Calling async method with waiting (Demo 14)
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
         <p:DefaultParameter x:TypeArguments="x:Int32"/>
     </h:EventToMethodHandler>
     <a:EventToAsyncMethodHandler WaitResult="True" MethodName="RunResultActions">
         <p:ReturnParameter x:TypeArguments="x:String"/>
     </a:EventToAsyncMethodHandler>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
 Calling async method without waiting (Demo 15)
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
         <p:DefaultParameter x:TypeArguments="x:Int32"/>
     </h:EventToMethodHandler>
@@ -400,7 +437,7 @@ Calling async method without waiting (Demo 15)
     <h:EventToMethodHandler MethodName="RunResultActionsWithPrevTask">
         <p:ReturnParameter x:TypeArguments="t:Task"/>
     </h:EventToMethodHandler>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
 Here method 'RunResultActionsWithPrevTask' will receive Task as parameter
@@ -416,7 +453,7 @@ With waiting result method 'JustAMethodNoMore' will receive string, which is res
 (method 'RunResultActionsAndReturn', Demo 16)
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
     <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
         <p:ReturnParameter x:TypeArguments="x:Int32"/>
@@ -427,13 +464,13 @@ With waiting result method 'JustAMethodNoMore' will receive string, which is res
     <h:EventToMethodHandler MethodName="JustAMethodNoMore">
         <p:ReturnParameter x:TypeArguments="x:String"/>
     </h:EventToMethodHandler>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
 Without waiting (Demo 17) we will receive Task<String> itself as parameter in method 'RunResultActionsWithPrevTaskWithResult'
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
     <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
         <p:ReturnParameter x:TypeArguments="x:Int32"/>
@@ -444,7 +481,7 @@ Without waiting (Demo 17) we will receive Task<String> itself as parameter in me
     <a:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="True" MethodName="RunResultActionsWithPrevTaskWithResult">
         <p:GenericTaskReturnParameter x:TypeArguments="x:String"/>
     </a:EventToAsyncMethodHandler>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
 #### DelayEventHandler
@@ -454,13 +491,13 @@ For waiting some time in milliseconds (Demo 18)
 Usage:
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:SequenceHandlerExecutor>
         <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
         <a:DelayEventHandler DelayMilliseconds="4000" WaitResult="True"/>
         <h:EventToMethodHandler MethodName="Method1"/>
     </h:SequenceHandlerExecutor>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
 After 'Sample1Command' executing sequence will stop on 4 sec and continue with calling method 'Method1'
@@ -472,7 +509,7 @@ To complete whole picture you can combine that executings with parallel or seque
 For instance lets call couple things with sequence order (Demo 19)
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:SequenceHandlerExecutor>
         <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
         <h:EventToMethodHandler MethodName="JustAMethodNoMore">
@@ -481,13 +518,13 @@ For instance lets call couple things with sequence order (Demo 19)
         <h:EventToMethodHandler MethodName="Method1"/>
         <h:EventToMethodHandler MethodName="MethodAsync2"/>
     </h:SequenceHandlerExecutor>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
 And parallel order (Demo 20)
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:ParallelHandlerExecutor>
         <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
         <h:EventToMethodHandler MethodName="JustAMethodNoMore">
@@ -496,13 +533,13 @@ And parallel order (Demo 20)
         <h:EventToMethodHandler MethodName="Method1"/>
         <h:EventToMethodHandler MethodName="MethodAsync2"/>
     </h:ParallelHandlerExecutor>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
 
-Now combine them 😊 (Demo 21)
+Now combine them (Demo 21)
 
 ```
-<b:EventMultipleHandlerBehavior EventName="Clicked">
+<b:EventMultipleHandlersBehavior EventName="Clicked">
     <h:SequenceHandlerExecutor>
         <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
         <h:EventToMethodHandler MethodName="JustAMethodNoMore">
@@ -513,10 +550,5 @@ Now combine them 😊 (Demo 21)
             <h:EventToMethodHandler MethodName="MethodAsync2"/>
         </h:ParallelHandlerExecutor>
     </h:SequenceHandlerExecutor>
-</b:EventMultipleHandlerBehavior>
+</b:EventMultipleHandlersBehavior>
 ```
-
-## Feature usage
-
-In near feature there will be first package versions available by [this](https://github.com/ilievmark/Basil.Behaviors.Animations) link
-Here will be animations, that can be declared directly in xaml
