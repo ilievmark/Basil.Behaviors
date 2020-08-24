@@ -5,23 +5,23 @@ using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events
 {
-    public class EventToSetPropertyBehavior<T> : EventBehaviorBase
+    public class EventToSetFieldBehavior<T> : EventBehaviorBase
     {
         #region Properties
         
-        #region PropertyName property
+        #region FieldName property
         
-        public static readonly BindableProperty PropertyNameProperty =
+        public static readonly BindableProperty FieldNameProperty =
             BindableProperty.Create(
-                propertyName: nameof(PropertyName),
+                propertyName: nameof(FieldName),
                 returnType: typeof(string),
-                declaringType: typeof(EventToSetPropertyBehavior<T>),
+                declaringType: typeof(EventToSetFieldBehavior<T>),
                 defaultValue: string.Empty);
 
-        public string PropertyName
+        public string FieldName
         {
-            get => (string)GetValue(PropertyNameProperty);
-            set => SetValue(PropertyNameProperty, value);
+            get => (string)GetValue(FieldNameProperty);
+            set => SetValue(FieldNameProperty, value);
         }
         
         #endregion
@@ -32,7 +32,7 @@ namespace Basil.Behaviors.Events
             BindableProperty.Create(
                 propertyName: nameof(Value),
                 returnType: typeof(T),
-                declaringType: typeof(EventToSetPropertyBehavior<T>),
+                declaringType: typeof(EventToSetFieldBehavior<T>),
                 defaultValue: default(T));
 
         public T Value
@@ -49,7 +49,7 @@ namespace Basil.Behaviors.Events
             BindableProperty.Create(
                 propertyName: nameof(TargetExecuteObject),
                 returnType: typeof(object),
-                declaringType: typeof(EventToSetPropertyBehavior<T>));
+                declaringType: typeof(EventToSetFieldBehavior<T>));
 
         public object TargetExecuteObject
         {
@@ -63,27 +63,26 @@ namespace Basil.Behaviors.Events
         
         protected override void HandleEvent(object sender, object eventArgs)
         {
-            var propertyInfo = GetPropertyInfo(PropertyName);
-            if (!propertyInfo.CanWrite)
-                throw new InvalidOperationException("Target property do not have set method or cant be write");
+            var fieldInfo = GetFieldInfo(FieldName);
             var target = GetTargetExecuteObject();
-            propertyInfo.SetValue(target, Value);
+            
+            fieldInfo.SetValue(target, Value);
         }
 
-        private PropertyInfo GetPropertyInfo(string propertyName)
+        private FieldInfo GetFieldInfo(string fieldName)
         {
-            if (string.IsNullOrEmpty(propertyName))
-                throw new ArgumentNullException(nameof(PropertyName));
+            if (string.IsNullOrEmpty(fieldName))
+                throw new ArgumentNullException(nameof(FieldName));
 
             var target = GetTargetExecuteObject();
             if (target == null)
                 throw new InvalidOperationException("There is no attached or target property object (null)");
             
-            var propertyInfo = target.GetPropertyInfo(propertyName);
-            if (propertyInfo == null)
-                throw new ArgumentException($"Property {propertyName} was not found in type {target.GetType().AssemblyQualifiedName}");
+            var fieldInfo = target.GetFieldInfo(fieldName);
+            if (fieldInfo == null)
+                throw new ArgumentException($"Field {fieldName} was not found in type {target.GetType().AssemblyQualifiedName}");
 
-            return propertyInfo;
+            return fieldInfo;
         }
         
         private object GetTargetExecuteObject()

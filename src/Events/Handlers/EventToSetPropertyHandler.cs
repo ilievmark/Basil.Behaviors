@@ -66,7 +66,7 @@ namespace Basil.Behaviors.Events.Handlers
         {
             var propertyInfo = GetPropertyInfo(PropertyName);
             if (!propertyInfo.CanWrite)
-                throw new InvalidOperationException("Target property do not have set method");
+                throw new InvalidOperationException("Target property do not have set method or cant be write");
             var target = GetTargetExecuteObject();
             propertyInfo.SetValue(target, Value);
         }
