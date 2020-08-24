@@ -24,22 +24,22 @@ namespace Basil.Behaviors.Events
 
         #region Properties
 
-        #region TargetObject property
+        #region TargetSubscribeObject property
 
-        public static readonly BindableProperty TargetObjectProperty =
+        public static readonly BindableProperty TargetSubscribeObjectProperty =
             BindableProperty.Create(
-                propertyName: nameof(TargetObject),
+                propertyName: nameof(TargetSubscribeObject),
                 returnType: typeof(object),
                 declaringType: typeof(EventBehaviorBase));
 
-        public object TargetObject
+        public object TargetSubscribeObject
         {
-            get => GetValue(TargetObjectProperty);
-            set => SetValue(TargetObjectProperty, value);
+            get => GetValue(TargetSubscribeObjectProperty);
+            set => SetValue(TargetSubscribeObjectProperty, value);
         }
 
         #endregion
-        
+
         #region EventName property
 
         public static readonly BindableProperty EventNameProperty =
@@ -89,7 +89,7 @@ namespace Basil.Behaviors.Events
             if (string.IsNullOrWhiteSpace(eventName))
                 return;
 
-            var target = TargetObject ?? AssociatedObject;
+            var target = GetTargetSubscribeObject();
             if (target == null)
                 return;
 
@@ -113,7 +113,7 @@ namespace Basil.Behaviors.Events
             if (_eventInfo == null)
                 throw new ArgumentException($"{nameof(EventBehaviorBase)}: Can't de-register the '{EventName}' event.");
             
-            var target = TargetObject ?? AssociatedObject;
+            var target = GetTargetSubscribeObject();
             if (target == null)
                 throw new InvalidDataException("Associated object can not be null");
 
@@ -121,5 +121,8 @@ namespace Basil.Behaviors.Events
             _eventInfo = null;
             _eventHandler = null;
         }
+
+        private object GetTargetSubscribeObject()
+            => TargetSubscribeObject ?? AssociatedObject;
     }
 }

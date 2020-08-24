@@ -63,6 +63,7 @@
     <Compile Include="Core\AttachableBindableObject.cs" />
     <Compile Include="Core\CommandParams.cs" />
     <Compile Include="Core\ResultDelegate.cs" />
+    <Compile Include="Events\EventToSetPropertyBehavior.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncGenericRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IGenericRisible.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Events\HandlerBase\BaseHandler.cs">
       <SubType></SubType>
     </Compile>
+    <Compile Include="Events\HandlersAsync\DelayedCompositEventHandler.cs" />
     <Compile Include="Events\HandlersAsync\DelayEventHandler.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +88,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
+    <Compile Include="Events\Handlers\EventToSetPropertyHandler.cs" />
     <Compile Include="Events\Handlers\ParallelHandlerExecutor.cs" />
     <Compile Include="Events\Handlers\SequenceHandlerExecutor.cs" />
     <Compile Include="Events\Parameters\BindableParameter.cs" />
@@ -101,13 +104,13 @@
       <SubType></SubType>
     </Compile>
     <Compile Include="Events\EventToMethodBehavior.cs" />
-    <Compile Include="Events\EventHandlerBehaviorBase.cs">
+    <Compile Include="Events\EventHandlersBehaviorBase.cs">
       <SubType></SubType>
     </Compile>
     <Compile Include="Events\EventToCommandBehavior.cs">
       <SubType></SubType>
     </Compile>
-    <Compile Include="Events\EventMultipleHandlerBehavior.cs">
+    <Compile Include="Events\EventMultipleHandlersBehavior.cs">
       <SubType></SubType>
     </Compile>
     <Compile Include="Events\Handlers\EventToCommandHandler.cs">

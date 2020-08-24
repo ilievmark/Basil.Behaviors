@@ -8,9 +8,9 @@ using Xamarin.Forms;
 namespace Basil.Behaviors.Events
 {
     [ContentProperty(nameof(Handlers))]
-    public abstract class EventHandlerBehaviorBase : EventBehaviorBase
+    public abstract class EventHandlersBehaviorBase : EventBehaviorBase
     {
-        public EventHandlerBehaviorBase()
+        public EventHandlersBehaviorBase()
         {
             _handlers = new ObservableCollection<BaseHandler>();
             _handlers.CollectionChanged += OnHandlersCollectionChanged;

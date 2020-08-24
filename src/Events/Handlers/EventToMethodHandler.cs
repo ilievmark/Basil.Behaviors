@@ -1,13 +1,6 @@
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Threading.Tasks;
 using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
 using Basil.Behaviors.Extensions;
-using Basil.Behaviors.Events.Parameters;
-using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events.Handlers
 {

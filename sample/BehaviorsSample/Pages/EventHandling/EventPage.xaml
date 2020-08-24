@@ -35,13 +35,19 @@
                 
                 <Button Text="Demo 4">
                     <Button.Behaviors>
+                        <b:EventToSetPropertyBehavior x:TypeArguments="x:Int32" EventName="Clicked" PropertyName="Int32Property" Value="5"/>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Demo 5">
+                    <Button.Behaviors>
                         <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodNoMore">
                             <p:DefaultParameter x:TypeArguments="x:String"/>
                         </b:EventToMethodBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 5">
+                <Button Text="Demo 6">
                     <Button.Behaviors>
                         <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodNoMore">
                             <p:GenericParameter x:TypeArguments="x:String">Some value passed as param</p:GenericParameter>
@@ -49,7 +55,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 6">
+                <Button Text="Demo 7">
                     <Button.Behaviors>
                         <b:EventToMethodBehavior EventName="Clicked" MethodName="JustAMethodTooButWithParameterBinding">
                             <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>
@@ -58,7 +64,7 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 7">
+                <Button Text="Demo 8">
                     <Button.Behaviors>
                         <b:EventToMethodBehavior EventName="Clicked" MethodName="MethodWithNamedParam">
                             <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>
@@ -69,33 +75,41 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 8">
+                <Button Text="Demo 9">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
+                            <h:EventToSetPropertyHandler x:TypeArguments="x:Int32" PropertyName="Int32Property" Value="10"/>
+                        </b:EventMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Demo 11">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="ReturnStringMethod"/>
                             <h:EventToMethodHandler MethodName="JustAMethodNoMore">
                                 <p:ReturnParameter x:TypeArguments="x:String"/>
                             </h:EventToMethodHandler>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 9">
+                <Button Text="Demo 12">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
                                 <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="ReturnStringMethod"/>
                                 <h:EventToMethodHandler MethodName="JustAMethodNoMore">
                                     <p:ReturnParameter x:TypeArguments="x:String"/>
                                 </h:EventToMethodHandler>
                             </h:SequenceHandlerExecutor>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 10">
+                <Button Text="Demo 13">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
                                 <p:ReturnParameter x:TypeArguments="x:Int32"/>
                             </h:EventToMethodHandler>
@@ -105,22 +119,22 @@
                             <a:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="True" MethodName="RunResultActionsWithPrevTaskWithResult">
                                 <p:GenericTaskReturnParameter x:TypeArguments="x:String"/>
                             </a:EventToAsyncMethodHandler>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 11">
+                <Button Text="Demo 14">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
                             <h:EventToCommandHandler Command="{Binding Sample2Command}"/>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 12">
+                <Button Text="Demo 15">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler MethodName="JustAMethodTooButWithParameterBinding">
                                 <p:BindableParameter x:TypeArguments="c:ICommand" Value="{Binding Sample1Command}"/>
                                 <p:GenericParameter x:TypeArguments="x:String">The best green in the world - Basil</p:GenericParameter>
@@ -128,37 +142,37 @@
                             <h:EventToMethodHandler MethodName="JustAMethodNoMore">
                                 <p:GenericParameter x:TypeArguments="x:String">Some value passed as param</p:GenericParameter>
                             </h:EventToMethodHandler>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 13">
+                <Button Text="Demo 16">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
                                 <p:ReturnParameter x:TypeArguments="x:Int32"/>
                             </h:EventToMethodHandler>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 14">
+                <Button Text="Demo 17">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
                                 <p:DefaultParameter x:TypeArguments="x:Int32"/>
                             </h:EventToMethodHandler>
                             <a:EventToAsyncMethodHandler WaitResult="True" MethodName="RunResultActions">
                                 <p:ReturnParameter x:TypeArguments="x:String"/>
                             </a:EventToAsyncMethodHandler>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 15">
+                <Button Text="Demo 18">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
                                 <p:DefaultParameter x:TypeArguments="x:Int32"/>
                             </h:EventToMethodHandler>
@@ -168,13 +182,13 @@
                             <h:EventToMethodHandler MethodName="RunResultActionsWithPrevTask">
                                 <p:ReturnParameter x:TypeArguments="t:Task"/>
                             </h:EventToMethodHandler>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 16">
+                <Button Text="Demo 19">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
                                 <p:ReturnParameter x:TypeArguments="x:Int32"/>
@@ -185,13 +199,13 @@
                             <h:EventToMethodHandler MethodName="JustAMethodNoMore">
                                 <p:ReturnParameter x:TypeArguments="x:String"/>
                             </h:EventToMethodHandler>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 17">
+                <Button Text="Demo 20">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
                             <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
                                 <p:ReturnParameter x:TypeArguments="x:Int32"/>
@@ -202,25 +216,25 @@
                             <a:EventToAsyncMethodHandler x:TypeArguments="x:String" WaitResult="True" MethodName="RunResultActionsWithPrevTaskWithResult">
                                 <p:GenericTaskReturnParameter x:TypeArguments="x:String"/>
                             </a:EventToAsyncMethodHandler>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 18">
+                <Button Text="Demo 21">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
                                 <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
                                 <a:DelayEventHandler DelayMilliseconds="4000" WaitResult="True"/>
                                 <h:EventToMethodHandler MethodName="Method1"/>
                             </h:SequenceHandlerExecutor>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 19">
+                <Button Text="Demo 22">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
                                 <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
                                 <h:EventToMethodHandler MethodName="JustAMethodNoMore">
@@ -229,13 +243,13 @@
                                 <h:EventToMethodHandler MethodName="Method1"/>
                                 <h:EventToMethodHandler MethodName="MethodAsync2"/>
                             </h:SequenceHandlerExecutor>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 20">
+                <Button Text="Demo 23">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:ParallelHandlerExecutor>
                                 <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
                                 <h:EventToMethodHandler MethodName="JustAMethodNoMore">
@@ -244,13 +258,13 @@
                                 <h:EventToMethodHandler MethodName="Method1"/>
                                 <h:EventToMethodHandler MethodName="MethodAsync2"/>
                             </h:ParallelHandlerExecutor>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Demo 21">
+                <Button Text="Demo 24">
                     <Button.Behaviors>
-                        <b:EventMultipleHandlerBehavior EventName="Clicked">
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
                                 <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
                                 <h:EventToMethodHandler MethodName="JustAMethodNoMore">
@@ -261,7 +275,26 @@
                                     <h:EventToMethodHandler MethodName="MethodAsync2"/>
                                 </h:ParallelHandlerExecutor>
                             </h:SequenceHandlerExecutor>
-                        </b:EventMultipleHandlerBehavior>
+                        </b:EventMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Demo 25">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
+                            <h:SequenceHandlerExecutor>
+                                <h:EventToCommandHandler Command="{Binding Sample1Command}"/>
+                                <h:EventToMethodHandler MethodName="JustAMethodNoMore">
+                                    <p:GenericParameter x:TypeArguments="x:String">Some value passed as param</p:GenericParameter>
+                                </h:EventToMethodHandler>
+                                <a:DelayedCompositEventHandler>
+                                    <h:ParallelHandlerExecutor>
+                                        <h:EventToMethodHandler MethodName="Method1"/>
+                                        <h:EventToMethodHandler MethodName="MethodAsync2"/>
+                                    </h:ParallelHandlerExecutor>
+                                </a:DelayedCompositEventHandler>
+                            </h:SequenceHandlerExecutor>
+                        </b:EventMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
                 

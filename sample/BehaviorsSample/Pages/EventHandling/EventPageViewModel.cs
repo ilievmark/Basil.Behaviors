@@ -20,6 +20,23 @@ namespace BehaviorsSample.Pages.EventHandling
         {
             Debug.WriteLine("Hello from Sample2Command");
         }
+
+        private int _int32Field;
+        public int Int32Property
+        {
+            get => GetInt();
+            set => SetInt(value);
+        }
+        
+        public int GetInt()
+        {
+            return _int32Field;
+        }
+        
+        public void SetInt(int someIntValue)
+        {
+            _int32Field = someIntValue;
+        }
         
         public string ReturnStringMethod()
         {
@@ -53,11 +70,6 @@ namespace BehaviorsSample.Pages.EventHandling
         public async Task MethodAsync2()
         {
             await Task.Delay(1000);
-        }
-
-        public int GetInt()
-        {
-            return 23;
         }
 
         public string GetString(int result)
