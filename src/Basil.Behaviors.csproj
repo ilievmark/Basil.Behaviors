@@ -63,6 +63,7 @@
     <Compile Include="Core\AttachableBindableObject.cs" />
     <Compile Include="Core\CommandParams.cs" />
     <Compile Include="Core\ResultDelegate.cs" />
+    <Compile Include="Events\EventToSetFieldBehavior.cs" />
     <Compile Include="Events\EventToSetPropertyBehavior.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncGenericRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncRisible.cs" />
