@@ -59,22 +59,21 @@ namespace Basil.Behaviors.Extensions
             string methodName,
             IList<Parameter> parameters)
         {
-            if (string.IsNullOrEmpty(methodName))
-                throw new ArgumentNullException(nameof(methodName));
-            
             if (targetObject == null)
                 throw new ArgumentNullException(nameof(targetObject));
             
+            if (string.IsNullOrEmpty(methodName))
+                throw new ArgumentNullException(nameof(methodName));
+            
             parameters ??= new List<Parameter>();
 
-            var targetType = targetObject.GetType();
-            var methodInfo = GetMethod(targetType, methodName, parameters);
+            var methodInfo = targetObject.GetType().GetMethodInfo(methodName, parameters);
             var sortedParams = CalculateParameters(methodInfo, parameters);
             
             return methodInfo.Invoke(targetObject, sortedParams);
         }
 
-        private static MethodInfo GetMethod(Type targetType, string methodName, IList<Parameter> parameters)
+        public static MethodInfo GetMethodInfo(this Type targetType, string methodName, IList<Parameter> parameters)
         {
             var methodInfo = targetType
                 .GetRuntimeMethods()
