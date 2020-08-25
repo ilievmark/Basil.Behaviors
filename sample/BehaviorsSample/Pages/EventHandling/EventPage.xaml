@@ -350,6 +350,19 @@
                     </Button.Behaviors>
                 </Button>
                 
+                <Button Text="Demo 28">
+                    <Button.Behaviors>
+                        <b:EventMultipleHandlersBehavior EventName="Clicked">
+                            <h:ConditionalCompositHandler Condition="{Binding IsNeedToRunConditional}">
+                                <h:ParallelHandlerExecutor>
+                                    <h:EventToMethodHandler MethodName="Method1"/>
+                                    <h:EventToMethodHandler MethodName="MethodAsync2"/>
+                                </h:ParallelHandlerExecutor>
+                            </h:ConditionalCompositHandler>
+                        </b:EventMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

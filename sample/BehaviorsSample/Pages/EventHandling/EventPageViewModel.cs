@@ -9,6 +9,13 @@ namespace BehaviorsSample.Pages.EventHandling
 {
     public class EventPageViewModel : BaseViewModel
     {
+        public bool IsNeedToRunConditional => NeedToRunConditional();
+
+        private bool NeedToRunConditional()
+        {
+            return false;
+        }
+        
         public ICommand Sample1Command => new Command(OnSample1Command);
         private void OnSample1Command()
         {

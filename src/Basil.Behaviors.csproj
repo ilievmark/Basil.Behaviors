@@ -91,6 +91,7 @@
     <Compile Include="Events\HandlersAsync\EventToAsyncMethodHandler.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Events\Handlers\ConditionalCompositHandler.cs" />
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
     <Compile Include="Events\Handlers\EventToSetFieldHandler.cs" />
     <Compile Include="Events\Handlers\EventToSetPropertyHandler.cs" />
