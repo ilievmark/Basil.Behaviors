@@ -33,6 +33,11 @@ namespace BehaviorsSample.Pages.EventHandling
             return _int32Field;
         }
         
+        public int AnotherGetInt()
+        {
+            return 999;
+        }
+        
         public void SetInt(int someIntValue)
         {
             _int32Field = someIntValue;

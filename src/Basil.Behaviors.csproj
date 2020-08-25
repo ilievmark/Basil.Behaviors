@@ -67,10 +67,13 @@
     <Compile Include="Events\EventToSetPropertyBehavior.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncGenericRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncRisible.cs" />
+    <Compile Include="Events\HandlerAbstract\ICompositeParallelHandler.cs" />
+    <Compile Include="Events\HandlerAbstract\ICompositeHandler.cs" />
     <Compile Include="Events\HandlerAbstract\IGenericRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IMethodExecutable.cs" />
-    <Compile Include="Events\HandlerAbstract\IParametrised.cs" />
+    <Compile Include="Events\HandlerAbstract\IParametrisedHandler.cs" />
     <Compile Include="Events\HandlerAbstract\IRisible.cs" />
+    <Compile Include="Events\HandlerAbstract\ISkipReturnable.cs" />
     <Compile Include="Events\HandlerBase\BaseAsyncHandler.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -120,6 +123,9 @@
     </Compile>
     <Compile Include="Events\Parameters\ReturnParameter.cs" />
     <Compile Include="Extensions\CommandEventRisingExtensions.cs" />
+    <Compile Include="Extensions\Internal\BaseHandlerExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Extensions\Internal\ObjectReflectionExtension.cs" />
     <Compile Include="Extensions\Internal\CommandExtensions.cs" />
     <Compile Include="Extensions\Internal\TypeExtension.cs" />

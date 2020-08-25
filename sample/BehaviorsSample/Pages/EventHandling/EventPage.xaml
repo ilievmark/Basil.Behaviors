@@ -276,10 +276,23 @@
                         <b:EventMultipleHandlersBehavior EventName="Clicked">
                             <h:SequenceHandlerExecutor>
                                 <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="GetInt"/>
-                                <a:DelayedCompositEventHandler DelayMilliseconds="4000" WaitResult="True">
-                                    <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
-                                        <p:ReturnParameter x:TypeArguments="x:Int32"/>
-                                    </h:EventToMethodHandler>
+                                <a:DelayEventHandler DelayMilliseconds="1000" WaitResult="True"/>
+                                <a:DelayedCompositEventHandler DelayMilliseconds="1000" WaitResult="True">
+                                    <h:ParallelHandlerExecutor>
+                                        <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="AnotherGetInt"/>
+                                        <a:DelayEventHandler DelayMilliseconds="1000" WaitResult="True"/>
+                                        <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
+                                            <p:ReturnParameter x:TypeArguments="x:Int32"/>
+                                        </h:EventToMethodHandler>
+                                        <h:EventToMethodHandler x:TypeArguments="x:Int32" MethodName="AnotherGetInt"/>
+                                        <h:SequenceHandlerExecutor>
+                                            <a:DelayEventHandler DelayMilliseconds="1000" WaitResult="True"/>
+                                            <a:DelayEventHandler DelayMilliseconds="1000" WaitResult="True"/>
+                                            <h:EventToMethodHandler x:TypeArguments="x:String" MethodName="GetString">
+                                                <p:ReturnParameter x:TypeArguments="x:Int32"/>
+                                            </h:EventToMethodHandler>
+                                        </h:SequenceHandlerExecutor>
+                                    </h:ParallelHandlerExecutor>
                                 </a:DelayedCompositEventHandler>
                             </h:SequenceHandlerExecutor>
                         </b:EventMultipleHandlersBehavior>

@@ -10,7 +10,7 @@ using Xamarin.Forms;
 namespace Basil.Behaviors.Events
 {
     [ContentProperty(nameof(Parameters))]
-    public class EventToMethodBehavior : EventBehaviorBase, IMethodExecutable, IParametrised
+    public class EventToMethodBehavior : EventBehaviorBase, IMethodExecutable, IParametrisedHandler
     {
         public EventToMethodBehavior()
         {

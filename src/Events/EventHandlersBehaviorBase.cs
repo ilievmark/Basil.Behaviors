@@ -62,14 +62,14 @@ namespace Basil.Behaviors.Events
         {
             foreach (var handler in handlers)
                 if (AssociatedObject != null)
-                    handler.AttachBindableObject(AssociatedObject);
+                    handler.AttachToBindableObject(AssociatedObject);
         }
 
         private void RemovedHandlers(IEnumerable<BaseHandler> handlers)
         {
             foreach (var handler in handlers)
                 if (AssociatedObject != null)
-                    handler.DetachBindableObject(AssociatedObject);
+                    handler.DetachFromBindableObject(AssociatedObject);
         }
 
         private void ResetHandlers(IEnumerable<BaseHandler> handlers)

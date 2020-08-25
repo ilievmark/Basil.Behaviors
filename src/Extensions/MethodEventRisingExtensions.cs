@@ -22,7 +22,7 @@ namespace Basil.Behaviors.Extensions
                 throw new InvalidDataException();
 
             var parameters = new List<Parameter>();
-            if (executable is IParametrised castedParametrizedExecutable)
+            if (executable is IParametrisedHandler castedParametrizedExecutable)
                 parameters = castedParametrizedExecutable.GetParameters().ToList();
             
             if (!string.IsNullOrEmpty(executable.MethodName) && executable.MethodName.ContainsChar('.'))

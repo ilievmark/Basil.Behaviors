@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
+using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
 using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events.HandlersAsync
 {
-    public class DelayEventHandler : BaseAsyncHandler
+    public class DelayEventHandler : BaseAsyncHandler, ISkipReturnable
     {
         #region Properties
         

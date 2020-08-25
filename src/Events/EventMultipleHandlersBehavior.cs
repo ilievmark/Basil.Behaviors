@@ -56,7 +56,7 @@ namespace Basil.Behaviors.Events
                     handler.Rise(sender, eventArgs);
                 }
 
-                if (nextHandler is IParametrised castedParametrisedHandler)
+                if (nextHandler is IParametrisedHandler castedParametrisedHandler)
                 {
                     castedParametrisedHandler
                         .GetParameters()

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
@@ -6,7 +7,7 @@ using Xamarin.Forms;
 namespace Basil.Behaviors.Events.HandlersAsync
 {
     [ContentProperty(nameof(Handler))]
-    public class DelayedCompositEventHandler : DelayEventHandler
+    public class DelayedCompositEventHandler : BaseAsyncHandler, ICompositeHandler
     {
         #region Properties
         
@@ -25,30 +26,39 @@ namespace Basil.Behaviors.Events.HandlersAsync
         }
         
         #endregion
+        
+        #region DelayMilliseconds property
+        
+        public static readonly BindableProperty DelayMillisecondsProperty =
+            BindableProperty.Create(
+                propertyName: nameof(DelayMilliseconds),
+                returnType: typeof(int),
+                declaringType: typeof(DelayedCompositEventHandler),
+                defaultValue: default(int));
+
+        public int DelayMilliseconds
+        {
+            get => (int)GetValue(DelayMillisecondsProperty);
+            set => SetValue(DelayMillisecondsProperty, value);
+        }
+        
+        #endregion
 
         #endregion
         
         #region Overrides
 
-        public override void Rise(object sender, object eventArgs)
+        public override async void Rise(object sender, object eventArgs)
         {
-            base.Rise(sender, eventArgs);
-            HandleRising(sender, eventArgs);
+            await Task.Delay(DelayMilliseconds);
+            
+            Handler.Rise(sender, eventArgs);
         }
 
         public override async Task RiseAsync(object sender, object eventArgs)
         {
-            await base.RiseAsync(sender, eventArgs);
-            HandleRisingAsync(sender, eventArgs);
-        }
-
-        protected virtual void HandleRising(object sender, object eventArgs)
-        {
-            Handler.Rise(sender, eventArgs);
-        }
-        
-        protected virtual async Task HandleRisingAsync(object sender, object eventArgs)
-        {
+            await Task.Delay(DelayMilliseconds);
+           
             if (Handler is IAsyncRisible castedHandler)
             {
                 if (castedHandler.WaitResult)
@@ -56,8 +66,27 @@ namespace Basil.Behaviors.Events.HandlersAsync
                 else
                     castedHandler.RiseAsync(sender, eventArgs);
             }
+            else
+                Handler.Rise(sender, eventArgs);
         }
-        
+
+        protected override void OnAttachedTo(BindableObject bindable)
+        {
+            base.OnAttachedTo(bindable);
+            
+            Handler?.AttachToBindableObject(bindable);
+        }
+
+        protected override void OnDetachingFrom(BindableObject bindable)
+        {
+            base.OnDetachingFrom(bindable);
+            
+            Handler?.DetachFromBindableObject(bindable);
+        }
+
         #endregion
+
+        public IList<BaseHandler> GetInnerHandlers()
+            => new List<BaseHandler> { Handler };
     }
 }

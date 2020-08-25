@@ -1,13 +1,12 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
-using Basil.Behaviors.Events.Parameters;
+using Basil.Behaviors.Extensions.Internal;
 using Xamarin.Forms.Internals;
 
 namespace Basil.Behaviors.Events.Handlers
 {
-    public class SequenceHandlerExecutor : BaseCollectionHandler
+    public class SequenceHandlerExecutor : BaseCollectionHandler, ICompositeHandler
     {
         public override async void Rise(object sender, object eventArgs)
         {
@@ -16,7 +15,6 @@ namespace Basil.Behaviors.Events.Handlers
             for (int i = 0; i < Handlers.Count; i++)
             {
                 var handler = Handlers[i];
-                var nextHandler = (i + 1 >= Handlers.Count) ? null : Handlers[i + 1];
                 previousResult = default;
                 
                 if (handler is IAsyncGenericRisible castedAsyncGenericHandler)
@@ -46,14 +44,21 @@ namespace Basil.Behaviors.Events.Handlers
                     handler.Rise(sender, eventArgs);
                 }
 
-                if (nextHandler is IParametrised castedParametrisedHandler)
-                {
-                    castedParametrisedHandler
-                        .GetParameters()
-                        .OfType<ReturnParameter>()
-                        .ForEach(p => p.SetValue(previousResult));
-                }
+                if (previousResult != default)
+                    GetNextParametrizedHandler(i)?.SetReturnParameter(previousResult);
             }
+        }
+
+        private BaseHandler GetNextParametrizedHandler(int index)
+        {
+            BaseHandler handler;
+            
+            do
+            {
+                handler = ++index >= Handlers.Count ? null : Handlers[index];
+            } while (handler.IsSkipReturnable());
+
+            return handler;
         }
     }
 }
