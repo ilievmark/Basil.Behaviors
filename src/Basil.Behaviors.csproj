@@ -99,7 +99,11 @@
     <Compile Include="Events\Handlers\EventToSetPropertyHandler.cs" />
     <Compile Include="Events\Handlers\ParallelHandlerExecutor.cs" />
     <Compile Include="Events\Handlers\SequenceHandlerExecutor.cs" />
+    <Compile Include="Events\Parameters\Abstract\ICancellation.cs" />
+    <Compile Include="Events\Parameters\Abstract\IParameter.cs" />
+    <Compile Include="Events\Parameters\Abstract\IReturnable.cs" />
     <Compile Include="Events\Parameters\BindableParameter.cs" />
+    <Compile Include="Events\Parameters\CancellationParameter.cs" />
     <Compile Include="Events\Parameters\DefaultParameter.cs" />
     <Compile Include="Events\Parameters\GenericParameter.cs" />
     <Compile Include="Events\Parameters\GenericTaskReturnParameter.cs" />
@@ -124,6 +128,7 @@
     <Compile Include="Events\Handlers\EventToCommandHandler.cs">
       <SubType></SubType>
     </Compile>
+    <Compile Include="Events\Parameters\ReflectionParameter.cs" />
     <Compile Include="Events\Parameters\ReturnParameter.cs" />
     <Compile Include="Extensions\CommandEventRisingExtensions.cs" />
     <Compile Include="Extensions\Internal\BaseHandlerExtensions.cs">
