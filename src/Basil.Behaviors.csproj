@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="Events\Parameters\ReflectionParameter.cs" />
     <Compile Include="Events\Parameters\ReturnParameter.cs" />
+    <Compile Include="Extensions\CollectionsExtensions.cs" />
     <Compile Include="Extensions\CommandEventRisingExtensions.cs" />
     <Compile Include="Extensions\Internal\BaseHandlerExtensions.cs">
       <SubType>Code</SubType>
