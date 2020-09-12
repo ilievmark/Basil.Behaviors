@@ -61,7 +61,9 @@
   <ItemGroup>
     <Compile Include="**\*.shared.cs" />
     <Compile Include="Core\AttachableBindableObject.cs" />
+    <Compile Include="Core\Cancellation\CancellationProvider.cs" />
     <Compile Include="Core\CommandParams.cs" />
+    <Compile Include="Core\Cancellation\ICancellationProvider.cs" />
     <Compile Include="Core\ResultDelegate.cs" />
     <Compile Include="Events\EventToSetFieldBehavior.cs" />
     <Compile Include="Events\EventToSetPropertyBehavior.cs" />
