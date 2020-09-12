@@ -12,7 +12,7 @@ namespace Basil.Behaviors.Events.Parameters
         public override object GetValue()
             => Value;
         
-        public void SetValue(object value)
+        public void SetReturnValue(object value)
             => Value = value;
     }
     
