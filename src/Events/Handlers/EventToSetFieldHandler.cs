@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
-using Basil.Behaviors.Extensions.Internal;
+using Basil.Behaviors.Extensions;
 using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events.Handlers

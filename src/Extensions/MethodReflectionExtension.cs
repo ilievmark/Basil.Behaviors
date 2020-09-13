@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Basil.Behaviors.Events.Parameters;
-using Basil.Behaviors.Extensions.Internal;
+using Basil.Behaviors.Extensions;
 
 namespace Basil.Behaviors.Extensions
 {

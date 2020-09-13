@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Xamarin.Forms.Internals;
 
-namespace Basil.Behaviors.Extensions.Internal
+namespace Basil.Behaviors.Extensions
 {
     public static class ObjectReflectionExtension
     {

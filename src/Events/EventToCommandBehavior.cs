@@ -1,4 +1,4 @@
-﻿using Basil.Behaviors.Extensions.Internal;
+﻿using Basil.Behaviors.Extensions;
 using System.Windows.Input;
 using Basil.Behaviors.Events.HandlerAbstract;
 using Xamarin.Forms;

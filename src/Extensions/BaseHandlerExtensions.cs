@@ -6,7 +6,7 @@ using Basil.Behaviors.Events.HandlerBase;
 using Basil.Behaviors.Events.Parameters.Abstract;
 using Xamarin.Forms.Internals;
 
-namespace Basil.Behaviors.Extensions.Internal
+namespace Basil.Behaviors.Extensions
 {
     public static class BaseHandlerExtensions
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Basil.Behaviors.Extensions.Internal;
+using Basil.Behaviors.Extensions;
 
 namespace Basil.Behaviors.Events
 {

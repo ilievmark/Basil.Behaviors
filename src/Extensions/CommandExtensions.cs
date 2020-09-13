@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Basil.Behaviors.Events.HandlerAbstract;
 using Xamarin.Forms;
 
-namespace Basil.Behaviors.Extensions.Internal
+namespace Basil.Behaviors.Extensions
 {
     public static class CommandExtensions
     {

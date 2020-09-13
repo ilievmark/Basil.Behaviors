@@ -1,5 +1,5 @@
 using Basil.Behaviors.Events.HandlerAbstract;
-using Basil.Behaviors.Extensions.Internal;
+using Basil.Behaviors.Extensions;
 
 namespace Basil.Behaviors.Events.Handlers.Conditional
 {
