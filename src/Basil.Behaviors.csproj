@@ -87,6 +87,7 @@
     <Compile Include="Events\HandlerBase\BaseHandler.cs">
       <SubType></SubType>
     </Compile>
+    <Compile Include="Events\HandlerBase\BaseRiseHandler.cs" />
     <Compile Include="Events\HandlersAsync\DelayedCompositeEventHandler.cs" />
     <Compile Include="Events\HandlersAsync\DelayEventHandler.cs">
       <SubType>Code</SubType>

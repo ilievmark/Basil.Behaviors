@@ -8,7 +8,7 @@ namespace Basil.Behaviors.Events.HandlerBase
     {
         #region Properties
 
-        #region MethodName property
+        #region WaitResult property
         
         public static readonly BindableProperty WaitResultProperty =
             BindableProperty.Create(
@@ -30,6 +30,36 @@ namespace Basil.Behaviors.Events.HandlerBase
         #region Abstract
 
         public abstract Task RiseAsync(object sender, object eventArgs);
+
+        #endregion
+    }
+
+    public abstract class BaseAsyncHandler<T> : BaseHandler, IAsyncGenericRisible
+    {
+        #region Properties
+
+        #region WaitResult property
+        
+        public static readonly BindableProperty WaitResultProperty =
+            BindableProperty.Create(
+                propertyName: nameof(WaitResult),
+                returnType: typeof(bool),
+                declaringType: typeof(BaseAsyncHandler),
+                defaultValue: default(bool));
+
+        public bool WaitResult
+        {
+            get => (bool)GetValue(WaitResultProperty);
+            set => SetValue(WaitResultProperty, value);
+        }
+        
+        #endregion
+
+        #endregion
+        
+        #region Abstract
+
+        public abstract Task<object> RiseAsync(object sender, object eventArgs);
 
         #endregion
     }
