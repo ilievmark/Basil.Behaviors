@@ -1,12 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
-using Basil.Behaviors.Events.Parameters;
 using Basil.Behaviors.Events.Parameters.Abstract;
 using Xamarin.Forms.Internals;
 
@@ -14,12 +10,35 @@ namespace Basil.Behaviors.Extensions.Internal
 {
     public static class BaseHandlerExtensions
     {
-        #region Cancellation
-
-        #endregion
-        
         #region Multiple rising handlers
 
+        public static List<Task> RunParallel(
+            this IList<BaseHandler> handlers,
+            object sender,
+            object eventArgs)
+        {
+            var list = new List<Task>();
+            
+            for (int i = 0; i < handlers.Count; i++)
+            {
+                var handler = handlers[i];
+
+                if (handler.IsAsyncGenericRisible())
+                    list.Add(Task.Run(async () => await handler.RiseAsAsyncGeneric(sender, eventArgs)));
+                
+                if (handler.IsAsyncRisible())
+                    list.Add(Task.Run(async () => await handler.RiseAsAsync(sender, eventArgs)));
+
+                if (handler.IsGenericRisible())
+                    list.Add(Task.Run(() => handler.RiseAsGeneric(sender, eventArgs)));
+                
+                if (handler.IsRisible())
+                    list.Add(Task.Run(() => handler.RiseByDefault(sender, eventArgs)));
+            }
+
+            return list;
+        }
+        
         public static async Task RunSequentiallyAsync(
             this IList<BaseHandler> handlers,
             object sender,
@@ -49,11 +68,13 @@ namespace Basil.Behaviors.Extensions.Internal
             }
         }
         
-        public static BaseHandler GetNextParametrizedHandler(this IList<BaseHandler> handlers, int index)
+        public static BaseHandler GetNextParametrizedHandler(
+            this IList<BaseHandler> handlers,
+            int index)
         {
             BaseHandler handler;
             do handler = ++index >= handlers.Count ? null : handlers[index];
-            while (handler.IsSkipReturnable());
+            while (handler.IsSkipReturnable() || !handler.IsParametrised());
             return handler;
         }
         
@@ -111,15 +132,9 @@ namespace Basil.Behaviors.Extensions.Internal
             if (handler.Cast<IAsyncGenericRisible>(out var castedAsyncGenericHandler))
             {
                 if (castedAsyncGenericHandler.WaitResult)
-                {
-                    var task = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
-                    await task;
-                    returnValue = task.GetType().GetProperty(nameof(Task<object>.Result)).GetValue(task);
-                }
+                    returnValue = await castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
                 else
-                {
                     returnValue = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
-                }
             }
 
             return returnValue;
