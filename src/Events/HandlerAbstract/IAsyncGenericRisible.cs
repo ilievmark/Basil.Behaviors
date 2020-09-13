@@ -6,6 +6,6 @@ namespace Basil.Behaviors.Events.HandlerAbstract
     {
         bool WaitResult { get; }
 
-        Task<T> RiseAsync<T>(object sender, object eventArgs);
+        Task<object> RiseAsync(object sender, object eventArgs);
     }
 }
