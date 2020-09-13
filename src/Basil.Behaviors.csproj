@@ -69,6 +69,7 @@
     <Compile Include="Events\EventToSetPropertyBehavior.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncGenericRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncRisible.cs" />
+    <Compile Include="Events\HandlerAbstract\ICommandExecutable.cs" />
     <Compile Include="Events\HandlerAbstract\ICompositeParallelHandler.cs" />
     <Compile Include="Events\HandlerAbstract\ICompositeHandler.cs" />
     <Compile Include="Events\HandlerAbstract\IGenericRisible.cs" />
@@ -86,14 +87,18 @@
     <Compile Include="Events\HandlerBase\BaseHandler.cs">
       <SubType></SubType>
     </Compile>
-    <Compile Include="Events\HandlersAsync\DelayedCompositEventHandler.cs" />
+    <Compile Include="Events\HandlersAsync\DelayedCompositeEventHandler.cs" />
     <Compile Include="Events\HandlersAsync\DelayEventHandler.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Events\HandlersAsync\EventToAsyncMethodHandler.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Events\Handlers\ConditionalCompositHandler.cs" />
+    <Compile Include="Events\Handlers\Conditional\ConditionalCompositeHandler.cs" />
+    <Compile Include="Events\Handlers\Conditional\ConditionalCompositeHandlerAsync.cs" />
+    <Compile Include="Events\Handlers\Conditional\ConditionalCompositeHandlerBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
     <Compile Include="Events\Handlers\EventToSetFieldHandler.cs" />
     <Compile Include="Events\Handlers\EventToSetPropertyHandler.cs" />
@@ -122,7 +127,7 @@
     <Compile Include="Events\EventToCommandBehavior.cs">
       <SubType></SubType>
     </Compile>
-    <Compile Include="Events\EventMultipleHandlersBehavior.cs">
+    <Compile Include="Events\EventToMultipleHandlersBehavior.cs">
       <SubType></SubType>
     </Compile>
     <Compile Include="Events\Handlers\EventToCommandHandler.cs">
@@ -130,20 +135,25 @@
     </Compile>
     <Compile Include="Events\Parameters\ReflectionParameter.cs" />
     <Compile Include="Events\Parameters\ReturnParameter.cs" />
-    <Compile Include="Extensions\CollectionsExtensions.cs" />
-    <Compile Include="Extensions\CommandEventRisingExtensions.cs" />
-    <Compile Include="Extensions\Internal\BaseHandlerExtensions.cs">
+    <Compile Include="Extensions\BaseHandlerExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Extensions\Internal\ObjectReflectionExtension.cs" />
-    <Compile Include="Extensions\Internal\CommandExtensions.cs" />
-    <Compile Include="Extensions\Internal\TypeExtension.cs" />
+    <Compile Include="Extensions\CollectionsExtensions.cs" />
+    <Compile Include="Extensions\CommandExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Extensions\MethodEventRisingExtensions.cs" />
     <Compile Include="Extensions\MethodReflectionExtension.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\ObjectReflectionExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Extensions\ParameterExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\TypeExtension.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Masks\MaskBehavior.cs">
