@@ -9,7 +9,7 @@ using Xamarin.Forms;
 namespace Basil.Behaviors.Events.HandlerBase
 {
     [ContentProperty(nameof(Parameters))]
-    public abstract class BaseEventToMethodHandler : BaseHandler, IParametrisedHandler, IMethodExecutable
+    public abstract class BaseEventToMethodHandler : BaseHandler, IParameterContainer, IMethodExecutable
     {
         public BaseEventToMethodHandler()
         {
@@ -116,5 +116,4 @@ namespace Basil.Behaviors.Events.HandlerBase
         public IEnumerable<Parameter> GetParameters()
             => Parameters;
     }
-
 }

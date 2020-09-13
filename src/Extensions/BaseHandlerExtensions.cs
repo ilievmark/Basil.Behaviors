@@ -166,7 +166,7 @@ namespace Basil.Behaviors.Extensions
 
         public static void SetReturnValueIfParametrizedHandler(this BaseHandler handler, object returnValue)
         {
-            if (handler.Cast<IParametrisedHandler>(out var castedHandler))
+            if (handler.Cast<IParameterContainer>(out var castedHandler))
                 castedHandler.SetReturnValue(returnValue);
         }
 
@@ -174,7 +174,7 @@ namespace Basil.Behaviors.Extensions
         
         #region Interface logic
         
-        public static void SetReturnValue(this IParametrisedHandler handler, object returnValue)
+        public static void SetReturnValue(this IParameterContainer handler, object returnValue)
         {
             handler?
                 .GetParameters()
@@ -211,7 +211,7 @@ namespace Basil.Behaviors.Extensions
             => handler is IAsyncGenericRisible;
         
         public static bool IsParametrised(this BaseHandler handler)
-            => handler is IParametrisedHandler;
+            => handler is IParameterContainer;
 
         public static bool IsComposite(this BaseHandler handler)
             => handler is ICompositeHandler;

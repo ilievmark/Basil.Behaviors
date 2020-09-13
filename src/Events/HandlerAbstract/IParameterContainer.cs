@@ -3,7 +3,7 @@ using Basil.Behaviors.Events.Parameters;
 
 namespace Basil.Behaviors.Events.HandlerAbstract
 {
-    public interface IParametrisedHandler
+    public interface IParameterContainer
     {
         IEnumerable<Parameter> GetParameters();
     }

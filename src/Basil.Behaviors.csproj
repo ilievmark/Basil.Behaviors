@@ -74,7 +74,7 @@
     <Compile Include="Events\HandlerAbstract\ICompositeHandler.cs" />
     <Compile Include="Events\HandlerAbstract\IGenericRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IMethodExecutable.cs" />
-    <Compile Include="Events\HandlerAbstract\IParametrisedHandler.cs" />
+    <Compile Include="Events\HandlerAbstract\IParameterContainer.cs" />
     <Compile Include="Events\HandlerAbstract\IRisible.cs" />
     <Compile Include="Events\HandlerAbstract\ISkipReturnable.cs" />
     <Compile Include="Events\HandlerBase\BaseAsyncHandler.cs">
