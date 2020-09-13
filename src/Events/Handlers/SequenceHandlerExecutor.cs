@@ -1,64 +1,51 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
 using Basil.Behaviors.Extensions.Internal;
-using Xamarin.Forms.Internals;
+using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events.Handlers
 {
-    public class SequenceHandlerExecutor : BaseCollectionHandler, ICompositeHandler
+    public class SequenceHandlerExecutor : BaseCollectionHandler, ICompositeHandler, IAsyncRisible
     {
-        public override async void Rise(object sender, object eventArgs)
+        #region Properties
+
+        #region WaitResult property
+
+        public static readonly BindableProperty WaitResultProperty =
+            BindableProperty.Create(
+                propertyName: nameof(WaitResult),
+                returnType: typeof(bool),
+                declaringType: typeof(SequenceHandlerExecutor),
+                defaultValue: default(bool));
+
+        public bool WaitResult
         {
-            object previousResult;
-
-            for (int i = 0; i < Handlers.Count; i++)
-            {
-                var handler = Handlers[i];
-                previousResult = default;
-                
-                if (handler is IAsyncGenericRisible castedAsyncGenericHandler)
-                {
-                    if (castedAsyncGenericHandler.WaitResult)
-                    {
-                        var task = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
-                        await task;
-                        previousResult = task.GetType().GetProperty(nameof(Task<object>.Result)).GetValue(task);
-                    }
-                    else
-                        previousResult = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
-                }
-                else if (handler is IAsyncRisible castedAsyncHandler)
-                {
-                    if (castedAsyncHandler.WaitResult)
-                        await castedAsyncHandler.RiseAsync(sender, eventArgs);
-                    else
-                        previousResult = castedAsyncHandler.RiseAsync(sender, eventArgs);
-                }
-                else if (handler is IGenericRisible castedGenericHandler)
-                {
-                    previousResult = castedGenericHandler.Rise<object>(sender, eventArgs);
-                }
-                else
-                {
-                    handler.Rise(sender, eventArgs);
-                }
-
-                if (previousResult != default)
-                    GetNextParametrizedHandler(i)?.SetReturnParameter(previousResult);
-            }
+            get => (bool)GetValue(WaitResultProperty);
+            set => SetValue(WaitResultProperty, value);
         }
 
-        private BaseHandler GetNextParametrizedHandler(int index)
-        {
-            BaseHandler handler;
-            
-            do
-            {
-                handler = ++index >= Handlers.Count ? null : Handlers[index];
-            } while (handler.IsSkipReturnable());
+        #endregion
 
-            return handler;
+        #endregion
+        
+        public async Task RiseAsync(object sender, object eventArgs)
+        {
+            try
+            {
+                if (Handlers != null && Handlers.Any())
+                {
+                    if (WaitResult)
+                        await Handlers.RunSequentiallyAsync(sender, eventArgs);
+                    else
+                        Task.Run(async () => await Handlers.RunSequentiallyAsync(sender, eventArgs));
+                }
+            }
+            catch (OperationCanceledException e)
+            {
+            }
         }
     }
 }

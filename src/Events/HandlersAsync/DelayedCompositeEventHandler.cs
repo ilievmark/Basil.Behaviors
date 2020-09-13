@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
+using Basil.Behaviors.Extensions.Internal;
 using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events.HandlersAsync
 {
     [ContentProperty(nameof(Handler))]
-    public class DelayedCompositEventHandler : BaseAsyncHandler, ICompositeHandler
+    public class DelayedCompositeEventHandler : BaseAsyncHandler, ICompositeHandler
     {
         #region Properties
         
@@ -17,7 +18,7 @@ namespace Basil.Behaviors.Events.HandlersAsync
             BindableProperty.Create(
                 propertyName: nameof(Handler),
                 returnType: typeof(BaseHandler),
-                declaringType: typeof(DelayedCompositEventHandler));
+                declaringType: typeof(DelayedCompositeEventHandler));
 
         public BaseHandler Handler
         {
@@ -33,7 +34,7 @@ namespace Basil.Behaviors.Events.HandlersAsync
             BindableProperty.Create(
                 propertyName: nameof(DelayMilliseconds),
                 returnType: typeof(int),
-                declaringType: typeof(DelayedCompositEventHandler),
+                declaringType: typeof(DelayedCompositeEventHandler),
                 defaultValue: default(int));
 
         public int DelayMilliseconds
@@ -48,26 +49,10 @@ namespace Basil.Behaviors.Events.HandlersAsync
         
         #region Overrides
 
-        public override async void Rise(object sender, object eventArgs)
-        {
-            await Task.Delay(DelayMilliseconds);
-            
-            Handler.Rise(sender, eventArgs);
-        }
-
         public override async Task RiseAsync(object sender, object eventArgs)
         {
             await Task.Delay(DelayMilliseconds);
-           
-            if (Handler is IAsyncRisible castedHandler)
-            {
-                if (castedHandler.WaitResult)
-                    await castedHandler.RiseAsync(sender, eventArgs);
-                else
-                    castedHandler.RiseAsync(sender, eventArgs);
-            }
-            else
-                Handler.Rise(sender, eventArgs);
+            await Handler.RiseAsAsync(sender, eventArgs);
         }
 
         protected override void OnAttachedTo(BindableObject bindable)

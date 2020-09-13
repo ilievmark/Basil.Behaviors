@@ -28,8 +28,6 @@ namespace Basil.Behaviors.Events.HandlersAsync
 
         #endregion
 
-        public override async void Rise(object sender, object eventArgs) => await Task.Delay(DelayMilliseconds);
-
         public override Task RiseAsync(object sender, object eventArgs) => Task.Delay(DelayMilliseconds);
     }
 }
