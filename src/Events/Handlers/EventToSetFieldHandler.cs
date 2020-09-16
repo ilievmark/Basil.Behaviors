@@ -81,8 +81,7 @@ namespace Basil.Behaviors.Events.Handlers
                 throw new InvalidOperationException("There is no attached or target property object (null)");
             
             var fieldInfo = target.GetFieldInfo(fieldName);
-            if (fieldInfo == null)
-                throw new ArgumentException($"Field {fieldName} was not found in type {target.GetType().AssemblyQualifiedName}");
+            fieldInfo.ValidateMember(fieldName);
 
             return fieldInfo;
         }

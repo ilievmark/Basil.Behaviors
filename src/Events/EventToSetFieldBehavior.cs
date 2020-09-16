@@ -64,6 +64,7 @@ namespace Basil.Behaviors.Events
         protected override void HandleEvent(object sender, object eventArgs)
         {
             var fieldInfo = GetFieldInfo(FieldName);
+            fieldInfo.ValidateMember(FieldName);
             var target = GetTargetExecuteObject();
             
             fieldInfo.SetValue(target, Value);

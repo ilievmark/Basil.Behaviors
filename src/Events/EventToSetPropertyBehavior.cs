@@ -64,6 +64,7 @@ namespace Basil.Behaviors.Events
         protected override void HandleEvent(object sender, object eventArgs)
         {
             var propertyInfo = GetPropertyInfo(PropertyName);
+            propertyInfo.ValidateMember(PropertyName);
             if (!propertyInfo.CanWrite)
                 throw new InvalidOperationException("Target property do not have set method or cant be write");
             var target = GetTargetExecuteObject();
