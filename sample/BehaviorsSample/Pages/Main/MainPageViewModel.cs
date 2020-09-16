@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using BehaviorsSample.Pages.Animations;
 using BehaviorsSample.Pages.EventHandling;
 using BehaviorsSample.Pages.Masks;
 using BehaviorsSample.Pages.Validations;
@@ -35,5 +36,13 @@ namespace BehaviorsSample.Pages.Main
 
         #endregion
         
+        #region Go to AnimationsPage command
+        
+        public ICommand GoToAnimationsPage => new Command(OnGoToAnimationsPage);
+
+        private async void OnGoToAnimationsPage()
+            => await ((NavigationPage)App.Current.MainPage).PushAsync(new AnimationsPage());
+        
+        #endregion
     }
 }

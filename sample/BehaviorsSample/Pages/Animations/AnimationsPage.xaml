@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:e="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
+             xmlns:s="clr-namespace:Basil.Behaviors.Animations.Standart;assembly=Basil.Behaviors"
+             x:Class="BehaviorsSample.Pages.Animations.AnimationsPage">
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                
+                <Button Text="Scale animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:ScaleAnimation Length="200" ScaleTo="0.4" WaitResult="True" />
+                            <s:ScaleAnimation Length="500" ScaleTo="1" WaitResult="True" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>
