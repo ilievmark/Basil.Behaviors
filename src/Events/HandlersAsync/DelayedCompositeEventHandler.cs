@@ -117,10 +117,17 @@ namespace Basil.Behaviors.Events.HandlersAsync
         
         #region Overrides
 
-        public override async Task<object> RiseAsync(object sender, object eventArgs)
+        public override Task RiseAsync(object sender, object eventArgs)
         {
-            await Task.Delay(DelayMilliseconds);
-            return await Handler.RiseAsAsync(sender, eventArgs);
+            var tcs = new TaskCompletionSource<T>();
+            Task.Delay(DelayMilliseconds)
+                .ContinueWith(async t =>
+                {
+                    var resultTask = Handler.RiseAsAsyncGeneric<T>(sender, eventArgs);
+                    await resultTask;
+                    tcs.SetResult(resultTask.Result);
+                });
+            return tcs.Task;
         }
 
         protected override void OnAttachedTo(BindableObject bindable)

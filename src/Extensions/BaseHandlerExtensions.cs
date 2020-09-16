@@ -24,13 +24,13 @@ namespace Basil.Behaviors.Extensions
                 var handler = handlers[i];
 
                 if (handler.IsAsyncGenericRisible())
-                    list.Add(Task.Run(async () => await handler.RiseAsAsyncGeneric(sender, eventArgs)));
+                    list.Add(Task.Run(async () => await handler.RiseAsAsyncGeneric<dynamic>(sender, eventArgs)));
                 
                 if (handler.IsAsyncRisible())
                     list.Add(Task.Run(async () => await handler.RiseAsAsync(sender, eventArgs)));
 
                 if (handler.IsGenericRisible())
-                    list.Add(Task.Run(() => handler.RiseAsGeneric(sender, eventArgs)));
+                    list.Add(Task.Run(() => handler.RiseAsGeneric<dynamic>(sender, eventArgs)));
                 
                 if (handler.IsRisible())
                     list.Add(Task.Run(() => handler.RiseByDefault(sender, eventArgs)));
@@ -51,14 +51,28 @@ namespace Basil.Behaviors.Extensions
                 var handler = handlers[i];
                 previousResult = default;
 
-                if (handler.IsAsyncGenericRisible())
-                    previousResult = await handler.RiseAsAsyncGeneric(sender, eventArgs);
+                if (handler.Cast<IAsyncGenericRisible>(out var castedAsyncGenericHandler))
+                {
+                    if (castedAsyncGenericHandler.WaitResult)
+                    {
+                        var t = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
+                        await t;
+                        previousResult = t.GetPropertyValue(nameof(Task<object>.Result));
+                    }
+                    else
+                        previousResult = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
+                }
                 
-                if (handler.IsAsyncRisible())
-                    previousResult = await handler.RiseAsAsync(sender, eventArgs);
+                if (handler.Cast<IAsyncRisible>(out var castedAsyncHandler))
+                {
+                    if (castedAsyncHandler.WaitResult)
+                        await castedAsyncHandler.RiseAsync(sender, eventArgs);
+                    else
+                        previousResult = castedAsyncHandler.RiseAsync(sender, eventArgs);
+                }
 
                 if (handler.IsGenericRisible())
-                    previousResult = handler.RiseAsGeneric(sender, eventArgs);
+                    previousResult = handler.RiseAsGeneric<dynamic>(sender, eventArgs);
                 
                 if (handler.IsRisible())
                     handler.RiseByDefault(sender, eventArgs);
@@ -68,13 +82,16 @@ namespace Basil.Behaviors.Extensions
             }
         }
         
-        public static BaseHandler GetNextParametrizedHandler(
+        internal static BaseHandler GetNextParametrizedHandler(
             this IList<BaseHandler> handlers,
             int index)
         {
             BaseHandler handler;
             do handler = ++index >= handlers.Count ? null : handlers[index];
-            while (handler.IsSkipReturnable() || !handler.IsParametrised());
+            while (handler.IsSkipReturnable() &&
+                  !handler.IsParametrised() &&
+                  !handler.IsAnyComposite() &&
+                   index < handlers.Count);
             return handler;
         }
         
@@ -91,53 +108,51 @@ namespace Basil.Behaviors.Extensions
                 castedRisible.Rise(sender, eventArgs);
         }
         
-        public static object RiseAsGeneric(
+        public static T RiseAsGeneric<T>(
             this BaseHandler handler,
             object sender,
             object eventArgs)
         {
-            object returnValue = default;
+            T returnValue = default;
 
             if (handler.Cast<IGenericRisible>(out var castedGenericHandler))
-                returnValue = castedGenericHandler.Rise<object>(sender, eventArgs);
+                returnValue = castedGenericHandler.Rise<T>(sender, eventArgs);
 
             return returnValue;
         }
-        
-        public static async Task<object> RiseAsAsync(
+
+        public static Task RiseAsAsync(
             this BaseHandler handler,
             object sender,
             object eventArgs)
         {
-            object returnValue = default;
+            Task task = Task.CompletedTask;
 
             if (handler.Cast<IAsyncRisible>(out var castedAsyncHandler))
-            {
-                if (castedAsyncHandler.WaitResult)
-                    await castedAsyncHandler.RiseAsync(sender, eventArgs);
-                else
-                    returnValue = castedAsyncHandler.RiseAsync(sender, eventArgs);
-            }
+                task = castedAsyncHandler.RiseAsync(sender, eventArgs);
 
-            return returnValue;
+            return task;
         }
         
-        public static async Task<object> RiseAsAsyncGeneric(
+        public static Task<T> RiseAsAsyncGeneric<T>(
             this BaseHandler handler,
             object sender,
             object eventArgs)
         {
-            object returnValue = default;
+            Task<T> task = Task<T>.FromResult(default(T));
             
             if (handler.Cast<IAsyncGenericRisible>(out var castedAsyncGenericHandler))
             {
-                if (castedAsyncGenericHandler.WaitResult)
-                    returnValue = await castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
-                else
-                    returnValue = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
+                var tsc = new TaskCompletionSource<T>();
+                var innerTask = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
+                innerTask.ContinueWith(t =>
+                {
+                    tsc.SetResult((T)innerTask.GetPropertyValue(nameof(Task<T>.Result)));
+                }, TaskContinuationOptions.OnlyOnRanToCompletion);
+                task = tsc.Task;
             }
 
-            return returnValue;
+            return task;
         }
         
         #endregion
@@ -218,6 +233,9 @@ namespace Basil.Behaviors.Extensions
 
         public static bool IsCompositeParallel(this BaseHandler handler)
             => handler is ICompositeParallelHandler;
+
+        public static bool IsAnyComposite(this BaseHandler handler)
+            => handler.IsComposite() || handler.IsCompositeParallel();
 
         public static bool IsSkipReturnable(this BaseHandler handler)
             => handler is ISkipReturnable;

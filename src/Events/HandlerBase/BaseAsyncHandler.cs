@@ -59,7 +59,7 @@ namespace Basil.Behaviors.Events.HandlerBase
         
         #region Abstract
 
-        public abstract Task<object> RiseAsync(object sender, object eventArgs);
+        public abstract Task RiseAsync(object sender, object eventArgs);
 
         #endregion
     }

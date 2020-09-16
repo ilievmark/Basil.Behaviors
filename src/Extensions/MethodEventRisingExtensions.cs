@@ -13,7 +13,16 @@ namespace Basil.Behaviors.Extensions
             => (Task) executable.ExecuteMethod();
         
         public static Task<T> ExecuteAsyncMethod<T>(this IMethodExecutable executable)
-            => (Task<T>) executable.ExecuteMethod();
+        { 
+            var task = (Task) executable.ExecuteMethod();
+            var tcs = new TaskCompletionSource<T>();
+            task.ContinueWith(t =>
+            {
+                var res = task.GetPropertyValue(nameof(Task<T>.Result));
+                tcs.SetResult((T) res);
+            });
+            return tcs.Task;
+        }
         
         public static object ExecuteMethod(this IMethodExecutable executable)
         {

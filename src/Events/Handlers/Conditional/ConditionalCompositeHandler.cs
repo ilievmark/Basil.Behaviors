@@ -17,7 +17,7 @@ namespace Basil.Behaviors.Events.Handlers.Conditional
         public T Rise<T>(object sender, object eventArgs)
         {
             if (Condition)
-                return (T) Handler.RiseAsGeneric(sender, eventArgs);
+                return Handler.RiseAsGeneric<T>(sender, eventArgs);
             return default;
         }
     }

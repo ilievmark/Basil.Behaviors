@@ -28,9 +28,23 @@ namespace Basil.Behaviors.Events.HandlersAsync
         #endregion
 
         #endregion
-        
+
         public Task RiseAsync(object sender, object eventArgs)
-            => this.ExecuteAsyncMethod();
+        {
+            var task = this.ExecuteAsyncMethod();
+            
+            if (WaitResult)
+            {
+                var tcs = new TaskCompletionSource<bool>();
+                task.ContinueWith(t =>
+                {
+                    tcs.SetResult(true);
+                });
+                task = tcs.Task;
+            }
+
+            return task;
+        }
     }
     
     public class EventToAsyncMethodHandler<T> : BaseEventToMethodHandler, IAsyncGenericRisible
@@ -56,7 +70,21 @@ namespace Basil.Behaviors.Events.HandlersAsync
 
         #endregion
 
-        public async Task<object> RiseAsync(object sender, object eventArgs)
-            => await this.ExecuteAsyncMethod<T>();
+        public Task RiseAsync(object sender, object eventArgs)
+        {
+            var task = this.ExecuteAsyncMethod<T>();
+            
+            if (WaitResult)
+            {
+                var tcs = new TaskCompletionSource<T>();
+                task.ContinueWith(t =>
+                {
+                    tcs.SetResult(t.Result);
+                });
+                task = tcs.Task;
+            }
+
+            return task;
+        }
     }
 }

@@ -28,15 +28,26 @@ namespace Basil.Behaviors.Events.Handlers.Conditional
 
         #endregion
         
-        public async Task RiseAsync(object sender, object eventArgs)
+        public Task RiseAsync(object sender, object eventArgs)
         {
+            var task = Task.CompletedTask;
+            
             if (Condition)
             {
+                task = Handler.RiseAsAsync(sender, eventArgs);
+                
                 if (WaitResult)
-                    await Handler.RiseAsAsync(sender, eventArgs);
-                else
-                    Handler.RiseAsAsync(sender, eventArgs);
+                {
+                    var tcs = new TaskCompletionSource<bool>();
+                    task.ContinueWith(t =>
+                    {
+                        tcs.SetResult(true);
+                    }, TaskContinuationOptions.OnlyOnRanToCompletion);
+                    task = tcs.Task;
+                }
             }
+
+            return task;
         }
     }
     
@@ -63,19 +74,26 @@ namespace Basil.Behaviors.Events.Handlers.Conditional
 
         #endregion
         
-        public async Task<object> RiseAsync(object sender, object eventArgs)
+        public Task RiseAsync(object sender, object eventArgs)
         {
-            object result = null;
-            
+            Task<T> task = Task<T>.FromResult(default(T));
+
             if (Condition)
             {
+                task = Handler.RiseAsAsyncGeneric<T>(sender, eventArgs);
+                
                 if (WaitResult)
-                    result = await Handler.RiseAsAsyncGeneric(sender, eventArgs);
-                else
-                    result = Handler.RiseAsAsync(sender, eventArgs);
+                {
+                    var tcs = new TaskCompletionSource<T>();
+                    task.ContinueWith(t =>
+                    {
+                        tcs.SetResult(t.Result);
+                    }, TaskContinuationOptions.OnlyOnRanToCompletion);
+                    task = tcs.Task;
+                }
             }
 
-            return result;
+            return task;
         }
     }
 }
