@@ -48,7 +48,7 @@ namespace Basil.Behaviors.Animations
                 propertyName: nameof(Length),
                 returnType: typeof(uint),
                 declaringType: typeof(AnimationBase),
-                defaultValue: 250);
+                defaultValue: 250U);
 
         public uint Length
         {
