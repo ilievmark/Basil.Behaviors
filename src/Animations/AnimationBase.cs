@@ -5,6 +5,11 @@ namespace Basil.Behaviors.Animations
 {
     public abstract class AnimationBase : BaseAsyncHandler
     {
+        public AnimationBase()
+        {
+            WaitResult = true;
+        }
+        
         #region Properties
 
         #region Target property

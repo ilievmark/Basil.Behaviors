@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:f="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
              xmlns:e="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
              xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
              xmlns:s="clr-namespace:Basil.Behaviors.Animations.Standart;assembly=Basil.Behaviors"
@@ -13,8 +14,8 @@
                 <Button Text="Scale animation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>
                         <e:EventToMultipleHandlersBehavior EventName="Clicked">
-                            <s:ScaleAnimation Length="200" ScaleTo="0.4" WaitResult="True" />
-                            <s:ScaleAnimation Length="500" ScaleTo="1" WaitResult="True" />
+                            <s:ScaleAnimation Length="200" ScaleTo="0.4" />
+                            <s:ScaleAnimation Length="500" ScaleTo="1" />
                         </e:EventToMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
@@ -22,8 +23,8 @@
                 <Button Text="Rotation animation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>
                         <e:EventToMultipleHandlersBehavior EventName="Clicked">
-                            <s:RotateAnimation Length="600" WaitResult="True" Rotation="360" />
-                            <s:RotateAnimation Length="0" WaitResult="True" Rotation="0" />
+                            <s:RotateAnimation Length="600" Rotation="360" />
+                            <s:RotateAnimation Length="0" Rotation="0" />
                         </e:EventToMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
@@ -31,9 +32,18 @@
                 <Button Text="Translation animation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>
                         <e:EventToMultipleHandlersBehavior EventName="Clicked">
-                            <s:TranslateAnimation Length="600" XOffset="15" YOffset="20" WaitResult="True"/>
-                            <s:TranslateAnimation Length="200" XOffset="5" YOffset="-5" WaitResult="True"/>
-                            <s:TranslateAnimation Length="300" XOffset="-20" YOffset="-15" WaitResult="True"/>
+                            <s:TranslateAnimation Length="600" XOffset="15" YOffset="20" />
+                            <s:TranslateAnimation Length="200" XOffset="5" YOffset="-5" />
+                            <s:TranslateAnimation Length="300" XOffset="-20" YOffset="-15" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Fade animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:FadeAnimation Length="200" Opacity="0.2" />
+                            <s:FadeAnimation Length="300" Opacity="1" />
                         </e:EventToMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
@@ -43,12 +53,12 @@
                         <e:EventToMultipleHandlersBehavior EventName="Clicked">
                             <h:ParallelHandlerExecutor>
                                 <h:SequenceHandlerExecutor>
-                                    <s:RotateAnimation Length="600" WaitResult="True" Rotation="360" />
-                                    <s:RotateAnimation Length="0" WaitResult="True" Rotation="0" />
+                                    <s:RotateAnimation Length="600" Rotation="360" />
+                                    <s:RotateAnimation Length="0" Rotation="0" />
                                 </h:SequenceHandlerExecutor>
                                 <h:SequenceHandlerExecutor>
-                                    <s:ScaleAnimation Length="300" ScaleTo="0.2" WaitResult="True" />
-                                    <s:ScaleAnimation Length="300" ScaleTo="1" WaitResult="True" />
+                                    <s:ScaleAnimation Length="300" ScaleTo="0.2" />
+                                    <s:ScaleAnimation Length="300" ScaleTo="1" />
                                 </h:SequenceHandlerExecutor>
                             </h:ParallelHandlerExecutor>
                         </e:EventToMultipleHandlersBehavior>
