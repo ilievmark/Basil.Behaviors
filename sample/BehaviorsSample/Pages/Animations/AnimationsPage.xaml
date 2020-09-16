@@ -28,6 +28,16 @@
                     </Button.Behaviors>
                 </Button>
                 
+                <Button Text="Translation animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:TranslateAnimation Length="600" XOffset="15" YOffset="20" WaitResult="True"/>
+                            <s:TranslateAnimation Length="200" XOffset="5" YOffset="-5" WaitResult="True"/>
+                            <s:TranslateAnimation Length="300" XOffset="-20" YOffset="-15" WaitResult="True"/>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
                 <Button Text="Scale and Rotation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>
                         <e:EventToMultipleHandlersBehavior EventName="Clicked">
