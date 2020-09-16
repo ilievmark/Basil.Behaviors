@@ -13,7 +13,7 @@ namespace BehaviorsSample.Pages.EventHandling
 
         private bool NeedToRunConditional()
         {
-            return false;
+            return true;
         }
         
         public ICommand Sample1Command => new Command(OnSample1Command);
