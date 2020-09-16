@@ -1,11 +1,12 @@
 ﻿using System.Windows.Input;
+using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
 using Xamarin.Forms;
 using Basil.Behaviors.Extensions;
 
 namespace Basil.Behaviors.Events.Handlers
 {
-    public class EventToCommandHandler : BaseHandler
+    public class EventToCommandHandler : BaseHandler, IRisible, ICommandExecutable
     {
         #region Properties
         
@@ -20,13 +21,13 @@ namespace Basil.Behaviors.Events.Handlers
 
         public ICommand Command
         {
-            get { return (ICommand)GetValue(CommandProperty); }
-            set { SetValue(CommandProperty, value); }
+            get => (ICommand)GetValue(CommandProperty);
+            set => SetValue(CommandProperty, value);
         }
 
         #endregion
         
-        #region Converter property
+        #region ConverterParameter property
 
         public static readonly BindableProperty ConverterParameterProperty =
             BindableProperty.Create(
@@ -37,13 +38,13 @@ namespace Basil.Behaviors.Events.Handlers
 
         public object ConverterParameter
         {
-            get { return GetValue(ConverterParameterProperty); }
-            set { SetValue(ConverterParameterProperty, value); }
+            get => GetValue(ConverterParameterProperty);
+            set => SetValue(ConverterParameterProperty, value);
         }
 
         #endregion
 
-        #region ConverterParameter property
+        #region Converter property
 
         public static readonly BindableProperty ConverterProperty =
             BindableProperty.Create(
@@ -54,8 +55,8 @@ namespace Basil.Behaviors.Events.Handlers
 
         public IValueConverter Converter
         {
-            get { return (IValueConverter)GetValue(ConverterProperty); }
-            set { SetValue(ConverterProperty, value); }
+            get => (IValueConverter)GetValue(ConverterProperty);
+            set => SetValue(ConverterProperty, value);
         }
 
         #endregion
@@ -72,14 +73,15 @@ namespace Basil.Behaviors.Events.Handlers
 
         public object CommandParameter
         {
-            get { return GetValue(CommandParameterProperty); }
-            set { SetValue(CommandParameterProperty, value); }
+            get => GetValue(CommandParameterProperty);
+            set => SetValue(CommandParameterProperty, value);
         }
 
         #endregion
 
         #endregion
 
-        public override void Rise(object sender, object eventArgs) => this.ExecuteCommand(eventArgs);
+        public void Rise(object sender, object eventArgs)
+            => this.ExecuteCommand(eventArgs);
     }
 }

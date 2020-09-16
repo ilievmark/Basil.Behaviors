@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
+using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
 using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events.HandlersAsync
 {
-    public class DelayEventHandler : BaseAsyncHandler
+    public class DelayEventHandler : BaseAsyncHandler, ISkipReturnable
     {
         #region Properties
         
@@ -27,8 +28,7 @@ namespace Basil.Behaviors.Events.HandlersAsync
 
         #endregion
 
-        public override async void Rise(object sender, object eventArgs) => await Task.Delay(DelayMilliseconds);
-
-        public override Task RiseAsync(object sender, object eventArgs) => Task.Delay(DelayMilliseconds);
+        public override Task RiseAsync(object sender, object eventArgs)
+            => Task.Delay(DelayMilliseconds);
     }
 }

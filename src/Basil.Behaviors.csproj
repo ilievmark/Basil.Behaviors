@@ -1,9 +1,9 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
 
   <PropertyGroup>
-    <TargetFrameworks></TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid90</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid90</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard2.0;Xamarin.iOS10;MonoAndroid90</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard2.0;Xamarin.iOS10;MonoAndroid90</TargetFrameworks>
     
     <AssemblyName>Basil.Behaviors</AssemblyName>
     <RootNamespace>Basil.Behaviors</RootNamespace>
@@ -61,16 +61,22 @@
   <ItemGroup>
     <Compile Include="**\*.shared.cs" />
     <Compile Include="Core\AttachableBindableObject.cs" />
+    <Compile Include="Core\Cancellation\CancellationProvider.cs" />
     <Compile Include="Core\CommandParams.cs" />
+    <Compile Include="Core\Cancellation\ICancellationProvider.cs" />
     <Compile Include="Core\ResultDelegate.cs" />
     <Compile Include="Events\EventToSetFieldBehavior.cs" />
     <Compile Include="Events\EventToSetPropertyBehavior.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncGenericRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IAsyncRisible.cs" />
+    <Compile Include="Events\HandlerAbstract\ICommandExecutable.cs" />
+    <Compile Include="Events\HandlerAbstract\ICompositeParallelHandler.cs" />
+    <Compile Include="Events\HandlerAbstract\ICompositeHandler.cs" />
     <Compile Include="Events\HandlerAbstract\IGenericRisible.cs" />
     <Compile Include="Events\HandlerAbstract\IMethodExecutable.cs" />
-    <Compile Include="Events\HandlerAbstract\IParametrised.cs" />
+    <Compile Include="Events\HandlerAbstract\IParameterContainer.cs" />
     <Compile Include="Events\HandlerAbstract\IRisible.cs" />
+    <Compile Include="Events\HandlerAbstract\ISkipReturnable.cs" />
     <Compile Include="Events\HandlerBase\BaseAsyncHandler.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -81,11 +87,17 @@
     <Compile Include="Events\HandlerBase\BaseHandler.cs">
       <SubType></SubType>
     </Compile>
-    <Compile Include="Events\HandlersAsync\DelayedCompositEventHandler.cs" />
+    <Compile Include="Events\HandlerBase\BaseRiseHandler.cs" />
+    <Compile Include="Events\HandlersAsync\DelayedCompositeEventHandler.cs" />
     <Compile Include="Events\HandlersAsync\DelayEventHandler.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Events\HandlersAsync\EventToAsyncMethodHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\Handlers\Conditional\ConditionalCompositeHandler.cs" />
+    <Compile Include="Events\Handlers\Conditional\ConditionalCompositeHandlerAsync.cs" />
+    <Compile Include="Events\Handlers\Conditional\ConditionalCompositeHandlerBase.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Events\Handlers\EventToMethodHandler.cs" />
@@ -93,7 +105,11 @@
     <Compile Include="Events\Handlers\EventToSetPropertyHandler.cs" />
     <Compile Include="Events\Handlers\ParallelHandlerExecutor.cs" />
     <Compile Include="Events\Handlers\SequenceHandlerExecutor.cs" />
+    <Compile Include="Events\Parameters\Abstract\ICancellation.cs" />
+    <Compile Include="Events\Parameters\Abstract\IParameter.cs" />
+    <Compile Include="Events\Parameters\Abstract\IReturnable.cs" />
     <Compile Include="Events\Parameters\BindableParameter.cs" />
+    <Compile Include="Events\Parameters\CancellationParameter.cs" />
     <Compile Include="Events\Parameters\DefaultParameter.cs" />
     <Compile Include="Events\Parameters\GenericParameter.cs" />
     <Compile Include="Events\Parameters\GenericTaskReturnParameter.cs" />
@@ -112,23 +128,33 @@
     <Compile Include="Events\EventToCommandBehavior.cs">
       <SubType></SubType>
     </Compile>
-    <Compile Include="Events\EventMultipleHandlersBehavior.cs">
+    <Compile Include="Events\EventToMultipleHandlersBehavior.cs">
       <SubType></SubType>
     </Compile>
     <Compile Include="Events\Handlers\EventToCommandHandler.cs">
       <SubType></SubType>
     </Compile>
+    <Compile Include="Events\Parameters\ReflectionParameter.cs" />
     <Compile Include="Events\Parameters\ReturnParameter.cs" />
-    <Compile Include="Extensions\CommandEventRisingExtensions.cs" />
-    <Compile Include="Extensions\Internal\ObjectReflectionExtension.cs" />
-    <Compile Include="Extensions\Internal\CommandExtensions.cs" />
-    <Compile Include="Extensions\Internal\TypeExtension.cs" />
+    <Compile Include="Extensions\BaseHandlerExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\CollectionsExtensions.cs" />
+    <Compile Include="Extensions\CommandExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Extensions\MethodEventRisingExtensions.cs" />
     <Compile Include="Extensions\MethodReflectionExtension.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\ObjectReflectionExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Extensions\ParameterExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extensions\TypeExtension.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Masks\MaskBehavior.cs">

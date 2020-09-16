@@ -1,6 +1,6 @@
 using System;
 using System.Reflection;
-using Basil.Behaviors.Extensions.Internal;
+using Basil.Behaviors.Extensions;
 using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events
@@ -64,6 +64,7 @@ namespace Basil.Behaviors.Events
         protected override void HandleEvent(object sender, object eventArgs)
         {
             var fieldInfo = GetFieldInfo(FieldName);
+            fieldInfo.ValidateMember(FieldName);
             var target = GetTargetExecuteObject();
             
             fieldInfo.SetValue(target, Value);

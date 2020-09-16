@@ -1,11 +1,21 @@
 using System.Globalization;
 using System.Windows.Input;
+using Basil.Behaviors.Events.HandlerAbstract;
 using Xamarin.Forms;
 
-namespace Basil.Behaviors.Extensions.Internal
+namespace Basil.Behaviors.Extensions
 {
     public static class CommandExtensions
     {
+        public static void ExecuteCommand(
+            this ICommandExecutable executable,
+            object args)
+            => executable.Command.RunCommand(
+                executable.CommandParameter,
+                executable.Converter,
+                executable.ConverterParameter,
+                args);
+
         internal static void RunCommand(
             this ICommand command,
             object commandParameter,

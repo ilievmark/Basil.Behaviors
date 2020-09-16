@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace Basil.Behaviors.Extensions.Internal
+namespace Basil.Behaviors.Extensions
 {
     public static class TypeExtension
     {

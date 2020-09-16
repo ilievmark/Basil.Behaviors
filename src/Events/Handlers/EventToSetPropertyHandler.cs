@@ -1,12 +1,13 @@
 using System;
 using System.Reflection;
+using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
-using Basil.Behaviors.Extensions.Internal;
+using Basil.Behaviors.Extensions;
 using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events.Handlers
 {
-    public class EventToSetPropertyHandler<T> : BaseHandler
+    public class EventToSetPropertyHandler<T> : BaseHandler, IRisible
     {
         #region Properties
         
@@ -62,9 +63,10 @@ namespace Basil.Behaviors.Events.Handlers
 
         #endregion
         
-        public override void Rise(object sender, object eventArgs)
+        public void Rise(object sender, object eventArgs)
         {
             var propertyInfo = GetPropertyInfo(PropertyName);
+            propertyInfo.ValidateMember(PropertyName);
             if (!propertyInfo.CanWrite)
                 throw new InvalidOperationException("Target property do not have set method or cant be write");
             var target = GetTargetExecuteObject();

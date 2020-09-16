@@ -9,6 +9,13 @@ namespace BehaviorsSample.Pages.EventHandling
 {
     public class EventPageViewModel : BaseViewModel
     {
+        public bool IsNeedToRunConditional => NeedToRunConditional();
+
+        private bool NeedToRunConditional()
+        {
+            return true;
+        }
+        
         public ICommand Sample1Command => new Command(OnSample1Command);
         private void OnSample1Command()
         {
@@ -31,6 +38,11 @@ namespace BehaviorsSample.Pages.EventHandling
         public int GetInt()
         {
             return _int32Field;
+        }
+        
+        public int AnotherGetInt()
+        {
+            return 999;
         }
         
         public void SetInt(int someIntValue)

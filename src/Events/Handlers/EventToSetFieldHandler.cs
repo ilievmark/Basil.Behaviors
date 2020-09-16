@@ -1,12 +1,13 @@
 using System;
 using System.Reflection;
+using Basil.Behaviors.Events.HandlerAbstract;
 using Basil.Behaviors.Events.HandlerBase;
-using Basil.Behaviors.Extensions.Internal;
+using Basil.Behaviors.Extensions;
 using Xamarin.Forms;
 
 namespace Basil.Behaviors.Events.Handlers
 {
-    public class EventToSetFieldHandler<T> : BaseHandler
+    public class EventToSetFieldHandler<T> : BaseHandler, IRisible
     {
         #region Properties
         
@@ -62,7 +63,7 @@ namespace Basil.Behaviors.Events.Handlers
 
         #endregion
         
-        public override void Rise(object sender, object eventArgs)
+        public void Rise(object sender, object eventArgs)
         {
             var fieldInfo = GetFieldInfo(FieldName);
             var target = GetTargetExecuteObject();
@@ -80,8 +81,7 @@ namespace Basil.Behaviors.Events.Handlers
                 throw new InvalidOperationException("There is no attached or target property object (null)");
             
             var fieldInfo = target.GetFieldInfo(fieldName);
-            if (fieldInfo == null)
-                throw new ArgumentException($"Field {fieldName} was not found in type {target.GetType().AssemblyQualifiedName}");
+            fieldInfo.ValidateMember(fieldName);
 
             return fieldInfo;
         }
