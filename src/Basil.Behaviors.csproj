@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="**\*.shared.cs" />
     <Compile Include="Animations\AnimationBase.cs" />
+    <Compile Include="Animations\Standart\RotateAnimation.cs" />
     <Compile Include="Animations\Standart\ScaleAnimation.cs" />
     <Compile Include="Core\AttachableBindableObject.cs" />
     <Compile Include="Core\Cancellation\CancellationProvider.cs" />
