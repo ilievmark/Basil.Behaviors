@@ -64,6 +64,8 @@
     <Compile Include="Animations\Standart\FadeAnimation.cs" />
     <Compile Include="Animations\Standart\LayoutAnimation.cs" />
     <Compile Include="Animations\Standart\RelativeRotateAnimation.cs" />
+    <Compile Include="Animations\Standart\RelativeRotateXAnimation.cs" />
+    <Compile Include="Animations\Standart\RelativeRotateYAnimation.cs" />
     <Compile Include="Animations\Standart\RelativeScaleAnimation.cs" />
     <Compile Include="Animations\Standart\RotateAnimation.cs" />
     <Compile Include="Animations\Standart\RotateXAnimation.cs" />

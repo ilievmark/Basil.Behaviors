@@ -72,6 +72,40 @@
                     </Button.Behaviors>
                 </Button>
                 
+                <Button Text="RotationX animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
+                            <s:RotateXAnimation Length="200" RotationX="75"/>
+                            <s:RotateXAnimation Length="200" RotationX="0"/>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Relative RotationX animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
+                            <s:RelativeRotateXAnimation Length="200" RotationX="20"/>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="RotationY animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
+                            <s:RotateYAnimation Length="200" RotationY="75"/>
+                            <s:RotateYAnimation Length="200" RotationY="0"/>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Relative RotationY animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
+                            <s:RelativeRotateYAnimation Length="200" RotationY="20"/>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
                 <Button Text="Wow rotation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>
                         <e:EventToMultipleHandlersBehavior EventName="Clicked">
