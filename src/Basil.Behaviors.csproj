@@ -62,6 +62,7 @@
     <Compile Include="**\*.shared.cs" />
     <Compile Include="Animations\AnimationBase.cs" />
     <Compile Include="Animations\Standart\FadeAnimation.cs" />
+    <Compile Include="Animations\Standart\LayoutAnimation.cs" />
     <Compile Include="Animations\Standart\RotateAnimation.cs" />
     <Compile Include="Animations\Standart\RotateXAnimation.cs" />
     <Compile Include="Animations\Standart\RotateYAnimation.cs" />
