@@ -4,18 +4,18 @@ Animations - wrap on instance of Animation class of Xamarin.Forms, based on [eve
 
 Doc structure:
 
-- [Standart](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#behaviors)
-    - [FadeAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
-    - [LayoutAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
-    - [TranslateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
-    - [ScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
-    - [RelativeScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
-    - [RotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
-    - [RelativeRotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
-    - [RotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
-    - [RelativeRotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
-    - [RotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
-    - [RelativeRotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/EventHandling#eventtocommandbehavior)
+- [Standart](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#standart-animations)
+    - [FadeAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#fadeanimation)
+    - [LayoutAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#layoutanimation)
+    - [TranslateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#translateanimation)
+    - [ScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#scaleanimation)
+    - [RelativeScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativescaleanimation)
+    - [RotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#rotateanimation)
+    - [RelativeRotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativerotateanimation)
+    - [RotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#rotatexanimation)
+    - [RelativeRotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativerotatexanimation)
+    - [RotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#rotateyanimation)
+    - [RelativeRotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativerotateyanimation)
 
 ## Standart animations
 
