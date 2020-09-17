@@ -13,8 +13,16 @@
                 <Button Text="Scale animation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>
                         <e:EventToMultipleHandlersBehavior EventName="Clicked">
-                            <s:ScaleAnimation Length="200" ScaleTo="0.4" />
-                            <s:ScaleAnimation Length="500" ScaleTo="1" />
+                            <s:ScaleAnimation Length="200" Scale="0.4" />
+                            <s:ScaleAnimation Length="500" Scale="1" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Relative Scale animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:RelativeScaleAnimation Length="200" Scale="1.05" />
                         </e:EventToMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
@@ -24,6 +32,14 @@
                         <e:EventToMultipleHandlersBehavior EventName="Clicked">
                             <s:RotateAnimation Length="600" Rotation="360" />
                             <s:RotateAnimation Length="0" Rotation="0" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Relative Rotation animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:RelativeRotateAnimation Length="200" Rotation="20" />
                         </e:EventToMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
@@ -88,8 +104,8 @@
                                     <s:RotateAnimation Length="0" Rotation="0" />
                                 </h:SequenceHandlerExecutor>
                                 <h:SequenceHandlerExecutor>
-                                    <s:ScaleAnimation Length="300" ScaleTo="0.2" />
-                                    <s:ScaleAnimation Length="300" ScaleTo="1" />
+                                    <s:ScaleAnimation Length="300" Scale="0.2" />
+                                    <s:ScaleAnimation Length="300" Scale="1" />
                                 </h:SequenceHandlerExecutor>
                             </h:ParallelHandlerExecutor>
                         </e:EventToMultipleHandlersBehavior>

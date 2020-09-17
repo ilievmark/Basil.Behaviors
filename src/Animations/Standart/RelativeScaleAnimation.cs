@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace Basil.Behaviors.Animations.Standart
 {
-    public class ScaleAnimation : AnimationBase
+    public class RelativeScaleAnimation: AnimationBase
     {
         #region Properties
 
@@ -13,7 +13,7 @@ namespace Basil.Behaviors.Animations.Standart
             BindableProperty.Create(
                 propertyName: nameof(Scale),
                 returnType: typeof(double),
-                declaringType: typeof(ScaleAnimation),
+                declaringType: typeof(RelativeScaleAnimation),
                 defaultValue: default(double));
 
         public double Scale
@@ -27,6 +27,6 @@ namespace Basil.Behaviors.Animations.Standart
         #endregion
 
         public override Task RiseAsync(object sender, object eventArgs)
-            => GetAnimationTargetVisualElement().ScaleTo(Scale, Length, Easing);
+            => GetAnimationTargetVisualElement().RelScaleTo(Scale, Length, Easing);
     }
 }
