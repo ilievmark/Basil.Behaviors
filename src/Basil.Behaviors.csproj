@@ -162,6 +162,7 @@
     <Compile Include="Extensions\StringExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Extensions\TypeExtension.cs">
       <SubType>Code</SubType>
     </Compile>
