@@ -49,7 +49,7 @@
                 
                 <Button Text="Layout animation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>
-                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
                             <s:LayoutAnimation Length="200" OffsetRectangle="30,40,50,60" />
                             <s:LayoutAnimation Length="200" OffsetRectangle="-30,-40,-50,-60" />
                         </e:EventToMultipleHandlersBehavior>
