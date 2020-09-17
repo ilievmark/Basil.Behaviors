@@ -42,7 +42,7 @@ namespace Basil.Behaviors.Events
         {
             try
             {
-                if (SingleRun && _cashedTask != null && _cashedTask.IsNotComplited())
+                if (SingleRun && _cashedTask != null && _cashedTask.IsNotCompleted())
                     return;
 
                 if (Handlers != null && Handlers.Any())
