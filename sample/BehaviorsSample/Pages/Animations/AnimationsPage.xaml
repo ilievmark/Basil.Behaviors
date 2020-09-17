@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:f="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
              xmlns:e="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
              xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
              xmlns:s="clr-namespace:Basil.Behaviors.Animations.Standart;assembly=Basil.Behaviors"
@@ -44,6 +43,29 @@
                         <e:EventToMultipleHandlersBehavior EventName="Clicked">
                             <s:FadeAnimation Length="200" Opacity="0.2" />
                             <s:FadeAnimation Length="300" Opacity="1" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Wow rotation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <s:RotateXAnimation Length="200" RotationX="30"/>
+                                <s:RotateYAnimation Length="200" RotationY="45"/>
+                            </h:ParallelHandlerExecutor>
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <s:RotateXAnimation Length="500" RotationX="-240"/>
+                                <s:RotateYAnimation Length="500" RotationY="-120"/>
+                            </h:ParallelHandlerExecutor>
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <s:RotateXAnimation Length="800" RotationX="-130"/>
+                                <s:RotateYAnimation Length="300" RotationY="30"/>
+                            </h:ParallelHandlerExecutor>
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <s:RotateXAnimation Length="300" RotationX="0"/>
+                                <s:RotateYAnimation Length="400" RotationY="0"/>
+                            </h:ParallelHandlerExecutor>
                         </e:EventToMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>

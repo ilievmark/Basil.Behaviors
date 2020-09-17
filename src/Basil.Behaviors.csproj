@@ -63,6 +63,8 @@
     <Compile Include="Animations\AnimationBase.cs" />
     <Compile Include="Animations\Standart\FadeAnimation.cs" />
     <Compile Include="Animations\Standart\RotateAnimation.cs" />
+    <Compile Include="Animations\Standart\RotateXAnimation.cs" />
+    <Compile Include="Animations\Standart\RotateYAnimation.cs" />
     <Compile Include="Animations\Standart\ScaleAnimation.cs" />
     <Compile Include="Animations\Standart\TranslateAnimation.cs" />
     <Compile Include="Core\AttachableBindableObject.cs" />

@@ -7,7 +7,7 @@ namespace Basil.Behaviors.Animations.Standart
     {
         #region Properties
 
-        #region ScaleTo property
+        #region Rotation property
 
         public static readonly BindableProperty RotationProperty =
             BindableProperty.Create(
