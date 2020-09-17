@@ -12,6 +12,10 @@
                 <Button Text="Go to event behaviors demo page"
                         HorizontalOptions="Center"
                         Command="{Binding GoToEventPage}"/>
+                
+                <Button Text="Go to animations behaviors demo page"
+                        HorizontalOptions="Center"
+                        Command="{Binding GoToAnimationsPage}"/>
 
                 <Button Text="Go to validation behaviors demo page"
                         HorizontalOptions="Center"

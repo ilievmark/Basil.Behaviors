@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:e="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
+             xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
+             xmlns:s="clr-namespace:Basil.Behaviors.Animations.Standart;assembly=Basil.Behaviors"
+             x:Class="BehaviorsSample.Pages.Animations.AnimationsPage">
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                
+                <Button Text="Scale animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:ScaleAnimation Length="200" Scale="0.4" />
+                            <s:ScaleAnimation Length="500" Scale="1" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Relative Scale animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:RelativeScaleAnimation Length="200" Scale="1.05" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Rotation animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:RotateAnimation Length="600" Rotation="360" />
+                            <s:RotateAnimation Length="0" Rotation="0" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Relative Rotation animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:RelativeRotateAnimation Length="200" Rotation="20" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Translation animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:TranslateAnimation Length="600" XOffset="15" YOffset="20" />
+                            <s:TranslateAnimation Length="200" XOffset="5" YOffset="-5" />
+                            <s:TranslateAnimation Length="300" XOffset="-20" YOffset="-15" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Fade animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:FadeAnimation Length="200" Opacity="0.2" />
+                            <s:FadeAnimation Length="300" Opacity="1" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Layout animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
+                            <s:LayoutAnimation Length="200" OffsetRectangle="30,40,50,60" />
+                            <s:LayoutAnimation Length="200" OffsetRectangle="-30,-40,-50,-60" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="RotationX animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
+                            <s:RotateXAnimation Length="200" RotationX="75"/>
+                            <s:RotateXAnimation Length="200" RotationX="0"/>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Relative RotationX animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
+                            <s:RelativeRotateXAnimation Length="200" RotationX="20"/>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="RotationY animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
+                            <s:RotateYAnimation Length="200" RotationY="75"/>
+                            <s:RotateYAnimation Length="200" RotationY="0"/>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Relative RotationY animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
+                            <s:RelativeRotateYAnimation Length="200" RotationY="20"/>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Wow rotation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <s:RotateXAnimation Length="200" RotationX="30"/>
+                                <s:RotateYAnimation Length="200" RotationY="45"/>
+                            </h:ParallelHandlerExecutor>
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <s:RotateXAnimation Length="500" RotationX="-240"/>
+                                <s:RotateYAnimation Length="500" RotationY="-120"/>
+                            </h:ParallelHandlerExecutor>
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <s:RotateXAnimation Length="800" RotationX="-130"/>
+                                <s:RotateYAnimation Length="300" RotationY="30"/>
+                            </h:ParallelHandlerExecutor>
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <s:RotateXAnimation Length="300" RotationX="0"/>
+                                <s:RotateYAnimation Length="400" RotationY="0"/>
+                            </h:ParallelHandlerExecutor>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Scale and Rotation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <h:ParallelHandlerExecutor>
+                                <h:SequenceHandlerExecutor>
+                                    <s:RotateAnimation Length="600" Rotation="360" />
+                                    <s:RotateAnimation Length="0" Rotation="0" />
+                                </h:SequenceHandlerExecutor>
+                                <h:SequenceHandlerExecutor>
+                                    <s:ScaleAnimation Length="300" Scale="0.2" />
+                                    <s:ScaleAnimation Length="300" Scale="1" />
+                                </h:SequenceHandlerExecutor>
+                            </h:ParallelHandlerExecutor>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>

@@ -60,6 +60,18 @@
 
   <ItemGroup>
     <Compile Include="**\*.shared.cs" />
+    <Compile Include="Animations\AnimationBase.cs" />
+    <Compile Include="Animations\Standart\FadeAnimation.cs" />
+    <Compile Include="Animations\Standart\LayoutAnimation.cs" />
+    <Compile Include="Animations\Standart\RelativeRotateAnimation.cs" />
+    <Compile Include="Animations\Standart\RelativeRotateXAnimation.cs" />
+    <Compile Include="Animations\Standart\RelativeRotateYAnimation.cs" />
+    <Compile Include="Animations\Standart\RelativeScaleAnimation.cs" />
+    <Compile Include="Animations\Standart\RotateAnimation.cs" />
+    <Compile Include="Animations\Standart\RotateXAnimation.cs" />
+    <Compile Include="Animations\Standart\RotateYAnimation.cs" />
+    <Compile Include="Animations\Standart\ScaleAnimation.cs" />
+    <Compile Include="Animations\Standart\TranslateAnimation.cs" />
     <Compile Include="Core\AttachableBindableObject.cs" />
     <Compile Include="Core\Cancellation\CancellationProvider.cs" />
     <Compile Include="Core\CommandParams.cs" />
@@ -154,6 +166,7 @@
     <Compile Include="Extensions\StringExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Extensions\TypeExtension.cs">
       <SubType>Code</SubType>
     </Compile>
