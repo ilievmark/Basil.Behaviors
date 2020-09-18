@@ -61,6 +61,11 @@
   <ItemGroup>
     <Compile Include="**\*.shared.cs" />
     <Compile Include="Animations\AnimationBase.cs" />
+    <Compile Include="Animations\Custom\BackgroundColorAAnimation.cs" />
+    <Compile Include="Animations\Custom\BackgroundColorBAnimation.cs" />
+    <Compile Include="Animations\Custom\BackgroundColorGAnimation.cs" />
+    <Compile Include="Animations\Custom\BackgroundColorRAnimation.cs" />
+    <Compile Include="Animations\Custom\CustomAnimationBase.cs" />
     <Compile Include="Animations\Standart\FadeAnimation.cs" />
     <Compile Include="Animations\Standart\LayoutAnimation.cs" />
     <Compile Include="Animations\Standart\RelativeRotateAnimation.cs" />
