@@ -34,10 +34,24 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="FluentAssertions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a">
+          <HintPath>..\..\packages\FluentAssertions.6.0.0-alpha0001\lib\net47\FluentAssertions.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
         <Reference Include="System" />
+        <Reference Include="System.Configuration" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
+        <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+          <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.0\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
         <Reference Include="System.Xml" />
+        <Reference Include="System.Xml.Linq" />
         <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
           <HintPath>..\..\packages\Xamarin.Forms.4.3.0.908675\lib\netstandard2.0\Xamarin.Forms.Core.dll</HintPath>
           <Private>True</Private>
@@ -64,16 +78,21 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Environment\EnvironmentManager.cs" />
-        <Compile Include="Environment\ViewModel\Handlers\ViewModelSimleHandling.cs" />
-        <Compile Include="Environment\View\Handlers\ViewWithButton.cs" />
+        <Compile Include="Environment\MVVM\EnvironmentManager.cs" />
+        <Compile Include="Environment\MVVM\ViewModel\Handlers\ViewModelSimleHandling.cs" />
+        <Compile Include="Environment\MVVM\View\Handlers\ViewWithButton.cs" />
+        <Compile Include="Environment\Sample\Classes\ClassWithField.cs" />
+        <Compile Include="Environment\Sample\Classes\ClassWithPrivateField.cs" />
+        <Compile Include="Environment\Sample\Classes\ClassWithPrivateProperty.cs" />
+        <Compile Include="Environment\Sample\Classes\ClassWithProperty.cs" />
+        <Compile Include="Environment\Sample\EnvironmentManager.cs" />
         <Compile Include="Handlers\Inheritance\AsyncHandlers.cs" />
         <Compile Include="Handlers\Inheritance\Handlers.cs" />
+        <Compile Include="Handlers\Parameters\Parameters.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Handlers\Async" />
-      <Folder Include="Handlers\Parameters" />
       <Folder Include="Handlers\Sequential" />
     </ItemGroup>
     <ItemGroup>
