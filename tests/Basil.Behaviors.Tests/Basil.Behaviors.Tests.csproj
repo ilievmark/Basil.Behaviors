@@ -65,18 +65,25 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Environment\EnvironmentManager.cs" />
-        <Compile Include="Environment\ViewModel\Handlers\ViewModelWithCommand.cs" />
+        <Compile Include="Environment\ViewModel\Handlers\ViewModelSimleHandling.cs" />
         <Compile Include="Environment\View\Handlers\ViewWithButton.cs" />
+        <Compile Include="Handlers\Inheritance\AsyncHandlers.cs" />
+        <Compile Include="Handlers\Inheritance\Handlers.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Handlers\Async" />
-      <Folder Include="Handlers\Inheritance" />
       <Folder Include="Handlers\Parameters" />
       <Folder Include="Handlers\Sequential" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Basil.Behaviors.csproj">
+        <Project>{5b079f28-f191-4b19-a138-a51a31abea79}</Project>
+        <Name>Basil.Behaviors</Name>
+      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

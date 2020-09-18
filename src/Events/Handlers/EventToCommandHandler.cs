@@ -6,7 +6,7 @@ using Basil.Behaviors.Extensions;
 
 namespace Basil.Behaviors.Events.Handlers
 {
-    public class EventToCommandHandler : BaseHandler, IRisible, ICommandExecutable
+    public class EventToCommandHandler : BaseHandler, IRisible, ICommandExecutable, ISkipReturnable
     {
         #region Properties
         
