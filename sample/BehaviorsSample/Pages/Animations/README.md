@@ -16,6 +16,8 @@ Doc structure:
     - [RelativeRotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativerotatexanimation)
     - [RotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#rotateyanimation)
     - [RelativeRotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativerotateyanimation)
+- [Custom](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#custom-animations)
+    - [BackgroundColorAnimations](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#backgroundcoloranimations)
 - [Advanced](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#advanced)
     - [Animation combination](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#animation-combination)
     - [Using event handlers with animations](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#animation-combination)
@@ -294,6 +296,91 @@ RotationY - rotation by coordinate Y, that animation will increment to current R
 In action:
 
 ![Image of usage RelativeRotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/rel_rotate_y_anim.gif)
+
+## Custom animations
+
+You can create own animations using AnimationBase or CustomAnimationBase. Both classes generic with type arg inherited from VisualElement
+
+AnimationBase class was created to use standart extension methods like ScaleTo or RotateTo. There are options to use different ext methods there,
+or use Xamarin tutorial, and your code may be like that
+
+```
+var tcs = new TaskCompletionSource<bool>();
+var ve = GetAnimationTargetVisualElement();
+new Animation(d => (... do animation updates here...) , StartValue, EndValue, Easing)
+    .Commit(ve, "AnimationName", Rate, Length, Easing, (d, b) => tcs.SetResult(b));
+return tcs.Task;
+```
+
+that seems complicated, but this is how all Xamarin animations works.
+So if you dont want to see undergrounds of your animation, and you want to code without details, you can create animation with CustomAnimationBase.
+
+Inherited class from CustomAnimationBase mus implement just one method:
+
+```
+protected abstract void Tick(TVisual visualElement, double currentValue);
+```
+
+here:
+TVisual visualElement - visual element that yuo want to animate (TVisual - custom visual element if you want to animate custom properties)
+double currentValue - current animation value that animation receive at current frame
+
+Also this class already have bindable properties, like:
+
+
+### BackgroundColorAnimations
+
+Here is example of using CustomAnimationBase class. There are 4 animations to animate bg color of visual element:
+
+- BackgroundColorAAnimation
+- BackgroundColorRAnimation
+- BackgroundColorGAnimation
+- BackgroundColorBAnimation
+
+Each of animation animate only theirs color channel. For example, implementation of BackgroundColorRAnimation:
+
+```
+public class BackgroundColorRAnimation : CustomAnimationBase
+{
+    protected override void Tick(VisualElement visualElement, double currentValue)
+    {
+        visualElement.BackgroundColor = new Color(
+            currentValue,
+            visualElement.BackgroundColor.G,
+            visualElement.BackgroundColor.B);
+    }
+}
+```
+
+You can still use all this animations in parallel
+
+```
+<Button Text="Background animation" BackgroundColor="Cyan" Margin="20">
+    <Button.Behaviors>
+        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+            <h:ParallelHandlerExecutor WaitResult="True">
+                <c:BackgroundColorRAnimation Length="300" StartValue="0" EndValue="0.2"/>
+                <c:BackgroundColorGAnimation Length="300" StartValue="1" EndValue="0.3"/>
+                <c:BackgroundColorBAnimation Length="300" StartValue="1" EndValue="0.4"/>
+            </h:ParallelHandlerExecutor>
+            <h:ParallelHandlerExecutor WaitResult="True">
+                <c:BackgroundColorRAnimation Length="300" StartValue="0.2" EndValue="1"/>
+                <c:BackgroundColorGAnimation Length="300" StartValue="0.3" EndValue="0.5"/>
+                <c:BackgroundColorBAnimation Length="300" StartValue="0.4" EndValue="0.1"/>
+            </h:ParallelHandlerExecutor>
+            <h:ParallelHandlerExecutor WaitResult="True">
+                <c:BackgroundColorRAnimation Length="300" StartValue="1" EndValue="0"/>
+                <c:BackgroundColorGAnimation Length="300" StartValue="0.5" EndValue="1"/>
+                <c:BackgroundColorBAnimation Length="300" StartValue="0.1" EndValue="1"/>
+            </h:ParallelHandlerExecutor>
+        </e:EventToMultipleHandlersBehavior>
+    </Button.Behaviors>
+</Button>
+```
+
+In action:
+
+![Image of usage background color animations](https://github.com/ilievmark/Basil.Behaviors/blob/update_tutorials_minor_updates/inf/animations/bg_color_anim.gif)
 
 ## Advanced
 
