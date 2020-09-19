@@ -4,24 +4,24 @@ Animations - wrap on instance of Animation class of Xamarin.Forms, based on [eve
 
 Doc structure:
 
-- [Standart](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#standart-animations)
-    - [FadeAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#fadeanimation)
-    - [LayoutAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#layoutanimation)
-    - [TranslateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#translateanimation)
-    - [ScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#scaleanimation)
-    - [RelativeScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativescaleanimation)
-    - [RotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#rotateanimation)
-    - [RelativeRotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativerotateanimation)
-    - [RotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#rotatexanimation)
-    - [RelativeRotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativerotatexanimation)
-    - [RotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#rotateyanimation)
-    - [RelativeRotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativerotateyanimation)
-- [Custom](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#custom-animations)
-    - [BackgroundColorAnimations](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#backgroundcoloranimations)
-- [Advanced](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#advanced)
-    - [Animation combination](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#animation-combination)
-    - [Using event handlers with animations](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#animation-combination)
-    - [Animate multiple views](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#animation-combination)
+- [Standart](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#standart-animations)
+    - [FadeAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#fadeanimation)
+    - [LayoutAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#layoutanimation)
+    - [TranslateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#translateanimation)
+    - [ScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#scaleanimation)
+    - [RelativeScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#relativescaleanimation)
+    - [RotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#rotateanimation)
+    - [RelativeRotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#relativerotateanimation)
+    - [RotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#rotatexanimation)
+    - [RelativeRotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#relativerotatexanimation)
+    - [RotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#rotateyanimation)
+    - [RelativeRotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#relativerotateyanimation)
+- [Custom](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#custom-animations)
+    - [BackgroundColorAnimations](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#backgroundcoloranimations)
+- [Advanced](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#advanced)
+    - [Animation combination](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-combination)
+    - [Using event handlers with animations](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-combination)
+    - [Animate multiple views](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-combination)
 
 ## Standart animations
 
@@ -380,7 +380,7 @@ You can still use all this animations in parallel
 
 In action:
 
-![Image of usage background color animations](https://github.com/ilievmark/Basil.Behaviors/blob/update_tutorials_minor_updates/inf/animations/bg_color_anim.gif)
+![Image of usage background color animations](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/bg_color_anim.gif)
 
 ## Advanced
 
