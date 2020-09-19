@@ -20,7 +20,8 @@ Doc structure:
     - [BackgroundColorAnimations](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#backgroundcoloranimations)
 - [Advanced](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#advanced)
     - [Animation combination](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-combination)
-    - [Using event handlers with animations](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-combination)
+    - [Animation decorators](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-decorators)
+        - [Using event handlers with animations](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-combination)
     - [Animate multiple views](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-combination)
 
 ## Standart animations
@@ -419,7 +420,34 @@ There is sequence of rotation animations that will be played as you suppose)
 
 ![Image of usage combined animation](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/combined_diff_anim.gif)
 
-### Using event handlers with animations
+### Animation decorators
+
+Here we have decorators for animations.
+
+CycledAnimationDecorator - decorator to create loop based animation
+
+For example
+
+```
+<Button Text="Cycled fade animation" BackgroundColor="Cyan" Margin="20">
+    <Button.Behaviors>
+        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+            <d:CycledAnimationDecorator Cycles="3">
+                <h:SequenceHandlerExecutor WaitResult="True">
+                    <s:FadeAnimation Length="500" Opacity="0" />
+                    <s:FadeAnimation Length="500" Opacity="1" />
+                </h:SequenceHandlerExecutor>
+            </d:CycledAnimationDecorator>
+        </e:EventToMultipleHandlersBehavior>
+    </Button.Behaviors>
+</Button>
+```
+
+As result - sequence of fade animations will be played 3 times:
+
+![Image of usage CycledAnimationDecorator](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/cycled_dec_anim.gif)
+
+#### Using event handlers with animations
 
 Tutorial coming soon!
 
