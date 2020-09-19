@@ -109,13 +109,24 @@
                     </Button.Behaviors>
                 </Button>
                 
-                <Button Text="Background animation" Margin="20">
+                <Button Text="Background animation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>
-                        <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
-                            <c:BackgroundColorRAnimation Length="1700" StartValue="1" EndValue="0.2"/>
-                            <c:BackgroundColorGAnimation Length="700" StartValue="1" EndValue="0.3"/>
-                            <c:BackgroundColorBAnimation Length="300" StartValue="1" EndValue="0.4"/>
-                            <c:BackgroundColorAAnimation Length="1700" StartValue="0.3" EndValue="0.6"/>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <c:BackgroundColorRAnimation Length="300" StartValue="0" EndValue="0.2"/>
+                                <c:BackgroundColorGAnimation Length="300" StartValue="1" EndValue="0.3"/>
+                                <c:BackgroundColorBAnimation Length="300" StartValue="1" EndValue="0.4"/>
+                            </h:ParallelHandlerExecutor>
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <c:BackgroundColorRAnimation Length="300" StartValue="0.2" EndValue="1"/>
+                                <c:BackgroundColorGAnimation Length="300" StartValue="0.3" EndValue="0.5"/>
+                                <c:BackgroundColorBAnimation Length="300" StartValue="0.4" EndValue="0.1"/>
+                            </h:ParallelHandlerExecutor>
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <c:BackgroundColorRAnimation Length="300" StartValue="1" EndValue="0"/>
+                                <c:BackgroundColorGAnimation Length="300" StartValue="0.5" EndValue="1"/>
+                                <c:BackgroundColorBAnimation Length="300" StartValue="0.1" EndValue="1"/>
+                            </h:ParallelHandlerExecutor>
                         </e:EventToMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>
@@ -124,34 +135,18 @@
                     <Button.Behaviors>
                         <e:EventToMultipleHandlersBehavior EventName="Clicked">
                             <h:ParallelHandlerExecutor WaitResult="True">
-                                <c:BackgroundColorRAnimation Length="500" StartValue="1" EndValue="0.2"/>
-                                <c:BackgroundColorGAnimation Length="500" StartValue="1" EndValue="0.3"/>
-                                <c:BackgroundColorBAnimation Length="500" StartValue="1" EndValue="0.4"/>
-                                <c:BackgroundColorAAnimation Length="500" StartValue="1" EndValue="0.6"/>
                                 <s:RotateXAnimation Length="500" RotationX="75"/>
                                 <s:RotateYAnimation Length="500" RotationY="45"/>
                             </h:ParallelHandlerExecutor>
                             <h:ParallelHandlerExecutor WaitResult="True">
-                                <c:BackgroundColorRAnimation Length="500" StartValue="0.2" EndValue="0.4"/>
-                                <c:BackgroundColorGAnimation Length="500" StartValue="0.3" EndValue="0.6"/>
-                                <c:BackgroundColorBAnimation Length="500" StartValue="0.4" EndValue="0.1"/>
-                                <c:BackgroundColorAAnimation Length="500" StartValue="0.6" EndValue="0.2"/>
                                 <s:RotateXAnimation Length="500" RotationX="-130"/>
                                 <s:RotateYAnimation Length="500" RotationY="-90"/>
                             </h:ParallelHandlerExecutor>
                             <h:ParallelHandlerExecutor WaitResult="True">
-                                <c:BackgroundColorRAnimation Length="500" StartValue="0.4" EndValue="0.9"/>
-                                <c:BackgroundColorGAnimation Length="500" StartValue="0.6" EndValue="0.2"/>
-                                <c:BackgroundColorBAnimation Length="500" StartValue="0.1" EndValue="0.3"/>
-                                <c:BackgroundColorAAnimation Length="500" StartValue="0.1" EndValue="0.5"/>
                                 <s:RotateXAnimation Length="500" RotationX="-27"/>
                                 <s:RotateYAnimation Length="500" RotationY="30"/>
                             </h:ParallelHandlerExecutor>
                             <h:ParallelHandlerExecutor WaitResult="True">
-                                <c:BackgroundColorRAnimation Length="500" StartValue="0.9" EndValue="1"/>
-                                <c:BackgroundColorGAnimation Length="500" StartValue="0.2" EndValue="1"/>
-                                <c:BackgroundColorBAnimation Length="500" StartValue="0.3" EndValue="1"/>
-                                <c:BackgroundColorAAnimation Length="500" StartValue="0.5" EndValue="1"/>
                                 <s:RotateXAnimation Length="500" RotationX="0"/>
                                 <s:RotateYAnimation Length="500" RotationY="0"/>
                             </h:ParallelHandlerExecutor>
