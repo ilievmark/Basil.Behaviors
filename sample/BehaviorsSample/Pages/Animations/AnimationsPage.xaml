@@ -5,11 +5,25 @@
              xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
              xmlns:c="clr-namespace:Basil.Behaviors.Animations.Custom;assembly=Basil.Behaviors"
              xmlns:s="clr-namespace:Basil.Behaviors.Animations.Standart;assembly=Basil.Behaviors"
+             xmlns:d="clr-namespace:Basil.Behaviors.Animations.Decorators;assembly=Basil.Behaviors"
              x:Class="BehaviorsSample.Pages.Animations.AnimationsPage">
     
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
+                
+                <Button Text="Cycled fade animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <d:CycledAnimationDecorator Cycles="3">
+                                <h:SequenceHandlerExecutor WaitResult="True">
+                                    <s:FadeAnimation Length="500" Opacity="0" />
+                                    <s:FadeAnimation Length="500" Opacity="1" />
+                                </h:SequenceHandlerExecutor>
+                            </d:CycledAnimationDecorator>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
                 
                 <Button Text="Fade animation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>
