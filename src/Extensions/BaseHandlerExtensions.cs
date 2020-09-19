@@ -44,38 +44,43 @@ namespace Basil.Behaviors.Extensions
             object sender,
             object eventArgs)
         {
-            object previousResult;
+            object previousResult = default;
 
             for (int i = 0; i < handlers.Count; i++)
             {
                 var handler = handlers[i];
-                previousResult = default;
 
                 if (handler.Cast<IAsyncGenericRisible>(out var castedAsyncGenericHandler))
                 {
+                    var task = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
                     if (castedAsyncGenericHandler.WaitResult)
                     {
-                        var t = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
-                        await t;
-                        previousResult = t.GetPropertyValue(nameof(Task<object>.Result));
+                        await task;
+                        if (!handler.IsSkipReturnable())
+                            previousResult = task.GetPropertyValue(nameof(Task<object>.Result));
                     }
-                    else
-                        previousResult = castedAsyncGenericHandler.RiseAsync(sender, eventArgs);
+                    else if (!handler.IsSkipReturnable())
+                        previousResult = task;
                 }
                 
                 if (handler.Cast<IAsyncRisible>(out var castedAsyncHandler))
                 {
+                    var task = castedAsyncHandler.RiseAsync(sender, eventArgs);
                     if (castedAsyncHandler.WaitResult)
-                        await castedAsyncHandler.RiseAsync(sender, eventArgs);
-                    else
-                        previousResult = castedAsyncHandler.RiseAsync(sender, eventArgs);
+                        await task;
+                    else if (!handler.IsSkipReturnable())
+                        previousResult = task;
                 }
 
-                if (handler.IsGenericRisible())
-                    previousResult = handler.RiseAsGeneric<dynamic>(sender, eventArgs);
-                
-                if (handler.IsRisible())
-                    handler.RiseByDefault(sender, eventArgs);
+                if (handler.Cast<IGenericRisible>(out var castedGenericHandler))
+                {
+                    var result = castedGenericHandler.Rise<dynamic>(sender, eventArgs);
+                    if (!handler.IsSkipReturnable())
+                        previousResult = result;
+                }
+
+                if (handler.Cast<IRisible>(out var castedRisibleHandler))
+                    castedRisibleHandler.Rise(sender, eventArgs);
 
                 if (previousResult != default)
                     handlers.GetNextParametrizedHandler(i)?.SetReturnValueToNext(previousResult);

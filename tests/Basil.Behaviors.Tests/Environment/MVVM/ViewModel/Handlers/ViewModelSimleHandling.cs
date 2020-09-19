@@ -6,6 +6,8 @@ namespace Basil.Behaviors.Tests.Environment.MVVM.ViewModel.Handlers
 {
     public class ViewModelSimleHandling
     {
+        private int _parameterValue;
+        
         public ICommand Command { get; }
 
         public int ExecuteCommandCount;
@@ -20,5 +22,10 @@ namespace Basil.Behaviors.Tests.Environment.MVVM.ViewModel.Handlers
         public void Method() => ExecuteMethodCount++;
 
         public async Task MethodAsync() => ExecuteAsyncMethodCount++;
+        
+        
+        public int MethodWithReturnInt() => 9;
+        
+        public void MethodWithParameterInt(int parameter) => _parameterValue = parameter;
     }
 }
