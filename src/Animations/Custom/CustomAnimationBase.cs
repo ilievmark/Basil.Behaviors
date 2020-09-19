@@ -7,7 +7,7 @@ namespace Basil.Behaviors.Animations.Custom
     {
     }
 
-    public abstract class CustomAnimationBase<TVisual> : AnimationBase
+    public abstract class CustomAnimationBase<TVisual> : AnimationBase<TVisual>
         where TVisual : VisualElement
     {
         #region Properties
@@ -69,11 +69,11 @@ namespace Basil.Behaviors.Animations.Custom
         {
             var tcs = new TaskCompletionSource<bool>();
             var ve = GetAnimationTargetVisualElement();
-            new Animation(d => Tick(ve, StartValue, d, EndValue), StartValue, EndValue, Easing)
+            new Animation(d => Tick(ve, d), StartValue, EndValue, Easing)
                 .Commit(ve, GetType().Name, Rate, Length, Easing, (d, b) => tcs.SetResult(b));
             return tcs.Task;
         }
 
-        protected abstract void Tick(VisualElement visualElement, double startValue, double currentValue, double endValue);
+        protected abstract void Tick(TVisual visualElement, double currentValue);
     }
 }

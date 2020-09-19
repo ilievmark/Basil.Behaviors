@@ -3,7 +3,12 @@ using Xamarin.Forms;
 
 namespace Basil.Behaviors.Animations
 {
-    public abstract class AnimationBase : BaseAsyncHandler
+    public abstract class AnimationBase : AnimationBase<VisualElement>
+    {
+    }
+    
+    public abstract class AnimationBase<TVisual> : BaseAsyncHandler
+        where TVisual : VisualElement
     {
         public AnimationBase()
         {
@@ -17,13 +22,13 @@ namespace Basil.Behaviors.Animations
         public static readonly BindableProperty TargetProperty =
             BindableProperty.Create(
                 propertyName: nameof(Target),
-                returnType: typeof(VisualElement),
-                declaringType: typeof(AnimationBase),
-                defaultValue: default(VisualElement));
+                returnType: typeof(TVisual),
+                declaringType: typeof(AnimationBase<TVisual>),
+                defaultValue: default(TVisual));
 
-        public VisualElement Target
+        public TVisual Target
         {
-            get => (VisualElement)GetValue(TargetProperty);
+            get => (TVisual)GetValue(TargetProperty);
             set => SetValue(TargetProperty, value);
         }
 
@@ -35,7 +40,7 @@ namespace Basil.Behaviors.Animations
             BindableProperty.Create(
                 propertyName: nameof(Easing),
                 returnType: typeof(Easing),
-                declaringType: typeof(AnimationBase),
+                declaringType: typeof(AnimationBase<TVisual>),
                 defaultValue: Easing.Linear);
 
         public Easing Easing
@@ -52,7 +57,7 @@ namespace Basil.Behaviors.Animations
             BindableProperty.Create(
                 propertyName: nameof(Length),
                 returnType: typeof(uint),
-                declaringType: typeof(AnimationBase),
+                declaringType: typeof(AnimationBase<TVisual>),
                 defaultValue: 250U);
 
         public uint Length
@@ -65,7 +70,7 @@ namespace Basil.Behaviors.Animations
 
         #endregion
 
-        protected VisualElement GetAnimationTargetVisualElement()
-            => Target ?? (VisualElement)AssociatedObject;
+        protected TVisual GetAnimationTargetVisualElement()
+            => Target ?? (TVisual)AssociatedObject;
     }
 }

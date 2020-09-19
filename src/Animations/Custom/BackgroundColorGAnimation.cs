@@ -4,7 +4,7 @@ namespace Basil.Behaviors.Animations.Custom
 {
     public class BackgroundColorGAnimation : CustomAnimationBase
     {
-        protected override void Tick(VisualElement visualElement, double startValue, double currentValue, double endValue)
+        protected override void Tick(VisualElement visualElement, double currentValue)
         {
             visualElement.BackgroundColor = new Color(
                 visualElement.BackgroundColor.R,
