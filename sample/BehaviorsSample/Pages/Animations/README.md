@@ -425,5 +425,40 @@ Tutorial coming soon!
 
 ### Animate multiple views
 
-Tutorial coming soon!
+You can apply animations for different views in one time
+Lets say we have thee images on page:
 
+```
+<Image Margin="150, 20" x:Name="basil_image" Source="https://moya-dacha.com.ua/wp-content/uploads/2016/09/Bazilik-CHernyj-granat-1.jpg" />
+<Image Margin="150, 20" x:Name="cat_image" Source="https://s1.stc.all.kpcdn.net/putevoditel/projectid_103889/images/tild3266-6236-4266-b833-393539393436__cat-3601092_1280.jpg" />
+<Image Margin="150, 20" x:Name="elefant_image" Source="https://static3.depositphotos.com/1007572/232/i/450/depositphotos_2322303-stock-photo-african-elephant-isolated-on-white.jpg" />
+```
+
+Then we want to animate it. You can write code just like before, but with using Target property of animation
+
+```
+<Button Text="Do animation" BackgroundColor="Cyan" Margin="20">
+    <Button.Behaviors>
+        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+            <h:ParallelHandlerExecutor>
+                <h:SequenceHandlerExecutor>
+                    <s:FadeAnimation Length="500" Opacity="0" Target="{x:Reference basil_image}" />
+                    <s:FadeAnimation Length="500" Opacity="1" Target="{x:Reference basil_image}" />
+                </h:SequenceHandlerExecutor>
+                <h:SequenceHandlerExecutor>
+                    <s:RotateXAnimation Length="650" RotationX="80" Easing="{x:Static Easing.BounceIn}" Target="{x:Reference cat_image}" />
+                    <s:RotateXAnimation Length="650" RotationX="0" Easing="{x:Static Easing.BounceOut}" Target="{x:Reference cat_image}" />
+                </h:SequenceHandlerExecutor>
+                <h:SequenceHandlerExecutor>
+                    <s:LayoutAnimation Length="200" OffsetRectangle="-10,15,20,-30" Target="{x:Reference elefant_image}"/>
+                    <s:LayoutAnimation Length="200" OffsetRectangle="10,-15,-20,30" Target="{x:Reference elefant_image}"/>
+                </h:SequenceHandlerExecutor>
+            </h:ParallelHandlerExecutor>
+        </e:EventToMultipleHandlersBehavior>
+    </Button.Behaviors>
+</Button>
+```
+
+As result, thee images animates in parallel
+
+![Image of usage combined animation](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/multiple_views_anim.gif)
