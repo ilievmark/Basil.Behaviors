@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:e="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
+             xmlns:a="clr-namespace:Basil.Behaviors.Events.HandlersAsync;assembly=Basil.Behaviors"
              xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
              xmlns:c="clr-namespace:Basil.Behaviors.Animations.Custom;assembly=Basil.Behaviors"
              xmlns:s="clr-namespace:Basil.Behaviors.Animations.Standart;assembly=Basil.Behaviors"
@@ -11,6 +12,24 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
+                
+                <Button Text="Cycled wait fade animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:RotateAnimation Length="500" Rotation="45" Easing="{x:Static Easing.SpringIn}" />
+                            <s:RotateAnimation Length="500" Rotation="0" Easing="{x:Static Easing.SpringOut}" />
+                            <a:EventToAsyncMethodHandler MethodName="MethodAsync" WaitResult="False"/>
+                            <d:CycledWaitAnimationDecorator>
+                                <h:SequenceHandlerExecutor WaitResult="True">
+                                    <s:FadeAnimation Length="300" Opacity="0" />
+                                    <s:FadeAnimation Length="300" Opacity="1" />
+                                </h:SequenceHandlerExecutor>
+                            </d:CycledWaitAnimationDecorator>
+                            <s:ScaleAnimation Length="400" Scale="0.4" />
+                            <s:ScaleAnimation Length="500" Scale="1.2" Easing="{x:Static Easing.BounceOut}" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
                 
                 <Button Text="Cycled fade animation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>

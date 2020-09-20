@@ -67,6 +67,7 @@
     <Compile Include="Animations\Custom\BackgroundColorRAnimation.cs" />
     <Compile Include="Animations\Custom\CustomAnimationBase.cs" />
     <Compile Include="Animations\Decorators\CycledAnimationDecorator.cs" />
+    <Compile Include="Animations\Decorators\CycledWaitAnimationDecorator.cs" />
     <Compile Include="Animations\Standart\FadeAnimation.cs" />
     <Compile Include="Animations\Standart\LayoutAnimation.cs" />
     <Compile Include="Animations\Standart\RelativeRotateAnimation.cs" />
