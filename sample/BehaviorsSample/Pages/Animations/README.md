@@ -449,7 +449,53 @@ As result - sequence of fade animations will be played 3 times:
 
 #### Using event handlers with animations
 
-Tutorial coming soon!
+Lets say you have long async operation, that must be processed while some animation running. And that animstion must complete after that operation.
+Then you can use CycledWaitAnimationDecorator
+
+Its easy to use:
+1. Fire your operation and do not wait result. Task of this operation will be used next
+
+```
+<a:EventToAsyncMethodHandler MethodName="MethodAsync" WaitResult="False"/>
+```
+
+2. Create CycledWaitAnimationDecorator after your operation. It uses ReturnParameter of type Task undergrounds. So your animation
+will be cycled untill operation undone
+
+```
+<d:CycledWaitAnimationDecorator>
+    <h:SequenceHandlerExecutor WaitResult="True">
+        <s:FadeAnimation Length="300" Opacity="0" />
+        <s:FadeAnimation Length="300" Opacity="1" />
+    </h:SequenceHandlerExecutor>
+</d:CycledWaitAnimationDecorator>
+```
+
+Thats is! Here is a full example
+
+```
+<Button Text="Cycled wait fade animation" BackgroundColor="Cyan" Margin="20">
+    <Button.Behaviors>
+        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+            <s:RotateAnimation Length="500" Rotation="45" Easing="{x:Static Easing.SpringIn}" />
+            <s:RotateAnimation Length="500" Rotation="0" Easing="{x:Static Easing.SpringOut}" />
+            <a:EventToAsyncMethodHandler MethodName="MethodAsync" WaitResult="False"/>
+            <d:CycledWaitAnimationDecorator>
+                <h:SequenceHandlerExecutor WaitResult="True">
+                    <s:FadeAnimation Length="300" Opacity="0" />
+                    <s:FadeAnimation Length="300" Opacity="1" />
+                </h:SequenceHandlerExecutor>
+            </d:CycledWaitAnimationDecorator>
+            <s:ScaleAnimation Length="400" Scale="0.4" />
+            <s:ScaleAnimation Length="500" Scale="1.2" Easing="{x:Static Easing.BounceOut}" />
+        </e:EventToMultipleHandlersBehavior>
+    </Button.Behaviors>
+</Button>
+```
+
+and here is how it works
+
+![Image of usage CycledWaitAnimationDecorator](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/cycled_wait_dec_anim.gif)
 
 ### Animate multiple views
 
