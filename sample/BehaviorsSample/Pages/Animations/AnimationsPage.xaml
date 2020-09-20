@@ -2,13 +2,47 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:e="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
+             xmlns:a="clr-namespace:Basil.Behaviors.Events.HandlersAsync;assembly=Basil.Behaviors"
              xmlns:h="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
+             xmlns:c="clr-namespace:Basil.Behaviors.Animations.Custom;assembly=Basil.Behaviors"
              xmlns:s="clr-namespace:Basil.Behaviors.Animations.Standart;assembly=Basil.Behaviors"
+             xmlns:d="clr-namespace:Basil.Behaviors.Animations.Decorators;assembly=Basil.Behaviors"
              x:Class="BehaviorsSample.Pages.Animations.AnimationsPage">
     
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
+                
+                <Button Text="Cycled wait fade animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <s:RotateAnimation Length="500" Rotation="45" Easing="{x:Static Easing.SpringIn}" />
+                            <s:RotateAnimation Length="500" Rotation="0" Easing="{x:Static Easing.SpringOut}" />
+                            <a:EventToAsyncMethodHandler MethodName="MethodAsync" WaitResult="False"/>
+                            <d:CycledWaitAnimationDecorator>
+                                <h:SequenceHandlerExecutor WaitResult="True">
+                                    <s:FadeAnimation Length="300" Opacity="0" />
+                                    <s:FadeAnimation Length="300" Opacity="1" />
+                                </h:SequenceHandlerExecutor>
+                            </d:CycledWaitAnimationDecorator>
+                            <s:ScaleAnimation Length="400" Scale="0.4" />
+                            <s:ScaleAnimation Length="500" Scale="1.2" Easing="{x:Static Easing.BounceOut}" />
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Cycled fade animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <d:CycledAnimationDecorator Cycles="3">
+                                <h:SequenceHandlerExecutor WaitResult="True">
+                                    <s:FadeAnimation Length="500" Opacity="0" />
+                                    <s:FadeAnimation Length="500" Opacity="1" />
+                                </h:SequenceHandlerExecutor>
+                            </d:CycledAnimationDecorator>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
                 
                 <Button Text="Fade animation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>
@@ -104,6 +138,28 @@
                     <Button.Behaviors>
                         <e:EventToMultipleHandlersBehavior EventName="Clicked" SingleRun="True">
                             <s:RelativeRotateYAnimation Length="200" RotationY="20"/>
+                        </e:EventToMultipleHandlersBehavior>
+                    </Button.Behaviors>
+                </Button>
+                
+                <Button Text="Background animation" BackgroundColor="Cyan" Margin="20">
+                    <Button.Behaviors>
+                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <c:BackgroundColorRAnimation Length="300" StartValue="0" EndValue="0.2"/>
+                                <c:BackgroundColorGAnimation Length="300" StartValue="1" EndValue="0.3"/>
+                                <c:BackgroundColorBAnimation Length="300" StartValue="1" EndValue="0.4"/>
+                            </h:ParallelHandlerExecutor>
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <c:BackgroundColorRAnimation Length="300" StartValue="0.2" EndValue="1"/>
+                                <c:BackgroundColorGAnimation Length="300" StartValue="0.3" EndValue="0.5"/>
+                                <c:BackgroundColorBAnimation Length="300" StartValue="0.4" EndValue="0.1"/>
+                            </h:ParallelHandlerExecutor>
+                            <h:ParallelHandlerExecutor WaitResult="True">
+                                <c:BackgroundColorRAnimation Length="300" StartValue="1" EndValue="0"/>
+                                <c:BackgroundColorGAnimation Length="300" StartValue="0.5" EndValue="1"/>
+                                <c:BackgroundColorBAnimation Length="300" StartValue="0.1" EndValue="1"/>
+                            </h:ParallelHandlerExecutor>
                         </e:EventToMultipleHandlersBehavior>
                     </Button.Behaviors>
                 </Button>

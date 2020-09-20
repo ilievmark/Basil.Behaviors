@@ -4,22 +4,25 @@ Animations - wrap on instance of Animation class of Xamarin.Forms, based on [eve
 
 Doc structure:
 
-- [Standart](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#standart-animations)
-    - [FadeAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#fadeanimation)
-    - [LayoutAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#layoutanimation)
-    - [TranslateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#translateanimation)
-    - [ScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#scaleanimation)
-    - [RelativeScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativescaleanimation)
-    - [RotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#rotateanimation)
-    - [RelativeRotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativerotateanimation)
-    - [RotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#rotatexanimation)
-    - [RelativeRotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativerotatexanimation)
-    - [RotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#rotateyanimation)
-    - [RelativeRotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#relativerotateyanimation)
-- [Advanced](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#advanced)
-    - [Animation combination](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#animation-combination)
-    - [Using event handlers with animations](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#animation-combination)
-    - [Animate multiple views](https://github.com/ilievmark/Basil.Behaviors/tree/doc_animations_and_impvmts/sample/BehaviorsSample/Pages/Animations#animation-combination)
+- [Standart](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#standart-animations)
+    - [FadeAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#fadeanimation)
+    - [LayoutAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#layoutanimation)
+    - [TranslateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#translateanimation)
+    - [ScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#scaleanimation)
+    - [RelativeScaleAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#relativescaleanimation)
+    - [RotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#rotateanimation)
+    - [RelativeRotateAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#relativerotateanimation)
+    - [RotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#rotatexanimation)
+    - [RelativeRotateXAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#relativerotatexanimation)
+    - [RotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#rotateyanimation)
+    - [RelativeRotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#relativerotateyanimation)
+- [Custom](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#custom-animations)
+    - [BackgroundColorAnimations](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#backgroundcoloranimations)
+- [Advanced](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#advanced)
+    - [Animation combination](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-combination)
+    - [Animation decorators](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-decorators)
+        - [Using event handlers with animations](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-combination)
+    - [Animate multiple views](https://github.com/ilievmark/Basil.Behaviors/tree/master/sample/BehaviorsSample/Pages/Animations#animation-combination)
 
 ## Standart animations
 
@@ -295,6 +298,91 @@ In action:
 
 ![Image of usage RelativeRotateYAnimation](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/rel_rotate_y_anim.gif)
 
+## Custom animations
+
+You can create own animations using AnimationBase or CustomAnimationBase. Both classes generic with type arg inherited from VisualElement
+
+AnimationBase class was created to use standart extension methods like ScaleTo or RotateTo. There are options to use different ext methods there,
+or use Xamarin tutorial, and your code may be like that
+
+```
+var tcs = new TaskCompletionSource<bool>();
+var ve = GetAnimationTargetVisualElement();
+new Animation(d => (... do animation updates here...) , StartValue, EndValue, Easing)
+    .Commit(ve, "AnimationName", Rate, Length, Easing, (d, b) => tcs.SetResult(b));
+return tcs.Task;
+```
+
+that seems complicated, but this is how all Xamarin animations works.
+So if you dont want to see undergrounds of your animation, and you want to code without details, you can create animation with CustomAnimationBase.
+
+Inherited class from CustomAnimationBase mus implement just one method:
+
+```
+protected abstract void Tick(TVisual visualElement, double currentValue);
+```
+
+here:
+TVisual visualElement - visual element that yuo want to animate (TVisual - custom visual element if you want to animate custom properties)
+double currentValue - current animation value that animation receive at current frame
+
+Also this class already have bindable properties, like:
+
+
+### BackgroundColorAnimations
+
+Here is example of using CustomAnimationBase class. There are 4 animations to animate bg color of visual element:
+
+- BackgroundColorAAnimation
+- BackgroundColorRAnimation
+- BackgroundColorGAnimation
+- BackgroundColorBAnimation
+
+Each of animation animate only theirs color channel. For example, implementation of BackgroundColorRAnimation:
+
+```
+public class BackgroundColorRAnimation : CustomAnimationBase
+{
+    protected override void Tick(VisualElement visualElement, double currentValue)
+    {
+        visualElement.BackgroundColor = new Color(
+            currentValue,
+            visualElement.BackgroundColor.G,
+            visualElement.BackgroundColor.B);
+    }
+}
+```
+
+You can still use all this animations in parallel
+
+```
+<Button Text="Background animation" BackgroundColor="Cyan" Margin="20">
+    <Button.Behaviors>
+        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+            <h:ParallelHandlerExecutor WaitResult="True">
+                <c:BackgroundColorRAnimation Length="300" StartValue="0" EndValue="0.2"/>
+                <c:BackgroundColorGAnimation Length="300" StartValue="1" EndValue="0.3"/>
+                <c:BackgroundColorBAnimation Length="300" StartValue="1" EndValue="0.4"/>
+            </h:ParallelHandlerExecutor>
+            <h:ParallelHandlerExecutor WaitResult="True">
+                <c:BackgroundColorRAnimation Length="300" StartValue="0.2" EndValue="1"/>
+                <c:BackgroundColorGAnimation Length="300" StartValue="0.3" EndValue="0.5"/>
+                <c:BackgroundColorBAnimation Length="300" StartValue="0.4" EndValue="0.1"/>
+            </h:ParallelHandlerExecutor>
+            <h:ParallelHandlerExecutor WaitResult="True">
+                <c:BackgroundColorRAnimation Length="300" StartValue="1" EndValue="0"/>
+                <c:BackgroundColorGAnimation Length="300" StartValue="0.5" EndValue="1"/>
+                <c:BackgroundColorBAnimation Length="300" StartValue="0.1" EndValue="1"/>
+            </h:ParallelHandlerExecutor>
+        </e:EventToMultipleHandlersBehavior>
+    </Button.Behaviors>
+</Button>
+```
+
+In action:
+
+![Image of usage background color animations](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/bg_color_anim.gif)
+
 ## Advanced
 
 ### Animation combination
@@ -332,11 +420,119 @@ There is sequence of rotation animations that will be played as you suppose)
 
 ![Image of usage combined animation](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/combined_diff_anim.gif)
 
-### Using event handlers with animations
+### Animation decorators
 
-Tutorial coming soon!
+Here we have decorators for animations.
+
+CycledAnimationDecorator - decorator to create loop based animation
+
+For example
+
+```
+<Button Text="Cycled fade animation" BackgroundColor="Cyan" Margin="20">
+    <Button.Behaviors>
+        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+            <d:CycledAnimationDecorator Cycles="3">
+                <h:SequenceHandlerExecutor WaitResult="True">
+                    <s:FadeAnimation Length="500" Opacity="0" />
+                    <s:FadeAnimation Length="500" Opacity="1" />
+                </h:SequenceHandlerExecutor>
+            </d:CycledAnimationDecorator>
+        </e:EventToMultipleHandlersBehavior>
+    </Button.Behaviors>
+</Button>
+```
+
+As result - sequence of fade animations will be played 3 times:
+
+![Image of usage CycledAnimationDecorator](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/cycled_dec_anim.gif)
+
+#### Using event handlers with animations
+
+Lets say you have long async operation, that must be processed while some animation running. And that animstion must complete after that operation.
+Then you can use CycledWaitAnimationDecorator
+
+Its easy to use:
+1. Fire your operation and do not wait result. Task of this operation will be used next
+
+```
+<a:EventToAsyncMethodHandler MethodName="MethodAsync" WaitResult="False"/>
+```
+
+2. Create CycledWaitAnimationDecorator after your operation. It uses ReturnParameter of type Task undergrounds. So your animation
+will be cycled untill operation undone
+
+```
+<d:CycledWaitAnimationDecorator>
+    <h:SequenceHandlerExecutor WaitResult="True">
+        <s:FadeAnimation Length="300" Opacity="0" />
+        <s:FadeAnimation Length="300" Opacity="1" />
+    </h:SequenceHandlerExecutor>
+</d:CycledWaitAnimationDecorator>
+```
+
+Thats is! Here is a full example
+
+```
+<Button Text="Cycled wait fade animation" BackgroundColor="Cyan" Margin="20">
+    <Button.Behaviors>
+        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+            <s:RotateAnimation Length="500" Rotation="45" Easing="{x:Static Easing.SpringIn}" />
+            <s:RotateAnimation Length="500" Rotation="0" Easing="{x:Static Easing.SpringOut}" />
+            <a:EventToAsyncMethodHandler MethodName="MethodAsync" WaitResult="False"/>
+            <d:CycledWaitAnimationDecorator>
+                <h:SequenceHandlerExecutor WaitResult="True">
+                    <s:FadeAnimation Length="300" Opacity="0" />
+                    <s:FadeAnimation Length="300" Opacity="1" />
+                </h:SequenceHandlerExecutor>
+            </d:CycledWaitAnimationDecorator>
+            <s:ScaleAnimation Length="400" Scale="0.4" />
+            <s:ScaleAnimation Length="500" Scale="1.2" Easing="{x:Static Easing.BounceOut}" />
+        </e:EventToMultipleHandlersBehavior>
+    </Button.Behaviors>
+</Button>
+```
+
+and here is how it works
+
+![Image of usage CycledWaitAnimationDecorator](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/cycled_wait_dec_anim.gif)
 
 ### Animate multiple views
 
-Tutorial coming soon!
+You can apply animations for different views in one time
+Lets say we have thee images on page:
 
+```
+<Image Margin="150, 20" x:Name="basil_image" Source="https://moya-dacha.com.ua/wp-content/uploads/2016/09/Bazilik-CHernyj-granat-1.jpg" />
+<Image Margin="150, 20" x:Name="cat_image" Source="https://s1.stc.all.kpcdn.net/putevoditel/projectid_103889/images/tild3266-6236-4266-b833-393539393436__cat-3601092_1280.jpg" />
+<Image Margin="150, 20" x:Name="elefant_image" Source="https://static3.depositphotos.com/1007572/232/i/450/depositphotos_2322303-stock-photo-african-elephant-isolated-on-white.jpg" />
+```
+
+Then we want to animate it. You can write code just like before, but with using Target property of animation
+
+```
+<Button Text="Do animation" BackgroundColor="Cyan" Margin="20">
+    <Button.Behaviors>
+        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+            <h:ParallelHandlerExecutor>
+                <h:SequenceHandlerExecutor>
+                    <s:FadeAnimation Length="500" Opacity="0" Target="{x:Reference basil_image}" />
+                    <s:FadeAnimation Length="500" Opacity="1" Target="{x:Reference basil_image}" />
+                </h:SequenceHandlerExecutor>
+                <h:SequenceHandlerExecutor>
+                    <s:RotateXAnimation Length="650" RotationX="80" Easing="{x:Static Easing.BounceIn}" Target="{x:Reference cat_image}" />
+                    <s:RotateXAnimation Length="650" RotationX="0" Easing="{x:Static Easing.BounceOut}" Target="{x:Reference cat_image}" />
+                </h:SequenceHandlerExecutor>
+                <h:SequenceHandlerExecutor>
+                    <s:LayoutAnimation Length="200" OffsetRectangle="-10,15,20,-30" Target="{x:Reference elefant_image}"/>
+                    <s:LayoutAnimation Length="200" OffsetRectangle="10,-15,-20,30" Target="{x:Reference elefant_image}"/>
+                </h:SequenceHandlerExecutor>
+            </h:ParallelHandlerExecutor>
+        </e:EventToMultipleHandlersBehavior>
+    </Button.Behaviors>
+</Button>
+```
+
+As result, thee images animates in parallel
+
+![Image of usage combined animation](https://github.com/ilievmark/Basil.Behaviors/blob/master/inf/animations/multiple_views_anim.gif)
