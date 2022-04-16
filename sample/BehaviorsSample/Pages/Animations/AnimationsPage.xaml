@@ -15,7 +15,7 @@
                 
                 <Button Text="Cycled wait fade animation" BackgroundColor="Cyan" Margin="20">
                     <Button.Behaviors>
-                        <e:EventToMultipleHandlersBehavior EventName="Clicked">
+                        <e:EventToMultipleHandlersBehavior TargetSubscribeObject="{x:Reference thisPage}" EventName="Clicked">
                             <s:RotateAnimation Length="500" Rotation="45" Easing="{x:Static Easing.SpringIn}" />
                             <s:RotateAnimation Length="500" Rotation="0" Easing="{x:Static Easing.SpringOut}" />
                             <a:EventToAsyncMethodHandler MethodName="MethodAsync" WaitResult="False"/>

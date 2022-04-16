@@ -1,11 +1,10 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using Basil.Behaviors.Rules;
 using Xamarin.Forms;
 
-namespace Basil.Behaviors
+namespace Basil.Behaviors.Core.Abstract
 {
     [ContentProperty(nameof(Rules))]
     public abstract class PropertyRulesBehaviorBase<TProperty, TRule> : PropertyChangedBehaviorBase<TProperty> where TRule : BaseRule
@@ -15,7 +14,7 @@ namespace Basil.Behaviors
             _items = new ObservableCollection<TRule>();
             _items.CollectionChanged += OnItemsCollectionChanged;
         }
-        
+
         protected ObservableCollection<TRule> _items;
         public IList<TRule> Rules => _items;
 
@@ -40,7 +39,7 @@ namespace Basil.Behaviors
             foreach (var item in items)
                 if (AssociatedObject != null)
                     item.AttachBindableObject(AssociatedObject);
-            
+
         }
 
         protected virtual void RemovedItems(IEnumerable<TRule> items)

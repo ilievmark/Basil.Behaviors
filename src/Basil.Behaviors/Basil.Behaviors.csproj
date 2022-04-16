@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard2.0;Xamarin.iOS10;MonoAndroid90</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard2.0;Xamarin.iOS10;MonoAndroid90</TargetFrameworks>
     
@@ -16,7 +16,6 @@
     <PackageVersion>1.2.0.1</PackageVersion>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
-    <LangVersion>8</LangVersion>
     <DefineConstants>$(DefineConstants);</DefineConstants>
     
     <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
@@ -139,9 +138,6 @@ Validations</Description>
     <Compile Include="Events\EventBehaviorBase.cs">
       <SubType></SubType>
     </Compile>
-    <Compile Include="BaseBehavior.cs">
-      <SubType></SubType>
-    </Compile>
     <Compile Include="Events\EventToMethodBehavior.cs" />
     <Compile Include="Events\EventHandlersBehaviorBase.cs">
       <SubType></SubType>
@@ -185,15 +181,6 @@ Validations</Description>
     <Compile Include="Masks\MaskWithRulesBehavior.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PropertyChangedBehaviorBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PropertyRulesBehaviorBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Rules\BaseRule.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Rules\Mask\AnyCharMaskRule.cs" />
     <Compile Include="Rules\Mask\CharMaskRule.cs" />
     <Compile Include="Rules\Mask\IgnoreCaseCharMaskRule.cs" />
@@ -225,7 +212,7 @@ Validations</Description>
     <Folder Include="Events\Handlers\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\LICENSE">

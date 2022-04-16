@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Xamarin.Forms;
 
-namespace Basil.Behaviors
+namespace Basil.Behaviors.Core.Abstract
 {
     public abstract class BaseBehavior : Behavior
     {
@@ -12,7 +12,7 @@ namespace Basil.Behaviors
             get => _associatedObject;
             private set => SetAssociatedObject(value);
         }
-        
+
         #region Overrides
 
         protected override void OnAttachedTo(BindableObject bindable)
@@ -44,13 +44,13 @@ namespace Basil.Behaviors
         }
 
         #endregion
-        
+
         #region Virtual members
-        
+
         protected virtual void OnAssociatedObjectChanged(BindableObject oldValue, BindableObject newValue)
         {
         }
-        
+
         protected virtual void OnAssociatedObjectChanging(BindableObject oldValue, BindableObject newValue)
         {
         }
@@ -58,7 +58,7 @@ namespace Basil.Behaviors
         protected virtual void OnAssociatedObjectPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
         }
-        
+
         #endregion
 
         private void OnBindingContextChanged(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace Basil.Behaviors
             _associatedObject = newValue;
             OnAssociatedObjectChanged(oldValue, _associatedObject);
         }
-        
+
         protected bool IsAttached()
             => AssociatedObject != null;
     }
