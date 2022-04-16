@@ -2,9 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using Basil.Behaviors.Core.Rules;
 using Xamarin.Forms;
 
-namespace Basil.Behaviors.Core.Abstract
+namespace Basil.Behaviors.Core.Abstract.Behaviors
 {
     [ContentProperty(nameof(Rules))]
     public abstract class PropertyRulesBehaviorBase<TProperty, TRule> : PropertyChangedBehaviorBase<TProperty> where TRule : BaseRule

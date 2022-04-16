@@ -15,9 +15,11 @@
   <ItemGroup>
     <None Remove="Abstract\" />
     <None Remove="Rules\" />
+    <None Remove="Abstract\Behaviors\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="Rules\" />
+    <Folder Include="Abstract\Behaviors\" />
   </ItemGroup>
 </Project>

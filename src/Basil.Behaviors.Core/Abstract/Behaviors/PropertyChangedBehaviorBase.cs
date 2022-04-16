@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Reflection;
 using Xamarin.Forms;
 
-namespace Basil.Behaviors.Core.Abstract
+namespace Basil.Behaviors.Core.Abstract.Behaviors
 {
     public abstract class PropertyChangedBehaviorBase<TProperty> : BaseBehavior
     {

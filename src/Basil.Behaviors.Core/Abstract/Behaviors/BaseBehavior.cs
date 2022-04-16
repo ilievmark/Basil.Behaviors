@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Xamarin.Forms;
 
-namespace Basil.Behaviors.Core.Abstract
+namespace Basil.Behaviors.Core.Abstract.Behaviors
 {
     public abstract class BaseBehavior : Behavior
     {

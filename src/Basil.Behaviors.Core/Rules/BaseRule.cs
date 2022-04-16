@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Basil.Behaviors.Core.Abstract;
+
 namespace Basil.Behaviors.Core.Rules
 {
-    public class BaseRule : AttachableBindableObject
+    public abstract class BaseRule : AttachableBindableObject
     {
         public virtual string Rule { get; set; }
 

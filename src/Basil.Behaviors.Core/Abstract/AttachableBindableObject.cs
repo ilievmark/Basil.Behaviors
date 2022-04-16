@@ -1,7 +1,7 @@
 using System;
 using Xamarin.Forms;
 
-namespace Basil.Behaviors.Core
+namespace Basil.Behaviors.Core.Abstract
 {
     public class AttachableBindableObject : BindableObject
     {
